@@ -64,7 +64,7 @@ var updateServers = function(){
 }
 
 var testFunction = function(){
-addServer("test", "http://usplay.secretalgorithm.com:11451", "SPA")
+addServer("usplay", "http://usplay.secretalgorithm.com:11451", "SPA")
 }
 
 
