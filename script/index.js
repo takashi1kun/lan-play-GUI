@@ -1,4 +1,15 @@
+const config = require('electron-json-config');
 var serverList = []
+
+if(config.has('serverList')){
+	serverList = config.get('serverList')
+	config.purge()
+	config.set('serverList', serverList)
+} else{
+	config.purge()
+	config.set('serverList', serverList)
+}
+
 var serverObject = function(serverIndex, serverName, serverURL){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
@@ -9,6 +20,7 @@ var serverObject = function(serverIndex, serverName, serverURL){
 	this.serverOnline = false,
 	this.serverInfo = {}
 }
+
 var serverObjectMin = function(serverIndex, serverName, serverURL){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
@@ -17,6 +29,7 @@ var serverObjectMin = function(serverIndex, serverName, serverURL){
 		return this.serverURL + "/info"
 	}
 }
+
 var addServer = function(serverName, serverURL){
 	var obj = new serverObject(serverList.length, serverName, serverURL)
 	serverList.push(obj)
@@ -34,11 +47,16 @@ var objectUpdate = async function(obj) {
 	obj.serverInfo = serverInfo
 	serverList[obj.serverIndex] = obj
 }
+
 var updateServers = function(){
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
 }
+
 var testFunction = function(){
 addServer("test", "http://usplay.secretalgorithm.com:11451")
 }
+
+
+console.log(config.get('serverList'));
