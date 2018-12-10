@@ -1,14 +1,19 @@
 const config = require('electron-json-config');
 var serverList = []
 
+var updateConfig(){
+	config.purge()
+	config.set('serverList', serverList)
+}
+
 if(config.has('serverList')){
 	serverList = config.get('serverList')
 	config.purge()
 	config.set('serverList', serverList)
 } else{
-	config.purge()
-	config.set('serverList', serverList)
+	updateConfig()
 }
+
 
 var serverObject = function(serverIndex, serverName, serverURL){
 	this.serverIndex = serverIndex,
@@ -34,6 +39,7 @@ var addServer = function(serverName, serverURL){
 	var obj = new serverObject(serverList.length, serverName, serverURL)
 	serverList.push(obj)
 	objectUpdate(obj)
+	setTimeout(updateConfig, 1000);
 }
 
 var objectUpdate = async function(obj) {
@@ -52,6 +58,7 @@ var updateServers = function(){
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
+	setTimeout(updateConfig, 4000);
 }
 
 var testFunction = function(){
