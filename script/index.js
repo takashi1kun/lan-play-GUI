@@ -166,32 +166,38 @@ var removeServer = function(serverNumber){
 
 var upServer = function(serverNumber) {
 	if (serverNumber != 0){
-		var serverNumber2 = serverNumber - 1
-		var serverData1 = serverList[serverNumber]
-		var serverData2 = serverList[serverNumber2]
-		serverData1.serverIndex = serverList[serverNumber2].serverIndex
-		serverData2.serverIndex = serverList[serverNumber].serverIndex
-		var tempArray = serverList
-		tempArray[serverNumber] = serverData2
-		tempArray[serverNumber2] = serverData1
-		serverList = tempArray
-		setTimeout(updateServers, 10);
+		var serverNumber2 = serverNumber - 1 ;
+		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
+		for (var i=0; i<serverList.lenght; i++){
+			serverList[i].serverIndex = i
+			var temp = serverList.lenght;
+			temp = temp - 2
+			if (i < temp){
+				updateServers()
+			}
+		}
+		
 	}
+	updateConfig()
+	 location.reload() 
 }
 
 var downServer = function(serverNumber) {
-	if (serverNumber != serverList.length-1){
-		var serverNumber2 = serverNumber + 1
-		var serverData1 = serverList[serverNumber]
-		var serverData2 = serverList[serverNumber2]
-		serverData1.serverIndex = serverList[serverNumber2].serverIndex
-		serverData2.serverIndex = serverList[serverNumber].serverIndex
-		var tempArray = serverList
-		tempArray[serverNumber] = serverData2
-		tempArray[serverNumber2] = serverData1
-		serverList = tempArray
-		setTimeout(updateServers, 10);
+	if (serverNumber < serverList.length - 1){
+		var serverNumber2 = serverNumber + 1 ;
+		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
+		for (var i=0; i<serverList.lenght; i++){
+			serverList[i].serverIndex = i
+			var temp = serverList.lenght;
+			temp = temp - 2
+			if (i < temp){
+				updateServers()
+				console.log("yes")
+			} else{console.log("not")}
+		}
 	}
+	updateConfig()
+	 location.reload() 
 }
 
 var updateServers = function(){
@@ -199,8 +205,8 @@ var updateServers = function(){
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
-	setTimeout(updateConfig, 250);
-	setTimeout(writeHtml, 250)
+	setTimeout(updateConfig, 400);
+	setTimeout(writeHtml, 400)
 	setTimeout(function(){
 		document.getElementById("update").classList.remove("gly-spin");
 	}, 2000)
