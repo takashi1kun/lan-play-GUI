@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-	<script src="/script/index.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<script src="script/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<script>window.jQuery = window.$ = require('jquery');</script>
+	<script>require('popper.js');</script>
+	<script>require('bootstrap');</script>
+	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    Estamos usando node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    y Electron <script>document.write(process.versions.electron)</script>.
+    <div>
+		<div id="bar" class="bar">
+		<div id="app" class="app">
+		
+		</div>
+	</div>
   </body>
 </html>
