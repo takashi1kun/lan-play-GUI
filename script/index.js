@@ -1,15 +1,18 @@
 var serverList = []
-var serverObject = {
+var serverObject = function(serverIndex, serverName, serverURL){
 	serverIndex: "",
 	serverName: "",
 	serverURL: "",
 	serverInfoURL: function(){
 		return this.serverURL + "/info"
 	},
-	serverOnline: function() {
+	serverOnline: function(){
 		return (await fetch(this.serverInfoURL)).ok
 	},
-	serverPlayers: function() {
-		return JSON.parse((await (await fetch(this.serverInfoURL)).text())).online
+	serverInfo: function(){
+		return JSON.parse((await (await fetch(this.serverInfoURL)).text()))
 	}
+}
+var addServer = function(serverName, serverURL){
+	serverList.push(new serverObject(serverList.length, serverName, serverURL))
 }
