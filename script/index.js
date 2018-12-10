@@ -94,26 +94,9 @@ var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 		return "http://" + this.serverURL + "/info"
 	},
 	this.serverOnline = false,
-	this.serverInfo = {},
-	this.serverColor = function(){
-		if (this.serverOnline){
-			var htmlstring = "limegreen"
-			return htmlstring
-		} else{
-			var htmlstring = "red"
-			return htmlstring
-		}
-	},
-	this.serverIsOnline = function(){
-		if (this.serverOnline){
-			var htmlstring = "Online"
-			return htmlstring
-		} else{
-			var htmlstring = "Offline"
-			return htmlstring
-		}
+	this.serverInfo = {}
 	}
-}
+
 
 var serverObjectMin = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
@@ -143,23 +126,29 @@ var addServer = function(serverName, serverURL, serverFlag){
 }
 
 var objectUpdate = async function(obj) {
-	var serverInfoURL = obj.serverInfoURL()
+	var object = obj
+	var serverInfoURL = object.serverURL
+	serverInfoURL = "http://" + serverInfoURL + "/info"
 	var serverOnline = (await fetch(serverInfoURL)).ok
 	var serverInfo = {}
 	if (serverOnline){
 		serverInfo = JSON.parse((await (await fetch(serverInfoURL)).text()))
 	};
-	obj.serverOnline = serverOnline
-	obj.serverInfo = serverInfo
-	serverList[obj.serverIndex] = obj
+	object.serverOnline = serverOnline
+	object.serverInfo = serverInfo
+	serverList[object.serverIndex] = object
 }
 
 var updateServers = function(){
+	document.getElementById("update").classList.add("gly-spin");
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
 	setTimeout(updateConfig, 500);
 	setTimeout(writeHtml, 500)
+	setTimeout(function(){
+		document.getElementById("update").classList.remove("gly-spin");
+	}, 2000)
 }
 
 var testFunction = function(){
