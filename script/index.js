@@ -1,6 +1,12 @@
 const config = require('electron-json-config');
 var serverList = []
+const {shell} = require('electron');
+const child_process = require('child_process');
 
+var openServer = function(server){
+	var commandString = "start cmd.exe /K lan-play.exe --fake-internet --relay-server-addr "+ server
+	child_process.exec(commandString);
+}
 var updateConfig = function(){
 	config.purge()
 	config.set('serverList', serverList)
@@ -21,7 +27,7 @@ var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverURL = serverURL,
 	this.serverFlag = serverFlag,
 	this.serverInfoURL = function(){
-		return this.serverURL + "/info"
+		return "http://" + this.serverURL + "/info"
 	},
 	this.serverOnline = false,
 	this.serverInfo = {}
@@ -64,7 +70,7 @@ var updateServers = function(){
 }
 
 var testFunction = function(){
-addServer("usplay", "http://usplay.secretalgorithm.com:11451", "SPA")
+addServer("usplay", "usplay.secretalgorithm.com:11451", "SPA")
 }
 
 
