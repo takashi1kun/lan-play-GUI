@@ -45,9 +45,13 @@ var writeHtml = function(){
 	`">
 			<div class="alert alert-primary" style="margin-bottom: 1px; ">
 			<div class="row">
-			<div class="col-sm-1"> <i class="fas fa-sort-up"></i><br /><span title="fr" class="flag-icon flag-icon-`
+			<div class="col-sm-1"> <div onClick="upServer(`
+	+i+
+	`)"><i class="fas fa-sort-up"></i></div><br /><span title="fr" class="flag-icon flag-icon-`
 	+serverList[i].serverFlag.toLowerCase()+
-	`"></span><br /> <i class="fas fa-sort-down"></i></div>
+	`"></span><br /> <div onClick="downServer(`
+	+i+
+	`)"><i class="fas fa-sort-down"></i></div></div>
 				<div class="col-8">
 				<strong>`
 	+serverList[i].serverName+
@@ -146,7 +150,11 @@ var resplice = function(array, index){
 	for(var i=0; i<array.length; i++){
 		if(i!=index){
 			newArray.push(array[i])
+			
 		}
+	}
+	for (var i=0; i<newArray.lenght; i++){
+		newArray[i].serverIndex = i
 	}
 	return newArray
 }
@@ -156,12 +164,34 @@ var removeServer = function(serverNumber){
 	setTimeout(updateServers, 10);
 }
 
-var downServer = function() {
-	
+var upServer = function(serverNumber) {
+	if (serverNumber != 0){
+		var serverNumber2 = serverNumber - 1
+		var serverData1 = serverList[serverNumber]
+		var serverData2 = serverList[serverNumber2]
+		serverData1.serverIndex = serverList[serverNumber2].serverIndex
+		serverData2.serverIndex = serverList[serverNumber].serverIndex
+		var tempArray = serverList
+		tempArray[serverNumber] = serverData2
+		tempArray[serverNumber2] = serverData1
+		serverList = tempArray
+		setTimeout(updateServers, 10);
+	}
 }
 
-var upServer = function() {
-	
+var downServer = function(serverNumber) {
+	if (serverNumber != serverList.length-1){
+		var serverNumber2 = serverNumber + 1
+		var serverData1 = serverList[serverNumber]
+		var serverData2 = serverList[serverNumber2]
+		serverData1.serverIndex = serverList[serverNumber2].serverIndex
+		serverData2.serverIndex = serverList[serverNumber].serverIndex
+		var tempArray = serverList
+		tempArray[serverNumber] = serverData2
+		tempArray[serverNumber2] = serverData1
+		serverList = tempArray
+		setTimeout(updateServers, 10);
+	}
 }
 
 var updateServers = function(){
@@ -169,8 +199,8 @@ var updateServers = function(){
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
-	setTimeout(updateConfig, 500);
-	setTimeout(writeHtml, 500)
+	setTimeout(updateConfig, 250);
+	setTimeout(writeHtml, 250)
 	setTimeout(function(){
 		document.getElementById("update").classList.remove("gly-spin");
 	}, 2000)
