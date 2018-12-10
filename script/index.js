@@ -18,16 +18,27 @@ var serverObjectMin = function(serverIndex, serverName, serverURL){
 	}
 }
 var addServer = function(serverName, serverURL){
-	serverList.push(new serverObject(serverList.length, serverName, serverURL))
+	var obj = new serverObject(serverList.length, serverName, serverURL)
+	serverList.push(obj)
+	objectUpdate(obj)
 }
 
-var objectUpdate = function(obj) {
-	var serverOnline = (await (await fetch(obj.serverInfoURL())).ok)
+var objectUpdate = async function(obj) {
+	var serverInfoURL = obj.serverInfoURL()
+	var serverOnline = (await fetch(serverInfoURL)).ok
 	var serverInfo = {}
 	if (serverOnline){
-		serverInfo = JSON.parse((await (await fetch(obj.serverInfoURL())).text()))
+		serverInfo = JSON.parse((await (await fetch(serverInfoURL)).text()))
 	};
 	obj.serverOnline = serverOnline
 	obj.serverInfo = serverInfo
 	serverList[obj.serverIndex] = obj
+}
+var updateServers = function(){
+	for(var i = 0; i < serverList.length; i++){
+		objectUpdate(serverList[i])
+	}
+}
+var testFunction = function(){
+addServer("test", "http://usplay.secretalgorithm.com:11451")
 }
