@@ -74,7 +74,9 @@ var writeHtml = function(){
 </div><br />
 <div class="btn-group" role="group" aria-label="Basic example">
 					<button type="button" class="btn btn-primary"><i class="far fa-edit"></i> Edit</button>
-					<button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Remove</button>
+					<button type="button" onClick="removeServer(`
+	+i+
+	`)" class="btn btn-danger"><i class="fas fa-times"></i> Remove</button>
 </div>
 				</div>
 </div>
@@ -137,6 +139,29 @@ var objectUpdate = async function(obj) {
 	object.serverOnline = serverOnline
 	object.serverInfo = serverInfo
 	serverList[object.serverIndex] = object
+}
+
+var resplice = function(array, index){
+	var newArray = []
+	for(var i=0; i<array.length; i++){
+		if(i!=index){
+			newArray.push(array[i])
+		}
+	}
+	return newArray
+}
+
+var removeServer = function(serverNumber){
+	serverList = resplice(serverList, serverNumber);
+	setTimeout(updateServers, 10);
+}
+
+var downServer = function() {
+	
+}
+
+var upServer = function() {
+	
 }
 
 var updateServers = function(){
