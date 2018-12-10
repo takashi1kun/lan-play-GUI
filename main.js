@@ -1,5 +1,4 @@
-const { app, BrowserWindow } = require('electron')
-
+const { app, BrowserWindow } = require('electron') 
 // Mantén una referencia global del objeto window, si no lo haces, la ventana 
 // se cerrará automáticamente cuando el objeto JavaScript sea eliminado por el recolector de basura.
 let win
