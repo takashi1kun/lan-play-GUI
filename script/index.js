@@ -43,6 +43,16 @@ var serverObjectMin = function(serverIndex, serverName, serverURL, serverFlag){
 	}
 }
 
+var buttonAddServer = function(){
+	var name = document.getElementById("addServerFormName").value
+	var thisURL = document.getElementById("addServerFormURL").value
+	var country = document.getElementById("addServerFormCountry").value
+	addServer(name, thisURL, country)
+	document.getElementById("addServerFormName").value = ""
+	document.getElementById("addServerFormURL").value = ""
+	document.getElementById("addServerFormCountry").value = "NFlag"
+}
+
 var addServer = function(serverName, serverURL, serverFlag){
 	var obj = new serverObject(serverList.length, serverName, serverURL, serverFlag)
 	serverList.push(obj)

@@ -66,28 +66,28 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-inline">
+        <form id="addServerForm" class="form-inline">
   <label class="sr-only" for="inlineFormInputName2">Server Name</label>
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
       <div class="input-group-text">Server Name</div>
     </div>
-  <input type="text" style="width: 200px" class="form-control" id="inlineFormInputName2" placeholder="Server 1">
+  <input id="addServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
 </div>
   <label class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
   <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
       <div class="input-group-text">Server URL</div>
     </div>
-    <input type="text" style="width: 300px" class="form-control" id="inlineFormInputGroupUsername2" placeholder="example.com:11451">
+    <input type="text" id="addServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
   </div><br />
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
       <div class="input-group-text">Country</div>
     </div>
 	
-  <select class="form-control" style="width: 200px">
-	<option value="NF">No Country</option>
+  <select class="form-control" id="addServerFormCountry" style="width: 200px">
+	<option value="NFlag">No Country</option>
 	<option value="EU">Europe</option>
 	<option value="AF">Afghanistan</option>
 	<option value="AX">Åland Islands</option>
@@ -345,7 +345,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Server</button>
+        <button type="button" onClick="buttonAddServer()" data-dismiss="modal" class="btn btn-primary">Add Server</button>
       </div>
     </div>
   </div>
