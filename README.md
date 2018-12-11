@@ -1,3 +1,4 @@
+
 # lan play GUI
 This is a Visual Interface based on electron for lan play, it also doubles as a server list manager, you can add servers, edit server, remove them, change the order and launch lan-play with any of the servers you have on your list.  
 It also tells you if the server is online, and if it is online, also can tell you the users playing on it on that moment, and the version of lan-play the server is using.
@@ -13,6 +14,16 @@ For windows is easy,
 7.- ???  
 8.- Profit  
 PS.- When you Connect to a server a cmd windows would pop up, you just select your interface and it would work, when you want to change server close that command line window and click Connect to Server on a new server
+### Linux
+1.- Download lan-play-linux  
+2.- Download lan-play-GUI-linux  
+3.- Put lan-play-linux in home  
+4.- sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' lan-play-linux  
+5.- chmod 777 lan-play-linux  
+6.- Execute lan-play-gui-linux  
+7.- ???  
+8.- Profit  
+PS.- When you Connect to a server a terminal would pop up, you just select your interface and it would work, when you want to change server close that terminal and click Connect to Server on a new server
 ## Credits
 
 ### Main Credits:
