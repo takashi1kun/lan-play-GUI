@@ -12,8 +12,8 @@ function createWindow () {
   win.loadFile('index.html')
 
   // Abre las herramientas de desarrollo (DevTools).
-  win.webContents.openDevTools()
-
+//  win.webContents.openDevTools()
+win.setMenu(null) 
   // Emitido cuando la ventana es cerrada.
   win.on('closed', () => {
     // Elimina la referencia al objeto window, normalmente  guardarías las ventanas
