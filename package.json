@@ -7,7 +7,7 @@
   "postinstall": "install-app-deps",
     "start": "electron .",
 	"pack": "build --dir",
-	"dist": "build"
+	"dist": "electron-builder --ia32 --x64 -w"
   },
   "repository": {
     "type": "git",

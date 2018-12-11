@@ -10,10 +10,11 @@ function createWindow () {
 
   // y carga el archivo index.html de la aplicación.
   win.loadFile('index.html')
-
+win.setResizable(false)
+win.center()
   // Abre las herramientas de desarrollo (DevTools).
-  win.webContents.openDevTools()
-//win.setMenu(null) 
+ // win.webContents.openDevTools()
+win.setMenu(null) 
   // Emitido cuando la ventana es cerrada.
   win.on('closed', () => {
     // Elimina la referencia al objeto window, normalmente  guardarías las ventanas
