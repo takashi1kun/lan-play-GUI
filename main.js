@@ -13,7 +13,7 @@ function createWindow () {
 win.setResizable(false)
 win.center()
   // Abre las herramientas de desarrollo (DevTools).
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 win.setMenu(null) 
   // Emitido cuando la ventana es cerrada.
   win.on('closed', () => {

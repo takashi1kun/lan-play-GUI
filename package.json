@@ -8,8 +8,8 @@
     "start": "electron .",
 	"pack": "build --dir",
 	"distWin": "electron-builder --ia32 --x64 -w",
-	"distLinux": "electron-builder -l",
-	"distMac"; "electron-builder -o"
+	"distLin": "electron-builder --linux",
+	"distMac": "electron-builder -o"
   },
   "repository": {
     "type": "git",

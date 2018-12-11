@@ -4,6 +4,7 @@ const {shell} = require('electron');
 const child_process = require('child_process');
 const os = require('os');
 var OS = process.platform
+var workDir = process.cwd()
 
 var openServer = function(server){
 	if($('#fakeInternet').prop('checked')){
@@ -13,14 +14,14 @@ var openServer = function(server){
 	}
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
-			var commandString = "start cmd.exe /K lan-play-win64.exe"+fakeInternet+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+workDir+"\\lan-play-win64.exe"+fakeInternet+" --relay-server-addr "+ server
 		} else { //win32
-			var commandString = "start cmd.exe /K lan-play-win32.exe"+fakeInternet+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+workDir+"\\lan-play-win32.exe"+fakeInternet+" --relay-server-addr "+ server
 		}
 	} else if(OS == "linux"){ //If OS is Linux
-		var commandString = "x-terminal-emulator -e ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = "x-terminal-emulator -e "+workDir+"/lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = "open -n ./lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = "open -n "+workDir+"/lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
 	} else {
 		return
 	}
