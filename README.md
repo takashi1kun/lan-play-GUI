@@ -1,5 +1,6 @@
 
 # Lan Play GUI
+![Image of Lan Play GUI](https://cdn.discordapp.com/attachments/487183424172589057/522070773586984961/unknown.png)
 This is a Visual Interface based on electron for lan play, it also doubles as a server list manager, you can add servers, edit server, remove them, change the order and launch lan-play with any of the servers you have on your list.  
 It also tells you if the server is online, and if it is online, also can tell you the users playing on it on that moment, and the version of lan-play the server is using.
 ## Instructions
