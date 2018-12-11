@@ -1,10 +1,13 @@
 {
-  "name": "lan-play-server-watcher",
+  "name": "lan-play-server-manager",
   "version": "0.0.1",
-  "description": "A project to add and watch servers",
+  "description": "A project to manager servers",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+  "postinstall": "install-app-deps",
+    "start": "electron .",
+	"pack": "build --dir",
+	"dist": "build"
   },
   "repository": {
     "type": "git",
@@ -12,9 +15,37 @@
   },
   "author": "Aitor Rosell Torralba",
   "license": "GPL-3.0",
+  "build": {
+    "appId": "com.lanplayservermanager.app",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
   "devDependencies": {
-    "electron": "^3.0.10",
     "bootstrap": "^4.1.3",
+    "electron": "^3.0.10",
+    "electron-builder": "^20.38.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6"
   },
@@ -24,7 +55,6 @@
     "electron-fetch": "^1.3.0",
     "electron-json-config": "^1.5.3",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.6",
-    "remote": "^0.2.6"
+    "popper.js": "^1.14.6"
   }
 }
