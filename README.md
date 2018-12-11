@@ -51,11 +51,3 @@ http://flag-icon-css.lip.is/
 
 #### Icon:
 https://www.shareicon.net/server-gear-623151
-
-https://vsn4ik.github.io/bootstrap-checkbox/
-
-#### flag-icon-css:
-http://flag-icon-css.lip.is/
-
-#### Icon:
-https://www.shareicon.net/server-gear-623151
