@@ -77,7 +77,9 @@ var writeHtml = function(){
 	` ')" class="btn btn-success"><i class="fas fa-play"></i> Connect to Server</button>
 </div><br />
 <div class="btn-group" role="group" aria-label="Basic example">
-					<button type="button" class="btn btn-primary"><i class="far fa-edit"></i> Edit</button>
+					<button type="button" onClick="editServer(`
+	+i+
+	`)" data-toggle="modal" data-target="#editServer" class="btn btn-primary"><i class="far fa-edit"></i> Edit</button>
 					<button type="button" onClick="removeServer(`
 	+i+
 	`)" class="btn btn-danger"><i class="fas fa-times"></i> Remove</button>
@@ -90,7 +92,32 @@ var writeHtml = function(){
 	}
 	document.getElementById("app").innerHTML = innerHtml
 }
-
+var editedServerIndex;
+var editServer = function(serverIndex){
+	var server = serverList[serverIndex]
+	document.getElementById("editServerFormName").value = server.serverName
+	document.getElementById("editServerFormURL").value = server.serverURL
+	document.getElementById("editServerFormCountry").value = server.serverFlag
+	editedServerIndex = serverIndex
+	setTimeout(updateServers, 10);
+}
+var reLoad = function(){
+	location.reload()
+}
+var saveEditServer = function(){
+	var name = document.getElementById("editServerFormName").value
+	var thisURL = document.getElementById("editServerFormURL").value
+	var country = document.getElementById("editServerFormCountry").value
+	serverList[editedServerIndex].name = name
+	serverList[editedServerIndex].URL = thisURL
+	serverList[editedServerIndex].flag = country
+	updateConfig()
+	document.getElementById("editServerFormName").value = ""
+	document.getElementById("editServerFormURL").value = ""
+	document.getElementById("editServerFormCountry").value = "NFlag"
+	//setTimeout(reLoad, 1000)
+	
+}
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
