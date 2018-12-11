@@ -1,7 +1,7 @@
 {
-  "name": "lan-play-server-manager",
+  "name": "lan-play-GUI",
   "version": "0.0.1",
-  "description": "A project to manager servers",
+  "description": "A GUI for lan-play",
   "main": "main.js",
   "scripts": {
   "postinstall": "install-app-deps",
