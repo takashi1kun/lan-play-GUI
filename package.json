@@ -7,13 +7,15 @@
   "postinstall": "install-app-deps",
     "start": "electron .",
 	"pack": "build --dir",
-	"dist": "electron-builder --ia32 --x64 -w"
+	"distWin": "electron-builder --ia32 --x64 -w",
+	"distLinux": "electron-builder -l",
+	"distMac"; "electron-builder -o"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/takashi1kun/lan-play-server-watcher.git"
   },
-  "author": "Aitor Rosell Torralba",
+  "author": "Aitor Rosell Torralba<aitor.rosell.torralba@gmail.com>",
   "license": "GPL-3.0",
   "build": {
     "appId": "com.lanplayservermanager.app",

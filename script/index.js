@@ -2,7 +2,7 @@ const config = require('electron-json-config');
 var serverList = []
 const {shell} = require('electron');
 const child_process = require('child_process');
-
+const os = require('os');
 var OS = process.platform
 
 var openServer = function(server){
@@ -12,11 +12,15 @@ var openServer = function(server){
 		var fakeInternet = ""
 	}
 	if (OS == "win32"){ //If OS is Windows
-		var commandString = "start cmd.exe /K lan-play.exe"+fakeInternet+" --relay-server-addr "+ server
+		if (os.arch == "x64"){ //win64
+			var commandString = "start cmd.exe /K lan-play-win64.exe"+fakeInternet+" --relay-server-addr "+ server
+		} else { //win32
+			var commandString = "start cmd.exe /K lan-play-win32.exe"+fakeInternet+" --relay-server-addr "+ server
+		}
 	} else if(OS == "linux"){ //If OS is Linux
 		var commandString = "x-terminal-emulator -e ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = "open -n terminal ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = "open -n ./lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
 	} else {
 		return
 	}
