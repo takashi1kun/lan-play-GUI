@@ -29,7 +29,7 @@ PS.- When you Connect to a server a terminal would pop up, you just select your 
 
 ### Main Credits:
 
-#### Main dev: takashi1kun (Red1Reaper on GBAtemp, and Aitor in Discord).
+#### Main dev: takashi1kun (Red1Reaper on GBAtemp, and Aitor in Discord, and lyoko1 on reddit).
 #### Thanks to Svahnen for helping with the linux porting, linux testing, and helping me whit the project in general.
 #### Thanks to the devs of lan-play for making it in general, as this is just a Visual Interface for launching it
 ____________
