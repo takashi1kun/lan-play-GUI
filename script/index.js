@@ -45,11 +45,11 @@ var writeHtml = function(){
 	`">
 			<div class="alert alert-primary" style="margin-bottom: 1px; ">
 			<div class="row">
-			<div class="col-sm-1"> <div onClick="upServer(`
+			<div class="col-sm-1"> <div style="padding-left: 5px;" onClick="upServer(`
 	+i+
-	`)"><i class="fas fa-sort-up"></i></div><br /><span title="fr" class="flag-icon flag-icon-`
+	`)"><i class="fas fa-sort-up"></i></div><div style="padding-top: 4px;padding-bottom: 4px;"><span title="fr" class="flag-icon flag-icon-`
 	+serverList[i].serverFlag.toLowerCase()+
-	`"></span><br /> <div onClick="downServer(`
+	`"></span></div><div style="padding-left: 5px;" onClick="downServer(`
 	+i+
 	`)"><i class="fas fa-sort-down"></i></div></div>
 				<div class="col-8">
@@ -99,7 +99,7 @@ var editServer = function(serverIndex){
 	document.getElementById("editServerFormURL").value = server.serverURL
 	document.getElementById("editServerFormCountry").value = server.serverFlag
 	editedServerIndex = serverIndex
-	setTimeout(updateServers, 10);
+
 }
 var reLoad = function(){
 	location.reload()
@@ -108,14 +108,15 @@ var saveEditServer = function(){
 	var name = document.getElementById("editServerFormName").value
 	var thisURL = document.getElementById("editServerFormURL").value
 	var country = document.getElementById("editServerFormCountry").value
-	serverList[editedServerIndex].name = name
-	serverList[editedServerIndex].URL = thisURL
-	serverList[editedServerIndex].flag = country
+		var obj = new serverObject(editedServerIndex, name, thisURL, country)
+	serverList[editedServerIndex] = ""
+	serverList[editedServerIndex] = obj
 	updateConfig()
 	document.getElementById("editServerFormName").value = ""
 	document.getElementById("editServerFormURL").value = ""
 	document.getElementById("editServerFormCountry").value = "NFlag"
 	//setTimeout(reLoad, 1000)
+	updateServers()
 	
 }
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
