@@ -3,8 +3,7 @@
 This is a Visual Interface based on electron for lan play, it also doubles as a server list manager, you can add servers, edit server, remove them, change the order and launch lan-play with any of the servers you have on your list.  
 It also tells you if the server is online, and if it is online, also can tell you the users playing on it on that moment, and the version of lan-play the server is using.
 ## Instructions
-### Windows
-For windows is easy,  
+### Windows  
 1.- Download the executable of lan-play adequate for your system (64/32 bits)  
 2.- Download the RAR with lan play GUI adequate for your system (64/32 bits)  
 3.- Uncompress the RAR wherever you want  
