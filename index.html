@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/flag-icon.min.css">
+	<script src="script/bootstrap-checkbox.js" defer></script>
 	<script>window.jQuery = window.$ = require('jquery');</script>
 	<script>require('popper.js');</script>
 	<script>require('bootstrap');</script>
@@ -24,9 +25,18 @@
     <a class="navbar-brand" href="#">Server List</a>
 	</div>
 	</div>
+	
+		<div class="row  justify-content-end">
+	<div class="col-sm-12" >
+	<a id="fakeInternet2" class="navbar-text" style="margin-left: 250px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
+	Fake Internet: <input checked="checked" id="fakeInternet" type="checkbox"></a> 
+	</div>
+	</div>
+	
+	
 	<div class="row  justify-content-end">
 		<div class="col-sm-25" style="margin-right:20px">
-   <button onClick="updateServers()"  type="button" class="btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
+   <button onClick="updateServers()" type="button" class="btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
 	</div>
 	</div>
 	</div>

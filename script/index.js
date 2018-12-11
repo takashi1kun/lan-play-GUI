@@ -3,8 +3,23 @@ var serverList = []
 const {shell} = require('electron');
 const child_process = require('child_process');
 
+var OS = process.platform
+
 var openServer = function(server){
-	var commandString = "start cmd.exe /K lan-play.exe --fake-internet --relay-server-addr "+ server
+	if($('#fakeInternet').prop('checked')){
+		var fakeInternet = " --fake-internet"
+	}else{
+		var fakeInternet = ""
+	}
+	if (OS == "win32"){ //If OS is Windows
+		var commandString = "start cmd.exe /K lan-play.exe"+fakeInternet+" --relay-server-addr "+ server
+	} else if(OS == "linux"){ //If OS is Linux
+		var commandString = "start cmd.exe /K lan-play.exe"+fakeInternet+" --relay-server-addr "+ server
+	} else if (OS == "darwin"){//If OS is MacOS
+		var commandString = "start cmd.exe /K lan-play.exe"+fakeInternet+" --relay-server-addr "+ server
+	} else {
+		return
+	}
 	child_process.exec(commandString);
 }
 var updateConfig = function(){
@@ -244,6 +259,19 @@ var testFunction = function(){
 addServer("usplay", "usplay.secretalgorithm.com:11451", "SPA")
 }
 
+var initializationFunction = function(){
+	$(':checkbox').checkboxpicker();
+	writeHtml();
+	$('#fakeInternet').checkboxpicker({
+  html: true,
+  offLabel: '<i class="fas fa-check"></i>',
+  onLabel: '<i class="fas fa-times"></i>'
+});
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
+//document.getElementById("fakeInternet").value=1
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
+}
 
 console.log(config.get('serverList'));    
-setTimeout(writeHtml, 100);
+setTimeout(initializationFunction, 100);
