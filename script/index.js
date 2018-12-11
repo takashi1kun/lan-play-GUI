@@ -16,7 +16,7 @@ var openServer = function(server){
 	} else if(OS == "linux"){ //If OS is Linux
 		var commandString = "x-terminal-emulator -e ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = "x-terminal-emulator -e ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = "open -n terminal ./lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
 	} else {
 		return
 	}
