@@ -143,7 +143,10 @@ var saveEditServer = function(){
 	document.getElementById("editServerFormURL").value = ""
 	document.getElementById("editServerFormCountry").value = "NFlag"
 	//setTimeout(reLoad, 1000)
-	objectUpdate(obj)
+	//objectUpdate(obj)
+	serverList[obj.serverIndex] = objectUpdate(obj, obj.serverIndex)
+	serverList = updateOrder(false, serverList);
+	update();
 	
 }
 
@@ -182,9 +185,10 @@ var buttonAddServer = function(){
 }
 
 var addServer = function(serverName, serverURL, serverFlag){
-	var obj = new serverObject(serverList.length, serverName, serverURL, serverFlag)
-	serverList.push(obj)
-	objectUpdate(obj)
+	var index = serverList.length;
+	var obj = new serverObject(index, serverName, serverURL, serverFlag)
+	serverList[index] = obj
+	serverList[index] = objectUpdate(obj, index)
 }
 
 var objectUpdate = async function(obj, index) {
