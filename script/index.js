@@ -191,6 +191,8 @@ var objectUpdate = async function(obj) {
 	object.serverOnline = serverOnline
 	object.serverInfo = serverInfo
 	serverList[object.serverIndex] = object
+	updateConfig()
+	writeHtml()
 }
 
 var resplice = function(array, index){
@@ -208,8 +210,28 @@ var resplice = function(array, index){
 }
 
 var removeServer = function(serverNumber){
-	serverList = resplice(serverList, serverNumber);
-	setTimeout(updateServers, 10);
+	//serverList = resplice(serverList, serverNumber);
+	var newArray = []
+	var length = serverList.length -1
+	for(var i=0; i<length; i++){
+		if(i!=serverNumber && i<serverNumber){
+			newArray.push(serverList[i])	
+		} else if(i!=serverNumber && i>serverNumber){
+			var i2 = i-1
+			newArray.push(serverList[i2])
+		}
+	}
+	//setTimeout(updateServers, 10);
+	if(newArray.length < serverList.length){
+		update();
+	} else {
+		console.log("error")
+	}
+}
+
+var update = function(){
+	updateConfig();
+	writeHtml();
 }
 
 var upServer = function(serverNumber) {
@@ -253,8 +275,8 @@ var updateServers = function(){
 	for(var i = 0; i < serverList.length; i++){
 		objectUpdate(serverList[i])
 	}
-	setTimeout(updateConfig, 400);
-	setTimeout(writeHtml, 400)
+	//setTimeout(updateConfig, 400);
+	//setTimeout(writeHtml, 400)
 	setTimeout(function(){
 		document.getElementById("update").classList.remove("gly-spin");
 	}, 2000)
