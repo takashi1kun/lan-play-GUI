@@ -6,6 +6,7 @@ const os = require('os');
 var OS = process.platform
 var workDir = process.cwd()
 const fs = require('fs')
+
 var openServer = function(server){
 	if($('#fakeInternet').prop('checked')){
 		var fakeInternet = " --fake-internet"
@@ -59,8 +60,13 @@ var writeHtml = function(){
 			var online = "0"
 			var version = "Not Online"
 		} else {
-			var online = serverList[i].serverInfo.online
-			var version = serverList[i].serverInfo.version
+			if(serverList[i].serverInfo.version === undefined){
+				var online = "0"
+				var version = "Not Online"
+			}else{
+				var online = serverList[i].serverInfo.online
+				var version = serverList[i].serverInfo.version
+			}
 		}
 		innerHtml = innerHtml + `
 	<div id="server_`
@@ -136,17 +142,21 @@ var saveEditServer = function(){
 	var thisURL = document.getElementById("editServerFormURL").value
 	var country = document.getElementById("editServerFormCountry").value
 	var obj = new serverObject(editedServerIndex, name, thisURL, country)
+//	console.log(name)
+	//console.log(thisURL)
+	//console.log(country)
+	//console.log(obj)
 	serverList[editedServerIndex] = ""
 	serverList[editedServerIndex] = obj
-	updateConfig()
+	update();
 	document.getElementById("editServerFormName").value = ""
 	document.getElementById("editServerFormURL").value = ""
 	document.getElementById("editServerFormCountry").value = "NFlag"
 	//setTimeout(reLoad, 1000)
 	//objectUpdate(obj)
-	serverList[obj.serverIndex] = objectUpdate(obj, obj.serverIndex)
-	serverList = updateOrder(false, serverList);
-	update();
+	//serverList[obj.serverIndex] = objectUpdate(obj, obj.serverIndex)
+	//serverList = updateOrder(false, serverList);
+	//update();
 	
 }
 
@@ -196,24 +206,53 @@ var addServer = async function(serverName, serverURL, serverFlag){
 
 var globalTest;
 
+function timeout(ms, promise) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      reject(new Error("timeout"))
+    }, ms)
+    promise.then(resolve, reject)
+  })
+}
+timeout(1000, )
 var objectUpdate = async function(obj, index) {
 	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
 	var serverInfoURL = object.serverURL;
 	serverInfoURL = "http://" + serverInfoURL + "/info"
-	let r1 = await fetch(serverInfoURL);
+	var r1
+	try {
+	r1 = await timeout(500, fetch(serverInfoURL));
+	}
+	catch(err) {
+	//	console.log("first error")
+	var r1 = {online:0,version:"Not Online"}
+	r1.ok = false
+	setTimeout(update, 1000);
+	//return false
+}
 	globalTest = r1
 	var serverOnline = r1.ok
 	var serverInfo = {};
-	if (serverOnline){
-		let r2 = await fetch(serverInfoURL)
-.then(dataWrappedByPromise => dataWrappedByPromise.json())
-.then(data => {
+	var r3;
+	//if (serverOnline){
+		try {
+	let r2 = await timeout(500, fetch(serverInfoURL)).then(dataWrappedByPromise => dataWrappedByPromise.json()).then(data => {
+		r3 = data
     return data
 })
+}
+catch(err) {
+	r3 = {online:0,version:"Not Online"}
+	//console.log("second error")
+	setTimeout(update, 1000);
+}
+	//let r2 = await fetch(serverInfoURL).then(dataWrappedByPromise => dataWrappedByPromise.json()).then(data => {
+    //return data
+//})
 		//let r2 = r1.json()
-		serverInfo = r2
-		globalTest = r2
-	};
+		serverInfo = r3
+		globalTest = r3
+	//};
 	//object.serverOnline = serverOnline
 	//object.serverInfo = serverInfo
 	var realObject = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
@@ -239,8 +278,9 @@ var resplice = function(array, index){
 }
 
 var removeServer = function(serverNumber){
-	//serverList = resplice(serverList, serverNumber);
-	var newArray = []
+	serverList = resplice(serverList, serverNumber);
+	update();
+	/*var newArray = []
 	var length = serverList.length - 1
 	for(var i=0; i<length; i++){
 		if(i!=serverNumber && i<serverNumber){
@@ -254,10 +294,11 @@ var removeServer = function(serverNumber){
 	if(newArray.length < serverList.length){
 		serverList = []
 		serverList = newArray
-		update();
+		
 	} else {
 		console.log("error")
 	}
+	*/
 }
 
 var update = function(){
@@ -297,8 +338,10 @@ var downServer = function(serverNumber) {
 			temp = temp - 2
 			if (i < temp){
 				updateServers()
-				console.log("yes")
-			} else{console.log("not")}
+				//console.log("yes")
+			} else{
+				//console.log("not")
+				}
 		}
 	}
 	update();
@@ -333,7 +376,7 @@ var updateServers = async function(){
 	veryTemp[i] = objectUpdate(serverList[i], i).then(function(result) {
    tempServerList[result[0]] = result[1]
    serverList[result[0]] = tempServerList[result[0]]
-   console.log(result)
+   //console.log(result)
    //update();
    if(result[0] === serverList.length-1) {
 	   update();
@@ -368,5 +411,5 @@ $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClass
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
 }
 
-console.log(config.get('serverList'));    
+//console.log(config.get('serverList'));    
 setTimeout(initializationFunction, 100);
