@@ -184,23 +184,34 @@ var buttonAddServer = function(){
 	document.getElementById("addServerFormCountry").value = "NFlag"
 }
 
-var addServer = function(serverName, serverURL, serverFlag){
+var addServer = async function(serverName, serverURL, serverFlag){
 	var index = serverList.length;
 	var obj = new serverObject(index, serverName, serverURL, serverFlag)
 	serverList[index] = obj
-	var temp = objectUpdate(obj, index)
-	serverList[index] = temp
+	var temp = objectUpdate(obj, index).then(function(result) {
+   serverList[index] = temp
+});
 }
- 
+
+var globalTest;
+
 var objectUpdate = async function(obj, index) {
 	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
 	var serverInfoURL = object.serverURL;
 	serverInfoURL = "http://" + serverInfoURL + "/info"
 	let r1 = await fetch(serverInfoURL);
+	globalTest = r1
 	var serverOnline = r1.ok
 	var serverInfo = {};
 	if (serverOnline){
-		serverInfo = JSON.parse(r1.text())
+		let r2 = await fetch(serverInfoURL)
+.then(dataWrappedByPromise => dataWrappedByPromise.json())
+.then(data => {
+    return data
+})
+		//let r2 = r1.json()
+		serverInfo = r2
+		globalTest = r2
 	};
 	//object.serverOnline = serverOnline
 	//object.serverInfo = serverInfo
@@ -300,19 +311,24 @@ var updateOrder = function(sw, myArray1){
 	return myArray2
 }
 
-var updateServers = function(){
+var updateServers = async function(){
 	document.getElementById("update").classList.add("gly-spin");
 	var tmp = serverList
+	var veryTemp = []
 	serverList = []
 	serverList = updateOrder(true, tmp);
 	var tempServerList = [];
 	var length = serverList.length
 	for(var i = 0; i < length; i++){
-		tempServerList[i] = objectUpdate(serverList[i], i)
+	veryTemp[i] = objectUpdate(serverList[i], i).then(function(result) {
+   tempServerList[i] = veryTemp[i]
+   serverList[i] = tempServerList[i]
+   update();
+});
 	}
-	serverList = [];
-	serverList = updateOrder(false, tempServerList);
-	update();
+	//serverList = [];
+	//serverList = updateOrder(false, tempServerList);
+	//update();
 	//setTimeout(updateConfig, 400);
 	//setTimeout(writeHtml, 400)
 	setTimeout(function(){
