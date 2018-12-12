@@ -28,8 +28,11 @@ var openServer = function(server){
 	child_process.exec(commandString);
 }
 var updateConfig = function(){
-	config.purge()
 	config.set('serverList', serverList)
+}
+
+var purgeConfig = function(){
+	config.purge();
 }
 
 if(config.has('serverList')){
@@ -112,7 +115,9 @@ var writeHtml = function(){
 	}
 	document.getElementById("app").innerHTML = innerHtml
 }
+
 var editedServerIndex;
+
 var editServer = function(serverIndex){
 	var server = serverList[serverIndex]
 	document.getElementById("editServerFormName").value = server.serverName
@@ -121,14 +126,16 @@ var editServer = function(serverIndex){
 	editedServerIndex = serverIndex
 
 }
+
 var reLoad = function(){
 	location.reload()
 }
+
 var saveEditServer = function(){
 	var name = document.getElementById("editServerFormName").value
 	var thisURL = document.getElementById("editServerFormURL").value
 	var country = document.getElementById("editServerFormCountry").value
-		var obj = new serverObject(editedServerIndex, name, thisURL, country)
+	var obj = new serverObject(editedServerIndex, name, thisURL, country)
 	serverList[editedServerIndex] = ""
 	serverList[editedServerIndex] = obj
 	updateConfig()
@@ -136,9 +143,10 @@ var saveEditServer = function(){
 	document.getElementById("editServerFormURL").value = ""
 	document.getElementById("editServerFormCountry").value = "NFlag"
 	//setTimeout(reLoad, 1000)
-	updateServers()
+	objectUpdate(obj)
 	
 }
+
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
@@ -150,17 +158,18 @@ var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverOnline = false,
 	this.serverInfo = {}
 	}
-
-
-var serverObjectMin = function(serverIndex, serverName, serverURL, serverFlag){
+	
+var serverObjectComplete = function(serverIndex, serverName, serverURL, serverFlag, serverOnline, serverInfo){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
 	this.serverURL = serverURL,
 	this.serverFlag = serverFlag,
 	this.serverInfoURL = function(){
-		return this.serverURL + "/info"
+		return "http://" + this.serverURL + "/info"
+	},
+	this.serverOnline = serverOnline,
+	this.serverInfo = serverInfo
 	}
-}
 
 var buttonAddServer = function(){
 	var name = document.getElementById("addServerFormName").value
@@ -176,23 +185,22 @@ var addServer = function(serverName, serverURL, serverFlag){
 	var obj = new serverObject(serverList.length, serverName, serverURL, serverFlag)
 	serverList.push(obj)
 	objectUpdate(obj)
-	setTimeout(updateServers, 10);
 }
 
-var objectUpdate = async function(obj) {
-	var object = obj
-	var serverInfoURL = object.serverURL
+var objectUpdate = async function(obj, index) {
+	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
+	var serverInfoURL = object.serverURL;
 	serverInfoURL = "http://" + serverInfoURL + "/info"
 	var serverOnline = (await fetch(serverInfoURL)).ok
-	var serverInfo = {}
+	var serverInfo = {};
 	if (serverOnline){
 		serverInfo = JSON.parse((await (await fetch(serverInfoURL)).text()))
 	};
-	object.serverOnline = serverOnline
-	object.serverInfo = serverInfo
-	serverList[object.serverIndex] = object
-	updateConfig()
-	writeHtml()
+	//object.serverOnline = serverOnline
+	//object.serverInfo = serverInfo
+	var realObject = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
+	//serverList[object.serverIndex] = object
+	return realObject
 }
 
 var resplice = function(array, index){
@@ -203,7 +211,7 @@ var resplice = function(array, index){
 			
 		}
 	}
-	for (var i=0; i<newArray.lenght; i++){
+	for (var i=0; i<newArray.length; i++){
 		newArray[i].serverIndex = i
 	}
 	return newArray
@@ -238,9 +246,9 @@ var upServer = function(serverNumber) {
 	if (serverNumber != 0){
 		var serverNumber2 = serverNumber - 1 ;
 		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
-		for (var i=0; i<serverList.lenght; i++){
+		for (var i=0; i<serverList.length; i++){
 			serverList[i].serverIndex = i
-			var temp = serverList.lenght;
+			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
 				updateServers()
@@ -256,9 +264,9 @@ var downServer = function(serverNumber) {
 	if (serverNumber < serverList.length - 1){
 		var serverNumber2 = serverNumber + 1 ;
 		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
-		for (var i=0; i<serverList.lenght; i++){
+		for (var i=0; i<serverList.length; i++){
 			serverList[i].serverIndex = i
-			var temp = serverList.lenght;
+			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
 				updateServers()
@@ -270,11 +278,35 @@ var downServer = function(serverNumber) {
 	//location.reload() 
 }
 
+var updateOrder = function(sw, myArray1){
+	var myArray2 = myArray;
+	var length = serverList.length;
+	for (var i=0; i<length; i++){
+		var obj1 = myArray1[i];
+		if(sw){
+			var obj2 = new serverObject(i, obj1.serverName, obj1.serverURL, obj1.serverFlag);
+		}else{
+			var obj2 = new serverObjectComplete(i, obj1.serverName, obj1.serverURL, obj1.serverFlag, obj1.serverOnline, obj1.serverInfo);
+		}
+		myArray2[i] = obj2;
+	}
+	serverList = []
+	return myArray2
+}
+
 var updateServers = function(){
 	document.getElementById("update").classList.add("gly-spin");
-	for(var i = 0; i < serverList.length; i++){
-		objectUpdate(serverList[i])
+	var tmp = serverList
+	serverList = []
+	serverList = updateOrder(true, tmp);
+	var tempServerList = [];
+	var length = serverList.length
+	for(var i = 0; i < length; i++){
+		tempServerList[i] = objectUpdate(serverList[i], i)
 	}
+	serverList = [];
+	serverList = updateOrder(false, tempServerList);
+	update();
 	//setTimeout(updateConfig, 400);
 	//setTimeout(writeHtml, 400)
 	setTimeout(function(){
