@@ -248,8 +248,8 @@ var upServer = function(serverNumber) {
 		}
 		
 	}
-	updateConfig()
-	 location.reload() 
+	update();
+	//location.reload() 
 }
 
 var downServer = function(serverNumber) {
@@ -266,8 +266,8 @@ var downServer = function(serverNumber) {
 			} else{console.log("not")}
 		}
 	}
-	updateConfig()
-	 location.reload() 
+	update();
+	//location.reload() 
 }
 
 var updateServers = function(){
