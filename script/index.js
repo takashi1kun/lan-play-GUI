@@ -55,7 +55,7 @@ var writeHtml = function(){
 			var serverOnline = "Offline"
 			
 		}
-		if (serverList[i].serverInfo.version === undefined) {
+		if (serverList[i].serverInfo === undefined) {
 			var online = "0"
 			var version = "Not Online"
 		} else {
@@ -188,17 +188,19 @@ var addServer = function(serverName, serverURL, serverFlag){
 	var index = serverList.length;
 	var obj = new serverObject(index, serverName, serverURL, serverFlag)
 	serverList[index] = obj
-	serverList[index] = objectUpdate(obj, index)
+	var temp = objectUpdate(obj, index)
+	serverList[index] = temp
 }
-
+ 
 var objectUpdate = async function(obj, index) {
 	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
 	var serverInfoURL = object.serverURL;
 	serverInfoURL = "http://" + serverInfoURL + "/info"
-	var serverOnline = (await fetch(serverInfoURL)).ok
+	let r1 = await fetch(serverInfoURL);
+	var serverOnline = r1.ok
 	var serverInfo = {};
 	if (serverOnline){
-		serverInfo = JSON.parse((await (await fetch(serverInfoURL)).text()))
+		serverInfo = JSON.parse(r1.text())
 	};
 	//object.serverOnline = serverOnline
 	//object.serverInfo = serverInfo
@@ -283,7 +285,7 @@ var downServer = function(serverNumber) {
 }
 
 var updateOrder = function(sw, myArray1){
-	var myArray2 = myArray;
+	var myArray2 = myArray1;
 	var length = serverList.length;
 	for (var i=0; i<length; i++){
 		var obj1 = myArray1[i];
