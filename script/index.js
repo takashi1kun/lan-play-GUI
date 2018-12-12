@@ -189,7 +189,8 @@ var addServer = async function(serverName, serverURL, serverFlag){
 	var obj = new serverObject(index, serverName, serverURL, serverFlag)
 	serverList[index] = obj
 	var temp = objectUpdate(obj, index).then(function(result) {
-   serverList[index] = temp
+   serverList[result[0]] = result[1]
+   update()
 });
 }
 
@@ -217,7 +218,10 @@ var objectUpdate = async function(obj, index) {
 	//object.serverInfo = serverInfo
 	var realObject = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
 	//serverList[object.serverIndex] = object
-	return realObject
+	var returnedValue = []
+	returnedValue[0] = index
+	returnedValue[1] = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
+	return returnedValue
 }
 
 var resplice = function(array, index){
@@ -237,17 +241,19 @@ var resplice = function(array, index){
 var removeServer = function(serverNumber){
 	//serverList = resplice(serverList, serverNumber);
 	var newArray = []
-	var length = serverList.length -1
+	var length = serverList.length - 1
 	for(var i=0; i<length; i++){
 		if(i!=serverNumber && i<serverNumber){
 			newArray.push(serverList[i])	
-		} else if(i!=serverNumber && i>serverNumber){
+		}else if(i!=serverNumber && i>serverNumber){
 			var i2 = i-1
 			newArray.push(serverList[i2])
 		}
 	}
 	//setTimeout(updateServers, 10);
 	if(newArray.length < serverList.length){
+		serverList = []
+		serverList = newArray
 		update();
 	} else {
 		console.log("error")
@@ -255,6 +261,10 @@ var removeServer = function(serverNumber){
 }
 
 var update = function(){
+	var temporalArray = serverList
+	var temporalArray2 = temporalArray
+	temporalArray2 = updateOrder(false, temporalArray);
+	serverList = temporalArray2
 	updateConfig();
 	writeHtml();
 }
@@ -313,17 +323,21 @@ var updateOrder = function(sw, myArray1){
 
 var updateServers = async function(){
 	document.getElementById("update").classList.add("gly-spin");
-	var tmp = serverList
+	//var tmp = serverList
 	var veryTemp = []
-	serverList = []
-	serverList = updateOrder(true, tmp);
+	//serverList = []
+	//serverList = updateOrder(true, tmp);
 	var tempServerList = [];
 	var length = serverList.length
 	for(var i = 0; i < length; i++){
 	veryTemp[i] = objectUpdate(serverList[i], i).then(function(result) {
-   tempServerList[i] = veryTemp[i]
-   serverList[i] = tempServerList[i]
-   update();
+   tempServerList[result[0]] = result[1]
+   serverList[result[0]] = tempServerList[result[0]]
+   console.log(result)
+   //update();
+   if(result[0] === serverList.length-1) {
+	   update();
+   }
 });
 	}
 	//serverList = [];
