@@ -160,6 +160,10 @@ var saveEditServer = function(){
 	
 }
 
+var pingServer= function(url){
+	return (new TextDecoder("utf-8").decode(child_process.execSync("ping  "+url))).split('= ').pop().split('ms')[0]+"ms";
+}
+
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
