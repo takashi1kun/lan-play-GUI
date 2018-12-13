@@ -10,6 +10,9 @@ const dgram = require('dgram')
 const crypto = require('crypto')
 const dns = require('dns')
 var Q = require('q');
+const { remote } = require('electron')
+const path = require('path')
+
 
 function udpPing (server, port = 11451, timeout = 350) {//this function was given to me by space, thanks very much
     return new Promise((resolve, reject) => {
@@ -295,6 +298,10 @@ var addServer = async function(serverName, serverURL, serverFlag){
 }
 
 var globalTest;
+
+var openConfiguration = function(){
+	remote.getCurrentWindow().loadURL('file://options.html')
+}
 
 function timeout(ms, promise) {
   return new Promise(function(resolve, reject) {
