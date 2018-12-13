@@ -160,8 +160,16 @@ var saveEditServer = function(){
 	
 }
 
-var pingServer= function(url){
-	return (new TextDecoder("utf-8").decode(child_process.execSync("ping  "+url))).split('= ').pop().split('ms')[0]+"ms";
+var pingServer = function(index){
+	var url = serverList[index].serverInfoURL().split('http://').pop().split(':')[0];
+	return ping(url)+"ms"
+}
+
+var ping = function(url){
+	var process = child_process.execSync("ping  "+url);
+	var i = parseInt((new TextDecoder("utf-8").decode(process)).split('= ').pop().split('ms')[0]);
+	process.kill();
+	return i
 }
 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
