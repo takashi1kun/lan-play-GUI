@@ -7,6 +7,42 @@
     opacity: 0;
 }
 
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+.bar{
+	
+	position: -webkit-sticky;
+  position: sticky;
+  top:0;
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+	width: 100%;
+}
+
+.app{
+	margin-top: 57px;
+	overflow-y: scroll;
+	height:494px
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 @-webkit-keyframes fadeinout {
   50% { opacity: 1; }
 }
