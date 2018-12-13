@@ -15,7 +15,44 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   </head>
-  <body>
-  Gud Bai Guorld
+  <body style="background-color: #454d54!important;color:white;">
+  <ul class="nav nav-tabs" id="myTab" style="background-color:#343a40 !important;" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+	<i class="fas fa-cog"></i> Main Configuration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+	<i class="fas fa-network-wired"></i> Network Adapter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+	<i class="fas fa-download"></i> Server List</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  WIP
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  WIP
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  WIP
+  </div>
+</div>
+
+
+  <nav style="bottom:0; position: fixed; z-index: 9999; width:100%"class="navbar navbar-dark bg-dark">
+ 
+  <div class="row justify-content-end" style="margin-left:510px">
+  <div class="btn-group" role="group">
+  <button type="button" class="btn btn-success"><i class="fas fa-check"></i> Ok </button>
+  <button type="button" class="btn btn-primary"><i class="fas fa-save"></i> Apply</button>
+  <button type="button" onclick="returnToIndex()" class="btn btn-danger"><i class="fas fa-times"></i> Cancel</button>
+</div>
+</div>
+
+</nav>
   </body>
   </html>

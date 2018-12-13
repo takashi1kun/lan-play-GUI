@@ -300,7 +300,8 @@ var addServer = async function(serverName, serverURL, serverFlag){
 var globalTest;
 
 var openConfiguration = function(){
-	remote.getCurrentWindow().loadURL('file://options.html')
+	//remote.getCurrentWindow().loadURL('file://options.html')
+	remote.getCurrentWindow().loadURL(`file://${__dirname}/options.html`)
 }
 
 function timeout(ms, promise) {

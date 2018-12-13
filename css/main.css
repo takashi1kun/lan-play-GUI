@@ -10,7 +10,10 @@
 ::-webkit-scrollbar {
   width: 3px;
 }
-
+body{
+	background-color: #454d54!important;
+	 overflow-y:hidden;
+}
 .bar{
 	
 	position: -webkit-sticky;
@@ -24,9 +27,12 @@
 }
 
 .app{
-	margin-top: 57px;
+	top: 57px;
+	width: 100%;
+	height: 450px;
+	position:fixed;
 	overflow-y: scroll;
-	height:494px
+	height:450px
 }
 
 ::-webkit-scrollbar-track {
