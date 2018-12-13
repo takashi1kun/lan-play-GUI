@@ -31,6 +31,7 @@ PS.- When you Connect to a server a terminal would pop up, you just select your 
 
 #### Main dev: takashi1kun (Red1Reaper on GBAtemp, and Aitor in Discord, and lyoko1 on reddit).
 #### Thanks to Svahnen for helping with the linux porting, linux testing, and helping me whit the project in general.
+#### Thanks to Space as Space provided me whit the function to ping
 #### Thanks to the devs of lan-play for making it in general, as this is just a Visual Interface for launching it
 ____________
 ### Credits for resources/tools:
@@ -63,3 +64,6 @@ http://flag-icon-css.lip.is/
 
 #### Icon:
 https://www.shareicon.net/server-gear-623151
+
+#### q:  
+https://github.com/kriskowal/q
