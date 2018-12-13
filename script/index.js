@@ -6,6 +6,41 @@ const os = require('os');
 var OS = process.platform
 var workDir = process.cwd()
 const fs = require('fs')
+const dgram = require('dgram')
+const crypto = require('crypto')
+const dns = require('dns')
+var Q = require('q');
+
+function udpPing (server, port = 11451, timeout = 350) {//this function was given to me by space, thanks very much
+    return new Promise((resolve, reject) => {
+        const socket = dgram.createSocket('udp4')
+        const rnd = crypto.randomBytes(4)
+        const sndMsg = Buffer.concat([Buffer.from([2]), rnd])
+        const startTime = Date.now()
+        socket.on('error', (err) => reject(err))
+        socket.on('close', () => reject(new Error('socket closed')))
+        socket.on('message', (msg, rinfo) => {
+            if (rinfo.address != server || rinfo.port != port) {
+                reject(new Error('address not right'))
+                return
+            }
+            if (msg.equals(sndMsg)) {
+                resolve(Date.now() - startTime)
+            } else {
+                reject(new Error('content not match'))
+            }
+        })
+
+        socket.send(sndMsg, port, server, err => err && reject(err))
+    })
+}
+
+/*async function main() {
+    let ping = await udpPing('35.236.10.223')
+    console.log(ping)
+}
+main()*/
+
 
 var openServer = function(server){
 	if($('#fakeInternet').prop('checked')){
@@ -86,8 +121,9 @@ var writeHtml = function(){
 	+serverList[i].serverName+
 	`</strong> | <i class="fas fa-server"></i> `
 	+serverList[i].serverURL+
-	` 
-				<hr>
+	` | <i class="fas fa-broadcast-tower"></i> `
+	+serverList[i].serverPing+
+	`				<hr>
 				<i style="color: `
 	+serverColor+
 	`;transform: scale(0.5)" class="fas fa-circle"></i>`
@@ -160,15 +196,55 @@ var saveEditServer = function(){
 	
 }
 
-var pingServer = function(index){
-	var url = serverList[index].serverInfoURL().split('http://').pop().split(':')[0];
-	return ping(url)+"ms"
+var pingServer = async function(index){
+	var url = ("http://" + serverList[index].serverURL).split('http://').pop().split(':')[0];
+	let ip = await pingServerStep2(url)
+	let pings = await udpPing(ip)
+	console.log(pingServerStep2(url))
+	console.log(pings)
+	return pings+"ms"
+	//return ping(url)+"ms"
+}
+
+var pingServerStep2 = async function(url){
+	var deferred = Q.defer();	
+	await dns.lookup(url, function (err, result) {
+        if (err) {
+            return deferred.reject(err);
+        }
+        deferred.resolve(result);
+    });
+
+    return deferred.promise;
 }
 
 var ping = function(url){
-	var process = child_process.execSync("ping  "+url);
-	var i = parseInt((new TextDecoder("utf-8").decode(process)).split('= ').pop().split('ms')[0]);
-	process.kill();
+	if (OS == "win32"){ //If OS is Windows
+		var process2 = child_process.execSync("ping -n 1 -w 350 "+url);
+		if (process2 != undefined){
+			var i = process2.asciiSlice().split('= ').pop().split('ms')[0];
+			}else{
+				var i = "+350"
+			}
+		if (process2.kill != undefined){
+			process2.kill();}
+	} else if(OS == "linux"){ //If OS is Linux
+		var process2 = child_process.execSync("ping -c 1 -W 350 "+url);
+		if (process2 != undefined){
+			var i = process2.asciiSlice().split('= ').pop().split('ms')[0];
+			}else{
+				var i = "+350"
+			}
+			if (process2.kill != undefined){
+			process2.kill();}
+	} else if (OS == "darwin"){//If OS is MacOS
+		return 0
+	} else {
+		return 0
+	}
+	//var process = child_process.execSync(commandString+url);
+	//var i = parseInt((new TextDecoder("utf-8").decode(process)).split('= ').pop().split('ms')[0]);
+	
 	return i
 }
 
@@ -181,10 +257,11 @@ var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 		return "http://" + this.serverURL + "/info"
 	},
 	this.serverOnline = false,
-	this.serverInfo = {}
+	this.serverInfo = {},
+	this.serverPing = "?ms"
 	}
 	
-var serverObjectComplete = function(serverIndex, serverName, serverURL, serverFlag, serverOnline, serverInfo){
+var serverObjectComplete = function(serverIndex, serverName, serverURL, serverFlag, serverOnline, serverInfo, serverPing){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
 	this.serverURL = serverURL,
@@ -193,7 +270,8 @@ var serverObjectComplete = function(serverIndex, serverName, serverURL, serverFl
 		return "http://" + this.serverURL + "/info"
 	},
 	this.serverOnline = serverOnline,
-	this.serverInfo = serverInfo
+	this.serverInfo = serverInfo,
+	this.serverPing = serverPing
 	}
 
 var buttonAddServer = function(){
@@ -231,6 +309,12 @@ var objectUpdate = async function(obj, index) {
 	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
 	var serverInfoURL = object.serverURL;
 	serverInfoURL = "http://" + serverInfoURL + "/info"
+	try {
+	var serverPing = await timeout(350, pingServer(index))
+	}catch(err){
+		var serverPing="+350ms"
+		setTimeout(update, 400);
+	}
 	var r1
 	try {
 	r1 = await timeout(500, fetch(serverInfoURL));
@@ -239,7 +323,7 @@ var objectUpdate = async function(obj, index) {
 	//	console.log("first error")
 	var r1 = {online:0,version:"Not Online"}
 	r1.ok = false
-	setTimeout(update, 1000);
+	setTimeout(update, 400);
 	//return false
 }
 	globalTest = r1
@@ -256,7 +340,7 @@ var objectUpdate = async function(obj, index) {
 catch(err) {
 	r3 = {online:0,version:"Not Online"}
 	//console.log("second error")
-	setTimeout(update, 1000);
+	setTimeout(update, 400);
 }
 	//let r2 = await fetch(serverInfoURL).then(dataWrappedByPromise => dataWrappedByPromise.json()).then(data => {
     //return data
@@ -267,11 +351,11 @@ catch(err) {
 	//};
 	//object.serverOnline = serverOnline
 	//object.serverInfo = serverInfo
-	var realObject = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
+	var realObject = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo, serverPing)
 	//serverList[object.serverIndex] = object
 	var returnedValue = []
 	returnedValue[0] = index
-	returnedValue[1] = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo)
+	returnedValue[1] = new serverObjectComplete(index, object.serverName, object.serverURL, object.serverFlag, serverOnline, serverInfo, serverPing)
 	return returnedValue
 }
 
@@ -368,7 +452,7 @@ var updateOrder = function(sw, myArray1){
 		if(sw){
 			var obj2 = new serverObject(i, obj1.serverName, obj1.serverURL, obj1.serverFlag);
 		}else{
-			var obj2 = new serverObjectComplete(i, obj1.serverName, obj1.serverURL, obj1.serverFlag, obj1.serverOnline, obj1.serverInfo);
+			var obj2 = new serverObjectComplete(i, obj1.serverName, obj1.serverURL, obj1.serverFlag, obj1.serverOnline, obj1.serverInfo, obj1.serverPing);
 		}
 		myArray2[i] = obj2;
 	}
