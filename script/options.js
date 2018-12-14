@@ -54,11 +54,8 @@ function download (url, dest, cb) {
 };
 
 var exportServerList = function(){
-	var data = {
-		serverlist: []
-	};
-	data.serverlist = serverList;
-	var json = JSON.stringify(data);
+	var data = serverList
+	var json = JSON.stringify(data, null, "\t");
 	var toLocalPath = path.resolve(app.getPath("desktop")) 
     var userChosenPath = dialog.showSaveDialog({ defaultPath: toLocalPath+"/Server List.json",title: 'Server List',filters: [{
       name: 'Server List',
@@ -89,7 +86,7 @@ var importServerList = function(){
 			var data = fs.readFileSync(files[0])
 			console.log(data)
 			var json = JSON.parse(data)
-			serverListFile = json.serverlist
+			serverListFile = json
         }
     });
 }
