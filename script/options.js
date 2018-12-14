@@ -35,6 +35,7 @@ var inititalization = function(){
 			serverListFile = $('#importFile')[0].files[0]
 		}
 	});
+	//loadInterfaces()
 } 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
@@ -78,11 +79,26 @@ var parseInterfaces = function(str){
 	return reply
 }
 
-var lan-play-place = ""
-	
+var lanPlayPlace = `C:\\project1\\lan-play-server-watcher\\lan-play.exe`
+
+var loadedInterfaces = false
+
 var loadInterfaces = function(){
-	var interfaces = child_process.execSync(lan-play-place+" --list-if").asciiSlice()
+	var interfaces = child_process.execSync(lanPlayPlace+" --list-if").asciiSlice()
 	var parsedInterfaces = parseInterfaces(interfaces)
+	var interfaceValues = parsedInterfaces[0]
+	var interfaceLabels = parsedInterfaces[1]
+	document.getElementById("interfaces").innerHTML
+	var innerHtml;
+	for(i=0;i<interfaceValues.length;i++){
+		innerHtml += `<option value="`+interfaceValues[i]+`">`+interfaceLabels[i]+`</option>`
+	}
+	document.getElementById("interfaces").size=interfaceValues.length;
+	document.getElementById("interfaces").innerHTML = innerHtml
+	loadedInterfaces = true
+	if(config.has('interface')){
+		document.getElementById("interfaces").value = config.get('interface')
+	}
 }
 
 var createObjectMin = function(){

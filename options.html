@@ -37,13 +37,17 @@
   
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="text-center">
+   <br /> <br />
+  Here you select your network interface so when lan play is launched you dont have to select it manually<br />
+  First click the "Load Interfaces" button and then select the one correspondig to your local IP<br />
   
-  
-  WIP
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">Interfaces</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
-  </div>
+  <br />
+      <button onClick="loadInterfaces()" type="button" class="btn btn-primary center-block" ><i class="fas fa-ethernet"></i> Load Interfaces</button><br /><br />
+	 </div> <select size="1" id="interfaces" class="form-control form-control-lg">
+  <option>Load Interfaces First</option>
+</select>
+
   
   
   </div>
