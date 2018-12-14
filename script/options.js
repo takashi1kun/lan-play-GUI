@@ -12,6 +12,28 @@ const dns = require('dns')
 var Q = require('q');
 const { remote } = require('electron')
 const path = require('path')
+
+var serverListFile
+
+var inititalization = function(){
+	$('#importFile').hide()
+	$('#importFile').addEventListener("change", function () {
+		if($('#importFile')[0].files[0] === undefined){
+			
+		}else{
+			serverListFile = $('#importFile')[0].files[0]
+		}
+	}
+  submit.disabled = false;
+});
+
+} 
+
+var importServerList = function(){ 
+   $('#importFile').click()
+}
+
 var returnToIndex= function(){
 	remote.getCurrentWindow().loadURL(`file://${__dirname}/index.html`)
 }
+setTimeout(inititalization, 200);

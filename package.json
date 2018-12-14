@@ -56,7 +56,9 @@
     "child_process": "^1.0.2",
     "electron-json-config": "^1.5.3",
     "jquery": "^3.3.1",
+    "network-interfaces": "^1.1.0",
     "popper.js": "^1.14.6",
-    "q": "^1.5.1"
+    "q": "^1.5.1",
+    "tcpdump": "0.0.1"
   }
 }
