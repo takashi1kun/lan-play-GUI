@@ -24,28 +24,7 @@ if(config.has('serverList')){
 };
 
 
-parseWindows = function(str){
-	var str2 = []
-	var str3 = []
-	var reply = []
-	var sw = false
-	for(i=0;!sw&&i<100;i++){
-		var i2 = i+1;
-		var i3 = i+2;
-		str2[i] = str.split(i2+'. ').pop().split(' (')[0]
-		if (!str.includes(i3+". ")){
-			sw = true;
-		}
-	}
-	for(i=0;i<str2.length;i++){
-		var i2 = i+1;
-		var i3 = i+2;
-		str3[i] = "("+str.split(str2[i]+' (').pop().split(i3+". ")[0]
-	}
-	reply[0] = str2
-	reply[1] = str3
-	return reply
-}
+
 
 var inititalization = function(){
 	$('#importFile').hide()
@@ -75,9 +54,43 @@ var serverObjectMin = function(serverName, serverURL, serverFlag){
 	this.serverURL = serverURL,
 	this.serverFlag = serverFlag
 	}
+	
+parseWindows = function(str){
+	var str2 = []
+	var str3 = []
+	var reply = []
+	var sw = false
+	for(i=0;!sw&&i<100;i++){
+		var i2 = i+1;
+		var i3 = i+2;
+		str2[i] = str.split(i2+'. ').pop().split(' (')[0]
+		if (!str.includes(i3+". ")){
+			sw = true;
+		}
+	}
+	for(i=0;i<str2.length;i++){
+		var i2 = i+1;
+		var i3 = i+2;
+		str3[i] = "("+str.split(str2[i]+' (').pop().split(i3+". ")[0]
+	}
+	reply[0] = str2
+	reply[1] = str3
+	return reply
+}
 
+var lan-play-place = ""
+	
 var loadInterfaces = function(){
-	var interfaces = child_process.execSync("lan-play.exe --list-if").asciiSlice()
+	var interfaces = child_process.execSync(lan-play-place+" --list-if").asciiSlice()
+	if (OS == "win32"){ //If OS is Windows
+		interfaces = parseWindows(interfaces)
+	} else if(OS == "linux"){ //If OS is Linux
+		
+	} else if (OS == "darwin"){//If OS is MacOS
+		return
+	} else {
+		return
+	}
 }
 	
 var createObjectMin = function(){
