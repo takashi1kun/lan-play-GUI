@@ -25,38 +25,26 @@ if(config.has('serverList')){
 
 
 parseWindows = function(str){
-var str2 = []
-var sw = false
-for(i=0;!sw&&i<100;i++){
-	var i2 = i+1;
-	var i3 = i+2;
-str2[i] = str.split(i2+'. ').pop().split(' (')[0]
-if (!str.includes(i3+". ")){
-  sw = true;
-}
-;
-}
-var str3 = []
-for(i=0;i<str2.length;i++){
-	var i2 = i+1;
-	var i3 = i+2;
-str3[i] = "("+str.split(str2[i]+' (').pop().split(i3+". ")[0]
-}
-var reply = []
-reply[0] = str2
-reply[1] = str3
-return reply
-}
-
-testFunc2 = function(str, str2){
-var testo = []
-var lel = false
-for(i=0;i<str2.length;i++){
-	var i2 = i+1;
-	var i3 = i+2;
-testo[i] = "("+str.split(str2[i]+' (').pop().split(i3+". ")[0]
-}
-return testo
+	var str2 = []
+	var str3 = []
+	var reply = []
+	var sw = false
+	for(i=0;!sw&&i<100;i++){
+		var i2 = i+1;
+		var i3 = i+2;
+		str2[i] = str.split(i2+'. ').pop().split(' (')[0]
+		if (!str.includes(i3+". ")){
+			sw = true;
+		}
+	}
+	for(i=0;i<str2.length;i++){
+		var i2 = i+1;
+		var i3 = i+2;
+		str3[i] = "("+str.split(str2[i]+' (').pop().split(i3+". ")[0]
+	}
+	reply[0] = str2
+	reply[1] = str3
+	return reply
 }
 
 var inititalization = function(){
