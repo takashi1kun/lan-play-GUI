@@ -36,7 +36,7 @@ var inititalization = function(){
 		}
 	});
 	$(':checkbox').checkboxpicker();
-	writeHtml();
+	//writeHtml();
 	$('#fakeInternet').checkboxpicker({
   html: true,
   offLabel: '<i class="fas fa-check"></i>',
@@ -44,8 +44,10 @@ var inititalization = function(){
 });
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-times"></i>'
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
+$('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
+$('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
 //document.getElementById("fakeInternet").value=1
-$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
+//$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
 
 	//loadInterfaces()
 } 
