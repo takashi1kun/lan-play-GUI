@@ -35,6 +35,18 @@ var inititalization = function(){
 			serverListFile = $('#importFile')[0].files[0]
 		}
 	});
+	$(':checkbox').checkboxpicker();
+	writeHtml();
+	$('#fakeInternet').checkboxpicker({
+  html: true,
+  offLabel: '<i class="fas fa-check"></i>',
+  onLabel: '<i class="fas fa-times"></i>'
+});
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
+//document.getElementById("fakeInternet").value=1
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
+
 	//loadInterfaces()
 } 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
@@ -82,6 +94,16 @@ var parseInterfaces = function(str){
 var lanPlayPlace = `C:\\project1\\lan-play-server-watcher\\lan-play.exe`
 
 var loadedInterfaces = false
+
+var selectLanPlay = function(){
+var test9 =  dialog.showOpenDialog()
+if(test9 === undefined){
+	
+}else{
+	lanPlayPlace = test9[0]
+}
+}
+	
 
 var loadInterfaces = function(){
 	var interfaces = child_process.execSync(lanPlayPlace+" --list-if").asciiSlice()

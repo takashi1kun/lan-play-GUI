@@ -13,7 +13,7 @@
 	<script>require('bootstrap');</script>
 	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   </head>
   <body style="background-color: #454d54!important;color:white;">
   <ul class="nav nav-tabs" id="myTab" style="background-color:#343a40 !important;" role="tablist">
@@ -32,9 +32,13 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-  WIP
+ <br /> <br />
+  Here you select general configurations, be sure to select where lan-play is located before anything<br />
   
-  
+  <br />
+   <button style="margin-left: 12px" onClick="selectLanPlay()" type="button" class="btn btn-primary center-block" ><i class="fas fa-broadcast-tower"></i> Select where its lan-play</button><br /><br />
+  	<a id="fakeInternet2" class="navbar-text" style="background-color:#343a40!important;padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;margin-left: 7px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
+	 Fake Internet: <input checked="checked" id="fakeInternet" type="checkbox"></a> 
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
   <div class="text-center">

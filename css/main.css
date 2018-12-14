@@ -32,7 +32,7 @@ body{
 	height: 450px;
 	position:fixed;
 	overflow-y: scroll;
-	height:450px
+	height:464px
 }
 
 ::-webkit-scrollbar-track {
