@@ -23,6 +23,24 @@ if(config.has('serverList')){
 	serverList = config.get('serverList')
 };
 
+
+testFunc = function(str){
+var testo = []
+var lel = false
+for(i=0;!lel&&i<100;i++){
+	var i2 = i+1;
+	var i3 = i+2;
+testo[i] = str.split(i2+'. ').pop().split(' (')[0]
+if (!str.includes(i3+". ")){
+  lel = true;
+}
+;
+}
+return testo
+}
+
+
+
 var inititalization = function(){
 	$('#importFile').hide()
 	$('#importFile').change(function(ev) {
@@ -52,6 +70,10 @@ var serverObjectMin = function(serverName, serverURL, serverFlag){
 	this.serverFlag = serverFlag
 	}
 
+var loadInterfaces = function(){
+	var interfaces = child_process.execSync("lan-play.exe --list-if").asciiSlice()
+}
+	
 var createObjectMin = function(){
 	var length = serverList.length
 	var newArray = [];
