@@ -47,15 +47,15 @@ var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverOnline = false,
 	this.serverInfo = {},
 	this.serverPing = "?ms"
-	}
+}
 
 var serverObjectMin = function(serverName, serverURL, serverFlag){
 	this.serverName = serverName,
 	this.serverURL = serverURL,
 	this.serverFlag = serverFlag
-	}
+}
 	
-parseWindows = function(str){
+var parseInterfaces = function(str){
 	var str2 = []
 	var str3 = []
 	var reply = []
@@ -82,17 +82,9 @@ var lan-play-place = ""
 	
 var loadInterfaces = function(){
 	var interfaces = child_process.execSync(lan-play-place+" --list-if").asciiSlice()
-	if (OS == "win32"){ //If OS is Windows
-		interfaces = parseWindows(interfaces)
-	} else if(OS == "linux"){ //If OS is Linux
-		
-	} else if (OS == "darwin"){//If OS is MacOS
-		return
-	} else {
-		return
-	}
+	var parsedInterfaces = parseInterfaces(interfaces)
 }
-	
+
 var createObjectMin = function(){
 	var length = serverList.length
 	var newArray = [];
