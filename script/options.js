@@ -24,9 +24,6 @@ var inititalization = function(){
 			serverListFile = $('#importFile')[0].files[0]
 		}
 	}
-  submit.disabled = false;
-});
-
 } 
 
 var importServerList = function(){ 
