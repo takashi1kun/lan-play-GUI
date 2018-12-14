@@ -73,15 +73,23 @@ var exportServerList = function(){
 	//myUrlSaveAs(url)
 	
 }
-
+var testGlobal
 var importServerList = function(){ 
    //$('#importFile').click()
-    dialog.showOpenDialog({
-        properties: ['openFile', 'multiSelections']
+    dialog.showOpenDialog({filters: [{
+      name: 'Server List',
+      extensions: ['json']
+    }],
+        properties: ['openFile']
     }, function (files) {
         if (files !== undefined) {
             // handle files
-			serverListFile = files
+			console.log(files)
+			testGlobal = files[0]
+			var data = fs.readFileSync(files[0])
+			console.log(data)
+			var json = JSON.parse(data)
+			serverListFile = json.serverlist
         }
     });
 }
