@@ -17,13 +17,13 @@ var serverListFile
 
 var inititalization = function(){
 	$('#importFile').hide()
-	$('#importFile').addEventListener("change", function () {
+	$('#importFile').change(function(ev) {
 		if($('#importFile')[0].files[0] === undefined){
 			
 		}else{
 			serverListFile = $('#importFile')[0].files[0]
 		}
-	}
+	});
 } 
 
 var importServerList = function(){ 
