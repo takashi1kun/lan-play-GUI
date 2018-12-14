@@ -33,28 +33,45 @@ var inititalization = function(){
 		}
 	});
 } 
+var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
+	this.serverIndex = serverIndex,
+	this.serverName = serverName,
+	this.serverURL = serverURL,
+	this.serverFlag = serverFlag,
+	this.serverInfoURL = function(){
+		return "http://" + this.serverURL + "/info"
+	},
+	this.serverOnline = false,
+	this.serverInfo = {},
+	this.serverPing = "?ms"
+	}
 
+var serverObjectMin = function(serverName, serverURL, serverFlag){
+	this.serverName = serverName,
+	this.serverURL = serverURL,
+	this.serverFlag = serverFlag
+	}
 
-function myUrlSaveAsComplete(err){
-    alert("done");
+var createObjectMin = function(){
+	var length = serverList.length
+	var newArray = [];
+	for(i=0;i<length;i++){
+		newArray[i] = new serverObjectMin(serverList[i].serverName, serverList[i].serverURL, serverList[i].serverFlag)
+	}
+	return newArray
 }
 
-
-function download (url, dest, cb) {
-    var file = fs.createWriteStream(dest);
-    var request = http.get(url, function(response) {
-        response.pipe(file);
-        file.on('finish', function() {
-            file.close(cb); // close() is async, call cb after close completes.
-        });
-    }).on('error', function(err) { // Handle errors
-        fs.unlink(dest); // Delete the file async. (But we don't check the result)
-        if (cb) cb(err.message);
-    });
-};
+var createObject = function(serverlist){
+	var length = serverlist.length
+	var newArray = [];
+	for(i=0;i<length;i++){
+		newArray[i] = new serverObject(i, serverlist[i].serverName, serverlist[i].serverURL, serverlist[i].serverFlag)
+	}
+	return newArray
+}
 
 var exportServerList = function(){
-	var data = serverList
+	var data = createObjectMin()
 	var json = JSON.stringify(data, null, "\t");
 	var toLocalPath = path.resolve(app.getPath("desktop")) 
     var userChosenPath = dialog.showSaveDialog({ defaultPath: toLocalPath+"/Server List.json",title: 'Server List',filters: [{
@@ -86,7 +103,7 @@ var importServerList = function(){
 			var data = fs.readFileSync(files[0])
 			console.log(data)
 			var json = JSON.parse(data)
-			serverListFile = json
+			serverListFile = createObject(json)
         }
     });
 }
