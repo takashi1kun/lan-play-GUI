@@ -76,8 +76,6 @@ var purgeConfig = function(){
 
 if(config.has('serverList')){
 	serverList = config.get('serverList')
-	config.purge()
-	config.set('serverList', serverList)
 } else{
 	updateConfig()
 }
