@@ -512,7 +512,7 @@ var upServer = function(serverNumber) {
 			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
-				updateServers()
+				update();
 			}
 		}
 		
@@ -530,7 +530,7 @@ var downServer = function(serverNumber) {
 			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
-				updateServers()
+				update();
 				//console.log("yes")
 			} else{
 				//console.log("not")
