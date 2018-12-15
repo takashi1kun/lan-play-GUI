@@ -326,7 +326,7 @@ var getConfigOptionsInit = function(){
 var setConfigOptions = function(){
 	config.set('broadcastEnabled',$('#Broadcast')[0].value);
 	config.set('fakeInternetEnabled',$('#fakeInternet')[0].value);
-	config.set('lanPlayLocation',lanPlayLocationne);
+	config.set('lanPlayLocation',lanPlayLocation);
 	config.set('pmtu',$('#pmtu')[0].value);
 	config.set('serverList', serverListFile);
 	if ($('#interfaces')[0].value.trim() != "Not Selectod"){
