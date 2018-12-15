@@ -98,7 +98,6 @@ if(config.has('lanPlayLocation')){
 	} else if(OS == "linux"){ //If OS is Linux
 		config.set('lanPlayLocation',os.homedir()+"/lan-play-linux")
 	} else {
-		return
 	}
 	lanPlayLocation = config.get('lanPlayLocation')
 }
