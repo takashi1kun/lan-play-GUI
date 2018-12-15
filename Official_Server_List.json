@@ -1,0 +1,62 @@
+[
+	{
+		"serverName": "US1",
+		"serverURL": "35.236.10.223:11451",
+		"serverFlag": "US"
+	},
+	{
+		"serverName": "nycnsw",
+		"serverURL": "nycnsw.duckdns.org:11451",
+		"serverFlag": "US"
+	},
+	{
+		"serverName": "nxlan",
+		"serverURL": "nxlan.duckdns.org:11451",
+		"serverFlag": "US"
+	},
+	{
+		"serverName": "pcoh",
+		"serverURL": "pcoh.ddns.net:11451",
+		"serverFlag": "US"
+	},
+	{
+		"serverName": "fadx",
+		"serverURL": "fr.fadx.co.uk:11451",
+		"serverFlag": "FR"
+	},
+	{
+		"serverName": "glaciergaming",
+		"serverURL": "switch.glaciergaming.co.uk:11451",
+		"serverFlag": "GB"
+	},
+	{
+		"serverName": "homelab",
+		"serverURL": "switch.homelab.tech:11451",
+		"serverFlag": "GB"
+	},
+	{
+		"serverName": "bandits",
+		"serverURL": "bandits.duckdns.org:11451",
+		"serverFlag": "EU"
+	},
+	{
+		"serverName": "memehouse",
+		"serverURL": "memehouse.de:11451",
+		"serverFlag": "DE"
+	},
+	{
+		"serverName": "cybergate",
+		"serverURL": "relay.it-cybergate.club:11451",
+		"serverFlag": "DE"
+	},
+	{
+		"serverName": "rush-hour",
+		"serverURL": "slp.rush-hour.wo.tc:11451",
+		"serverFlag": "KR"
+	},
+	{
+		"serverName": "lithium2g",
+		"serverURL": "lithium2g.ddns.net:11451",
+		"serverFlag": "AU"
+	}
+]
