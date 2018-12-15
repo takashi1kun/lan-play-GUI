@@ -168,7 +168,14 @@ if(test9 === undefined){
 	$('#lanPlayLocation')[0].value = test9[0]
 }
 }
-	
+
+var parseLinux = function(array1, array2) {
+	var array3 = []
+	for(i=0;i<array1.length;i++){
+		array3[i] = array1[i]+" "+array2[i]
+	}
+	return array3
+}
 
 var loadInterfaces = function(){
 	var interfaces = child_process.execSync(lanPlayPlace+" --list-if").asciiSlice()
@@ -177,12 +184,13 @@ var loadInterfaces = function(){
 	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
 	var interfaceValues = parsedInterfaces[0]
 	var interfaceLabels = parsedInterfaces[1]
+	interfaceLabels = (OS == "win32" ? interfaceLabels : parseLinux(interfaceValues,interfaceLabels))
 	interfaceValues[-1] = "Not Selected"
 	interfaceLabels[-1] = "Not Selected"
 	document.getElementById("interfaces").innerHTML
 	var innerHtml;
 	for(i=-1;i<interfaceValues.length;i++){
-		innerHtml += `<option style="color:white!important" value="`+interfaceValues[i]+`">`+(OS == "win32" ? interfaceLabels[i] : interfaceValues[i]+interfaceLabels[i])+`</option>`
+		innerHtml += `<option style="color:white!important" value="`+interfaceValues[i]+`">`+interfaceLabels[i]+`</option>`
 	}
 	document.getElementById("interfaces").size=7;
 	document.getElementById("interfaces").innerHTML = innerHtml
