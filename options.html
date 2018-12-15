@@ -43,11 +43,14 @@
   <a id="Broadcast2" class="navbar-text" style="background-color:#343a40!important;padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;margin-left: 7px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
 	 Broadcast: <input id="Broadcast" type="checkbox"></a> 
 	 <br /><br />
-   <div style="margin-left: 12px; width:150px!important"  class="input-group mb-1 mr-sm-1" >
-    <div class="input-group-prepend" >
-      <div class="input-group-text">PMTU</div>
+   <div style="margin-left: 12px; width:155px!important"  class="input-group mb-1 mr-sm-1" >
+    <div class="input-group-prepend">
+      <div style="border: 1px solid #343a40!important; background-color: #343a40!important; color: white;" class="input-group-text">PMTU</div>
     </div>
-   <input class="form-control"  type="number" value="1500" id="example-number-input">
+	<input class="form-control" style="border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height: 38px; padding-top: 6px; padding-bottom: 6px; border-top-width: 1px; border-bottom-width: 1px;"  type="number" value="1500" id="example-number-input"> 
+	<div style="border-radius: 0px .25rem .25rem 0px; border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height: 38px; display: grid; width: 26px; border-right-width: 3px; padding-right: 2px;" class="number-input"> 
+   <button style="height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><i style="color:white;position: relative;top: -2.3px;" class="fas fa-plus"></i></button>
+	<button style=" height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ><i style="color:white;position: relative;top: -4.8px;" class="fas fa-minus"></i></button></div>
   </div>
 
   </div>
