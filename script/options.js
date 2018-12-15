@@ -178,7 +178,7 @@ var parseLinux = function(array1, array2) {
 }
 
 var loadInterfaces = function(){
-	var interfaces = child_process.execSync(lanPlayPlace+" --list-if").asciiSlice()
+	var interfaces = child_process.execSync(lanPlayLocation+" --list-if").asciiSlice()
 	var parsedInterfaces = parseInterfaces(interfaces)
 	console.log(removeUnwantedElements(parsedInterfaces))
 	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
