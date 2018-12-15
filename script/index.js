@@ -101,6 +101,42 @@ if(config.has('lanPlayLocation')){
 	lanPlayLocation = config.get('lanPlayLocation')
 }
 
+var fakeInternetEnabled;
+
+if(config.has('fakeInternetEnabled')){
+	fakeInternetEnabled = config.get('fakeInternetEnabled')
+} else{
+	config.set('fakeInternetEnabled', true)
+	fakeInternetEnabled = true
+}
+
+var pmtu;
+
+if(config.has('pmtu')){
+	pmtu = config.get('pmtu')
+} else{
+	config.set('pmtu', 1500)
+	pmtu = 1500
+}
+
+var broadcastEnabled;
+
+if(config.has('broadcastEnabled')){
+	broadcastEnabled = config.get('broadcastEnabled')
+} else{
+	config.set('broadcastEnabled', false)
+	broadcastEnabled = false
+}
+
+var networkInterface = ""
+
+if(config.has('networkInterface')){
+	networkInterface = config.get('networkInterface')
+} else{
+	config.set('networkInterface', "Not Selected")
+	networkInterface = "Not Selected"
+}
+
 var writeHtml = function(){
 	var innerHtml = ``;
 	for(var i = 0; i < serverList.length; i++){
