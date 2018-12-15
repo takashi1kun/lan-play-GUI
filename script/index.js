@@ -57,6 +57,11 @@ var openServer = function(server){
 	}
 	var pmtuCommand = " --pmtu "+pmtu
 	var netIf = " --netif "+networkInterface
+	if(testVersion() === 2){
+		
+	}else if(testVersion() === 3){
+		
+	}else{
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
 			var commandString = "start cmd.exe /K "+lanPlayLocation+fakeInternet+broadCast+pmtuComand+netIf+" --relay-server-addr "+ server
@@ -71,6 +76,7 @@ var openServer = function(server){
 		return "lol"
 	}
 	child_process.exec(commandString);
+	}
 }
 var updateConfig = function(){
 	config.set('serverList', serverList)
