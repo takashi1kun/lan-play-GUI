@@ -72,7 +72,7 @@
   <br />
       <button onClick="loadInterfaces()" type="button" class="btn btn-primary center-block" ><i class="fas fa-ethernet"></i> Load Interfaces</button><br /><br />
 	 </div> <select style="color: white; background-color:#394046; border-color:#343a40!important" size="1" id="interfaces" class="form-control form-control-lg">
-  <option>Load Interfaces First</option>
+  <option value="Not Selectod">Load Interfaces First</option>
 </select>
 
   
@@ -97,8 +97,8 @@
  
   <div class="row justify-content-end" style="margin-left:510px">
   <div class="btn-group" role="group">
-  <button type="button" class="btn btn-success"><i class="fas fa-check"></i> Ok </button>
-  <button type="button" class="btn btn-primary"><i class="fas fa-save"></i> Apply</button>
+  <button type="button" onClick="saveSettings()" class="btn btn-success"><i class="fas fa-check"></i> Ok </button>
+  <button type="button" onClick="setConfigOptions()" class="btn btn-primary"><i class="fas fa-save"></i> Apply</button>
   <button type="button" onclick="returnToIndex()" class="btn btn-danger"><i class="fas fa-times"></i> Cancel</button>
 </div>
 </div>

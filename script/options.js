@@ -24,9 +24,11 @@ var serverList = []
 
 if(config.has('serverList')){
 	serverList = config.get('serverList')
+	serverListFile = config.get('serverList')
 } else{
 	config.set('serverList', [])
 	serverList= []
+	serverListFile = []
 }
 
 var lanPlayLocation = ""
@@ -112,6 +114,7 @@ $('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassNam
 //$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
 
 	//loadInterfaces()
+	getConfigOptionsInit()
 } 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
@@ -185,10 +188,10 @@ var loadInterfaces = function(){
   console.log("error");
 }
 	if (version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Update Lan Play to v0.0.7 or higher</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Update Lan Play to v0.0.7 or higher</option>`
 		return "lol" 
 	} else if(version === undefined){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Lan Play not found, Download v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Lan Play not found, Download v0.0.7 or higher and configure it in main config.</option>`
 		return "lol"
 	}
 	var interfaces2
@@ -201,10 +204,10 @@ var loadInterfaces = function(){
   console.log("error");
 }
 	if (interfaces2 === undefined){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
 		return "lol"
 	} else if(interfaces2.asciiSlice().trim()=="Input the relay server address [ domain/ip:port ]:"){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
 		return "lol"
 	}
 	var interfaces = interfaces2.asciiSlice()
@@ -312,6 +315,28 @@ var importServerOfficialList = async function(){
 	var array = await dataStream.json()
 	serverListFile = createObject(array)
 	$('#myModal').modal('show')
+}
+
+var getConfigOptionsInit = function(){
+	$('#lanPlayLocation')[0].value = lanPlayLocation;
+	$('#fakeInternet')[0].value = fakeInternetEnabled;
+	$('#Broadcast')[0].value = broadcastEnabled;
+	$('#pmtu')[0].value = pmtu;
+}
+var setConfigOptions = function(){
+	config.set('broadcastEnabled',$('#Broadcast')[0].value);
+	config.set('fakeInternetEnabled',$('#fakeInternet')[0].value);
+	config.set('lanPlayLocation',lanPlayLocationne);
+	config.set('pmtu',$('#pmtu')[0].value);
+	config.set('serverList', serverListFile);
+	if ($('#interfaces')[0].value.trim() != "Not Selectod"){
+		config.set('networkInterface',$('#interfaces')[0].value)
+	}
+}
+
+var saveSettings = function(){
+	setConfigOptions()
+	remote.getCurrentWindow().loadURL(`file://${__dirname}/index.html`)
 }
 
 var returnToIndex= function(){
