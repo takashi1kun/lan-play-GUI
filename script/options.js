@@ -103,6 +103,7 @@ if(test9 === undefined){
 	
 }else{
 	lanPlayPlace = test9[0]
+	$('#lanPlayLocation')[0].value = test9[0]
 }
 }
 	
