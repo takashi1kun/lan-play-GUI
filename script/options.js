@@ -178,6 +178,19 @@ var parseLinux = function(array1, array2) {
 }
 
 var loadInterfaces = function(){
+	try {
+	var version = child_process.execSync(lanPlayLocation+" --version").asciiSlice().trim()
+	}
+	catch(err) {
+  console.log("error");
+}
+	if (version ==="switch-lan-play 0.0.6" ||version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Update Lan Play to v0.0.7 or higher</option>`
+		return "lol" 
+	} else if(version === undefined){
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Lan Play not found, Download v0.0.7 or higher and configure it in main config.</option>`
+		return "lol"
+	}
 	var interfaces = child_process.execSync(lanPlayLocation+" --list-if").asciiSlice()
 	var parsedInterfaces = parseInterfaces(interfaces)
 	console.log(removeUnwantedElements(parsedInterfaces))
@@ -186,7 +199,7 @@ var loadInterfaces = function(){
 	var interfaceLabels = parsedInterfaces[1]
 	interfaceLabels = (OS == "win32" ? interfaceLabels : parseLinux(interfaceValues,interfaceLabels))
 	interfaceValues[-1] = "Not Selected"
-	interfaceLabels[-1] = "Not Selected"
+	interfaceLabels[-1] = "No Network Interface"
 	document.getElementById("interfaces").innerHTML
 	var innerHtml;
 	for(i=-1;i<interfaceValues.length;i++){
