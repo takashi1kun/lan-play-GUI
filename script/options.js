@@ -15,7 +15,7 @@ const path = require('path')
 var elerem = require('electron').remote;
 var dialog = elerem.dialog;
 var app = elerem.app;
-
+var request = require('request');
 var http = require('http');
 var serverListFile
 
@@ -164,7 +164,7 @@ var test9 =  dialog.showOpenDialog()
 if(test9 === undefined){
 	
 }else{
-	lanPlayPlace = test9[0]
+	lanPlayLocation = test9[0]
 	$('#lanPlayLocation')[0].value = test9[0]
 }
 }
@@ -176,7 +176,7 @@ var parseLinux = function(array1, array2) {
 	}
 	return array3
 }
-
+var globalTest
 var loadInterfaces = function(){
 	try {
 	var version = child_process.execSync(lanPlayLocation+" --version").asciiSlice().trim()
@@ -184,14 +184,30 @@ var loadInterfaces = function(){
 	catch(err) {
   console.log("error");
 }
-	if (version ==="switch-lan-play 0.0.6" ||version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
+	if (version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
 		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Update Lan Play to v0.0.7 or higher</option>`
 		return "lol" 
 	} else if(version === undefined){
 		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Lan Play not found, Download v0.0.7 or higher and configure it in main config.</option>`
 		return "lol"
 	}
-	var interfaces = child_process.execSync(lanPlayLocation+" --list-if").asciiSlice()
+	var interfaces2
+	try {
+	//interfaces2 = child_process.execSync(lanPlayLocation+" --list-if")
+	interfaces2 = child_process.spawnSync(lanPlayLocation,["--list-if"]).output[1]
+	globalTest = interfaces2
+	}
+	catch(err) {
+  console.log("error");
+}
+	if (interfaces2 === undefined){
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		return "lol"
+	} else if(interfaces2.asciiSlice().trim()=="Input the relay server address [ domain/ip:port ]:"){
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selected">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		return "lol"
+	}
+	var interfaces = interfaces2.asciiSlice()
 	var parsedInterfaces = parseInterfaces(interfaces)
 	console.log(removeUnwantedElements(parsedInterfaces))
 	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
@@ -259,10 +275,13 @@ var exportServerList = function(){
     }]
   });
     if(userChosenPath){
+		$('#myModal').modal('show')
         fs.writeFile(userChosenPath, json, function(err) {
     // file saved or err
+	
 });
     }
+	
 	//myUrlSaveAs(url)
 	
 }
@@ -283,8 +302,16 @@ var importServerList = function(){
 			console.log(data)
 			var json = JSON.parse(data)
 			serverListFile = createObject(json)
+			$('#myModal').modal('show')
         }
     });
+}
+
+var importServerOfficialList = async function(){
+	var dataStream = await fetch(`https://raw.githubusercontent.com/takashi1kun/lan-play-GUI/master/Official_Server_List.json`)
+	var array = await dataStream.json()
+	serverListFile = createObject(array)
+	$('#myModal').modal('show')
 }
 
 var returnToIndex= function(){
