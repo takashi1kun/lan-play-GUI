@@ -92,3 +92,22 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: bold;
   text-align: center;
 }
+
+
+::-webkit-scrollbar-track {
+  background: #394046; 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: #343a40!important; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22262a !important; 
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}

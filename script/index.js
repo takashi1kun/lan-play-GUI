@@ -80,6 +80,27 @@ if(config.has('serverList')){
 	updateConfig()
 }
 
+var lanPlayLocation = ""
+
+if(config.has('lanPlayLocation')){
+	lanPlayLocation = config.get('lanPlayLocation')
+} else{
+	
+	config.set('lanPlayLocation', "")
+	if (OS == "win32"){ //If OS is Windows
+		if (os.arch == "x64"){ //win64
+			config.set('lanPlayLocation', process.cwd()+"\\lan-play-win64.exe")
+		} else { //win32
+			config.set('lanPlayLocation', process.cwd()+"\\lan-play-win32.exe")
+		}
+	} else if(OS == "linux"){ //If OS is Linux
+		config.set('lanPlayLocation',os.homedir()+"/lan-play-linux")
+	} else {
+		return
+	}
+	lanPlayLocation = config.get('lanPlayLocation')
+}
+
 var writeHtml = function(){
 	var innerHtml = ``;
 	for(var i = 0; i < serverList.length; i++){
