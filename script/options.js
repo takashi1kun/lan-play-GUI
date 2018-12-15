@@ -45,7 +45,6 @@ if(config.has('lanPlayLocation')){
 	} else if(OS == "linux"){ //If OS is Linux
 		config.set('lanPlayLocation',os.homedir()+"/lan-play-linux")
 	} else {
-		return
 	}
 	lanPlayLocation = config.get('lanPlayLocation')
 }
@@ -174,18 +173,22 @@ if(test9 === undefined){
 var loadInterfaces = function(){
 	var interfaces = child_process.execSync(lanPlayPlace+" --list-if").asciiSlice()
 	var parsedInterfaces = parseInterfaces(interfaces)
+	console.log(removeUnwantedElements(parsedInterfaces))
+	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
 	var interfaceValues = parsedInterfaces[0]
 	var interfaceLabels = parsedInterfaces[1]
+	interfaceValues[-1] = "Not Selected"
+	interfaceLabels[-1] = "Not Selected"
 	document.getElementById("interfaces").innerHTML
 	var innerHtml;
-	for(i=0;i<interfaceValues.length;i++){
-		innerHtml += `<option value="`+interfaceValues[i]+`">`+interfaceLabels[i]+`</option>`
+	for(i=-1;i<interfaceValues.length;i++){
+		innerHtml += `<option style="color:white!important" value="`+interfaceValues[i]+`">`+(OS == "win32" ? interfaceLabels[i] : interfaceValues[i]+interfaceLabels[i])+`</option>`
 	}
-	document.getElementById("interfaces").size=interfaceValues.length;
+	document.getElementById("interfaces").size=7;
 	document.getElementById("interfaces").innerHTML = innerHtml
 	loadedInterfaces = true
-	if(config.has('interface')){
-		document.getElementById("interfaces").value = config.get('interface')
+	if(config.has('networkInterface')){
+		document.getElementById("interfaces").value = config.get('networkInterface')
 	}
 }
 
@@ -205,6 +208,24 @@ var createObject = function(serverlist){
 		newArray[i] = new serverObject(i, serverlist[i].serverName, serverlist[i].serverURL, serverlist[i].serverFlag)
 	}
 	return newArray
+}
+
+var removeUnwantedElements = function(array){
+	var array1 = array[0]
+	var array2 = array[1]
+	var array3 = []
+	var array4 = []
+	var length = array1.length
+	var ipCheck = new RegExp("IP:");
+	var i2 = 0
+	for(i=0;i<length;i++){
+		if (ipCheck.test(array2[i])){
+			array3[i2] = array1[i]
+			array4[i2] = array2[i]
+			i2++
+		}
+	}
+	return [array3, array4]
 }
 
 var exportServerList = function(){

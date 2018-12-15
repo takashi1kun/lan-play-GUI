@@ -93,7 +93,31 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
-
+select option::selection,
+select option:visited,
+select option:focus-within,
+select option:hover,
+    select option:focus,
+    select option:active {
+        background: linear-gradient(#22262a, #22262a);
+        background-color: #22262a !important; /* for IE */
+        color: white !important;
+		-webkit-text-fill-color: white;
+    }
+select option:not(:focus),
+select option:not(:active),
+select {
+	color:white !important;
+}
+    select option:checked {
+        background: linear-gradient(#22262a, #22262a);
+        background-color: #22262a !important; /* for IE */
+        color: white !important;
+		-webkit-text-fill-color: white;
+    }
+select:-internal-list-box option:checked {
+    color: white !important;
+}
 ::-webkit-scrollbar-track {
   background: #394046; 
 }
