@@ -19,9 +19,72 @@ var app = elerem.app;
 var http = require('http');
 var serverListFile
 
+
+var serverList = []
+
 if(config.has('serverList')){
 	serverList = config.get('serverList')
-};
+} else{
+	config.set('serverList', [])
+	serverList= []
+}
+
+var lanPlayLocation = ""
+
+if(config.has('lanPlayLocation')){
+	lanPlayLocation = config.get('lanPlayLocation')
+} else{
+	
+	config.set('lanPlayLocation', "")
+	if (OS == "win32"){ //If OS is Windows
+		if (os.arch == "x64"){ //win64
+			config.set('lanPlayLocation', process.cwd()+"\\lan-play-win64.exe")
+		} else { //win32
+			config.set('lanPlayLocation', process.cwd()+"\\lan-play-win32.exe")
+		}
+	} else if(OS == "linux"){ //If OS is Linux
+		config.set('lanPlayLocation',os.homedir()+"/lan-play-linux")
+	} else {
+		return
+	}
+	lanPlayLocation = config.get('lanPlayLocation')
+}
+
+var fakeInternetEnabled;
+
+if(config.has('fakeInternetEnabled')){
+	fakeInternetEnabled = config.get('fakeInternetEnabled')
+} else{
+	config.set('fakeInternetEnabled', true)
+	fakeInternetEnabled = true
+}
+
+var pmtu;
+
+if(config.has('pmtu')){
+	pmtu = config.get('pmtu')
+} else{
+	config.set('pmtu', 1500)
+	pmtu = 1500
+}
+
+var broadcastEnabled;
+
+if(config.has('broadcastEnabled')){
+	broadcastEnabled = config.get('broadcastEnabled')
+} else{
+	config.set('broadcastEnabled', false)
+	broadcastEnabled = false
+}
+
+var networkInterface = ""
+
+if(config.has('networkInterface')){
+	networkInterface = config.get('networkInterface')
+} else{
+	config.set('networkInterface', "Not Selected")
+	networkInterface = "Not Selected"
+}
 
 
 

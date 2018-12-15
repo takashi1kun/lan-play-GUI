@@ -1,5 +1,4 @@
 const config = require('electron-json-config');
-var serverList = []
 const {shell} = require('electron');
 const child_process = require('child_process');
 const os = require('os');
@@ -74,10 +73,13 @@ var purgeConfig = function(){
 	config.purge();
 }
 
+var serverList = []
+
 if(config.has('serverList')){
 	serverList = config.get('serverList')
 } else{
-	updateConfig()
+	config.set('serverList', [])
+	serverList= []
 }
 
 var lanPlayLocation = ""
