@@ -45,23 +45,23 @@ main()*/
 
 
 var openServer = function(server){
-	if($('#fakeInternet').prop('checked')){
+	if(fakeInternetEnabled){
 		var fakeInternet = " --fake-internet"
 	}else{
 		var fakeInternet = ""
 	}
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
-			var commandString = "start cmd.exe /K lan-play-win64.exe"+fakeInternet+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+lanPlayLocation+fakeInternet+" --relay-server-addr "+ server
 		} else { //win32
-			var commandString = "start cmd.exe /K lan-play-win32.exe"+fakeInternet+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+lanPlayLocation+fakeInternet+" --relay-server-addr "+ server
 		}
 	} else if(OS == "linux"){ //If OS is Linux
-		var commandString = "x-terminal-emulator -e ~/lan-play-linux"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = "x-terminal-emulator -e "+lanPlayLocation+fakeInternet+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
 		var commandString = "open -n ./lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
 	} else {
-		return
+		return "lol"
 	}
 	child_process.exec(commandString);
 }
@@ -136,6 +136,23 @@ if(config.has('networkInterface')){
 } else{
 	config.set('networkInterface', "Not Selected")
 	networkInterface = "Not Selected"
+}
+
+var testVersion = function(){
+	try {
+	var version = child_process.execSync(lanPlayLocation+" --version").asciiSlice().trim()
+	}
+	catch(err) {
+  console.log("error");
+}
+	if (version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
+		return 2 
+	} else if(version === undefined){
+		
+		return 3
+	} else {
+		return 1
+	}
 }
 
 var writeHtml = function(){
