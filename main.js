@@ -9,8 +9,8 @@ function createWindow () {
 	win.loadFile('index.html')
 	win.setResizable(false)
 	win.center()
-  win.webContents.openDevTools()
-	//win.setMenu(null) 
+ // win.webContents.openDevTools()
+	win.setMenu(null) 
 	win.on('closed', () => {
 		win = null
 	})
