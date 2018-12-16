@@ -74,7 +74,9 @@ var openServer = function(server){
 	} else if(OS == "linux"){ //If OS is Linux
 		var commandString = "x-terminal-emulator -e "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = `osascript -e 'tell app "Terminal" to do script "+`+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server+`"'`
+		var commandString = `osascript -e 'tell app "Terminal" to do script "`+"sudo "+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server+`"'`;
+		child_process.execSync(commandString);
+		return "lol"
 	} else {
 		return "lol"
 	}
