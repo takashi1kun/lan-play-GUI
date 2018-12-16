@@ -117,6 +117,12 @@ if(config.has('lanPlayLocation')){
 	}
 	lanPlayLocation = config.get('lanPlayLocation')
 }
+var changelog = function(){
+if (!config.has('changelog_1_0_0')){
+config.set('changelog_1_0_0', true)
+$('#changelog').modal('show')
+}
+}
 
 var fakeInternetEnabled;
 
@@ -483,6 +489,7 @@ var resplice = function(array, index){
 	return newArray
 }
 
+
 var removeServer = function(serverNumber){
 	serverList = resplice(serverList, serverNumber);
 	update();
@@ -606,6 +613,7 @@ addServer("usplay", "usplay.secretalgorithm.com:11451", "SPA")
 var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
+	changelog();
 	/* $('#fakeInternet').checkboxpicker({
   html: true,
   offLabel: '<i class="fas fa-check"></i>',

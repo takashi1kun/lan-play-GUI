@@ -1,6 +1,6 @@
 {
   "name": "lan-play-GUI",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A GUI for lan-play",
   "main": "main.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "pack": "build --dir",
     "distWin": "electron-builder --ia32 --x64 -w",
     "distLin": "electron-builder --linux",
-    "distMac": "electron-builder -o"
+    "distMac": "electron-builder -o",
+	"distPi": "electron-builder --linux --armv7l"
   },
   "repository": {
     "type": "git",
