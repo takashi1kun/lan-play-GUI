@@ -401,7 +401,7 @@ function timeout(ms, promise) {
     promise.then(resolve, reject)
   })
 }
-timeout(1000, )
+
 var objectUpdate = async function(obj, index) {
 	var object = new serverObject(index, obj.serverName, obj.serverURL, obj.serverFlag);
 	var serverInfoURL = object.serverURL;
@@ -415,6 +415,7 @@ var objectUpdate = async function(obj, index) {
 	var r1
 	try {
 	r1 = await timeout(500, fetch(serverInfoURL));
+	var serverOnline = r1.ok
 	}
 	catch(err) {
 	//	console.log("first error")
@@ -423,12 +424,24 @@ var objectUpdate = async function(obj, index) {
 	setTimeout(update, 400);
 	//return false
 }
+
+try{
+	var r2 = await r1.json()
+} catch(err) {
+	//	console.log("first error")
+	var r2 = {online:0,version:"Not Online"}
+	setTimeout(update, 400);
+	//return false
+}
+
+
 	globalTest = r1
-	var serverOnline = r1.ok
+	//var serverOnline = r1.ok
 	var serverInfo = {};
 	var r3;
 	//if (serverOnline){
-		try {
+		
+/* 		try {
 	let r2 = await timeout(500, fetch(serverInfoURL)).then(dataWrappedByPromise => dataWrappedByPromise.json()).then(data => {
 		r3 = data
     return data
@@ -436,15 +449,15 @@ var objectUpdate = async function(obj, index) {
 }
 catch(err) {
 	r3 = {online:0,version:"Not Online"}
-	//console.log("second error")
 	setTimeout(update, 400);
-}
+} */
+
 	//let r2 = await fetch(serverInfoURL).then(dataWrappedByPromise => dataWrappedByPromise.json()).then(data => {
     //return data
 //})
 		//let r2 = r1.json()
-		serverInfo = r3
-		globalTest = r3
+		serverInfo = r2
+		globalTest = r2
 	//};
 	//object.serverOnline = serverOnline
 	//object.serverInfo = serverInfo
@@ -593,15 +606,15 @@ addServer("usplay", "usplay.secretalgorithm.com:11451", "SPA")
 var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
-	$('#fakeInternet').checkboxpicker({
+	/* $('#fakeInternet').checkboxpicker({
   html: true,
   offLabel: '<i class="fas fa-check"></i>',
   onLabel: '<i class="fas fa-times"></i>'
-});
-$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-times"></i>'
+}); */
+/* $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-times"></i>'
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
 //document.getElementById("fakeInternet").value=1
-$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
+$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;"); */
 }
 
 //console.log(config.get('serverList'));    

@@ -232,6 +232,7 @@ var loadInterfaces = function(){
 	}
 }
 
+
 var createObjectMin = function(){
 	var length = serverList.length
 	var newArray = [];
@@ -287,6 +288,9 @@ var exportServerList = function(){
 	
 	//myUrlSaveAs(url)
 	
+}
+var showAlert = function(){
+	$('#alert').modal('show')
 }
 var testGlobal
 var importServerList = function(){ 

@@ -86,14 +86,14 @@
   <br /><br /><br />
   <button onClick="exportServerList()" type="button" class="btn btn-primary center-block" ><i class="fas fa-upload"></i> Export Server List</button><br /><br />
   <button onClick="importServerList()" type="button" class="btn btn-primary center-block"  ><i class="fas fa-download"></i> Import Server List</button><br /><br />
-  <button onClick="importServerOfficialList()" type="button" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> Download Official Server List</button>
+  <button onClick="showAlert()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> Download Official Server List</button>
   </div>
  <input type="file" id="importFile" class="importFile" />
   </div>
 </div>
 
 
-  <nav style="bottom:0; position: fixed; z-index: 9999; width:100%"class="navbar navbar-dark bg-dark">
+  <nav style="bottom:0; position: fixed; z-index: 3; width:100%"class="navbar navbar-dark bg-dark">
  
   <div class="row justify-content-end" style="margin-left:510px">
   <div class="btn-group" role="group">
@@ -120,6 +120,26 @@
       <div class="modal-footer">
         
         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alert" class="modal" tabindex="-1" role="dialog" style="margin-top:120px;color:black !important">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This will erase your server list and replace it whit the official one, are you sure you want that?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No! Let me go back!</button>
+        <button type="button" onClick="onClick="importServerOfficialList()"" class="btn btn-primary" data-dismiss="modal">I am okay whit that, replace it!</button>
       </div>
     </div>
   </div>
