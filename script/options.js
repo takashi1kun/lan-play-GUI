@@ -182,7 +182,7 @@ var parseLinux = function(array1, array2) {
 var globalTest
 var loadInterfaces = function(){
 	try {
-	var version = child_process.execSync(lanPlayLocation+" --version").asciiSlice().trim()
+	var version = child_process.execSync(`"`+lanPlayLocation+`"`+" --version").asciiSlice().trim()
 	}
 	catch(err) {
   console.log("error");

@@ -67,12 +67,12 @@ var openServer = function(server){
 	}else{
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
-			var commandString = "start cmd.exe /K "+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
 		} else { //win32
-			var commandString = "start cmd.exe /K "+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
 		}
 	} else if(OS == "linux"){ //If OS is Linux
-		var commandString = "x-terminal-emulator -e "+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+		var commandString = "x-terminal-emulator -e "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
 		var commandString = "open -n ./lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
 	} else {
@@ -162,7 +162,7 @@ if(config.has('networkInterface')){
 
 var testVersion = function(){
 	try {
-	var version = child_process.execSync(lanPlayLocation+" --version").asciiSlice().trim()
+	var version = child_process.execSync(`"`+lanPlayLocation+`"`+" --version").asciiSlice().trim()
 	}
 	catch(err) {
   console.log("error");
