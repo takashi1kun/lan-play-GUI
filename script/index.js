@@ -74,7 +74,7 @@ var openServer = function(server){
 	} else if(OS == "linux"){ //If OS is Linux
 		var commandString = "x-terminal-emulator -e "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = "open -n ./lan-play-macos --args"+fakeInternet+" --relay-server-addr "+ server
+		var commandString = `osascript -e 'tell app "Terminal" to do script "+`+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server+`"'`
 	} else {
 		return "lol"
 	}
@@ -113,7 +113,8 @@ if(config.has('lanPlayLocation')){
 		}
 	} else if(OS == "linux"){ //If OS is Linux
 		config.set('lanPlayLocation',os.homedir()+"/lan-play-linux")
-	} else {
+	} else if(OS == "darwin"){
+		config.set('lanPlayLocation',os.homedir()+"/lan-play")
 	}
 	lanPlayLocation = config.get('lanPlayLocation')
 }
