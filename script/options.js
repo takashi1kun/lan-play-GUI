@@ -225,13 +225,13 @@ var loadInterfaces = function(){
 		return "lol"
 	}
 	var interfaces = interfaces2.asciiSlice()
-	var macTest1 = interfaces
+	macTest1 = interfaces
 	console.log(interfaces)//mac test
 	var parsedInterfaces = parseInterfaces(interfaces)
 	console.log(parsedInterfaces)//mac test
 	console.log(removeUnwantedElements(parsedInterfaces))
 	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
-	var macTest2 = parsedInterfaces
+	macTest2 = parsedInterfaces
 	var interfaceValues = parsedInterfaces[0]
 	var interfaceLabels = parsedInterfaces[1]
 	interfaceLabels = (OS == "win32" ? interfaceLabels : parseLinux(interfaceValues,interfaceLabels))
