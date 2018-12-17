@@ -1,6 +1,6 @@
 {
   "name": "lan-play-GUI",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A GUI for lan-play",
   "main": "main.js",
   "scripts": {
