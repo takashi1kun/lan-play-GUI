@@ -135,7 +135,7 @@ var serverObjectMin = function(serverName, serverURL, serverFlag){
 	this.serverFlag = serverFlag
 }
 	
-var parseInterfaces = function(str){
+/* var parseInterfaces = function(str){
 	var str2 = []
 	var str3 = []
 	var reply = []
@@ -156,7 +156,45 @@ var parseInterfaces = function(str){
 	reply[0] = str2
 	reply[1] = str3
 	return reply
+} */
+
+
+var parseInterfaces = function(str){
+    var everything = [] 
+    var names = []
+    var descriptions = []
+    globalInterfaceStr = str
+    for (var i = 0; i < 50; i++) {
+        var cutFrom = i + 1 + '. '
+        var cutTo = i + 2 + '. '
+        var netIf = str.slice(str.indexOf(cutFrom.toString()), str.indexOf(cutTo.toString()))
+        if (netIf != '') {
+        everything.push(netIf)
+    }
 }
+    for (var i = 0; i < everything.length; i++) {
+        if (i < 9) {
+            var name = everything[i].slice(3,everything[i].indexOf(' ('))
+        names.push(name)
+        } else {
+            var name = everything[i].slice(4,everything[i].indexOf(' ('))
+        names.push(name)
+        }
+    }
+    for (var i = 0; i < everything.length; i++) {
+        var desc = everything[i].slice(everything[i].indexOf(' ('),everything[i].indexOf(']'))
+        descriptions.push(desc + ']')
+    }
+    console.log(everything, names, descriptions)
+var arrayReturn = []
+arrayReturn[0] = names
+arrayReturn[1] = descriptions
+    return arrayReturn
+
+}
+
+
+
 
 var lanPlayPlace = `C:\\project1\\lan-play-server-watcher\\lan-play.exe`
 
