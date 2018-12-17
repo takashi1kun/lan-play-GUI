@@ -276,15 +276,44 @@ var removeUnwantedElements = function(array){
 	var array4 = []
 	var length = array1.length
 	var ipCheck = new RegExp("IP:");
-	var ipCheck2 = new RegExp(/IP: \[\]/g)
-	var ipCheck3 = new RegExp(/0.0.0.0/g)
-	var ipCheck4 = new RegExp(/127.0.0.1/g)
+	var ipCheck2 = /IP: \[\]/g
+	var ipCheck3 = /0.0.0.0/g
+	var ipCheck4 = /127.0.0./g
+	ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
 	var i2 = 0
 	for(i=0;i<length;i++){
-		if (ipCheck.test(array2[i])&&!ipCheck2.test(array2[i])&&!ipCheck3.test(array2[i])&&!ipCheck4.test(array2[i])){
+		var checkValue = array2[i]
+		ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
+		if (ipCheck.test(checkValue)){
+			ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
+			if (!ipCheck2.test(checkValue)){
+				ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
+				if(!ipCheck3.test(checkValue)){
+					ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
+					if(!ipCheck4.test(checkValue)){
+						ipCheck.lastIndex = 0
+		ipCheck2.lastIndex = 0
+		ipCheck3.lastIndex = 0
+		ipCheck4.lastIndex = 0
 			array3[i2] = array1[i]
 			array4[i2] = array2[i]
 			i2++
+			}}} 
 		}
 	}
 	return [array3, array4]
