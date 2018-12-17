@@ -180,9 +180,22 @@ var parseLinux = function(array1, array2) {
 	return array3
 }
 var globalTest
+
+var macTest0
+var macTest1
+var macTest2
+var macTest3
+var macTest4
+var macTest5
+var macTest6
+var macTest7
+var macTest8
+var macTest9
+
 var loadInterfaces = function(){
 	try {
 	var version = child_process.execSync(`"`+lanPlayLocation+`"`+" --version").asciiSlice().trim()
+	console.log(version) //mac test
 	}
 	catch(err) {
   console.log("error");
@@ -198,7 +211,8 @@ var loadInterfaces = function(){
 	try {
 	//interfaces2 = child_process.execSync(lanPlayLocation+" --list-if")
 	interfaces2 = child_process.spawnSync(lanPlayLocation,["--list-if"]).output[1]
-	globalTest = interfaces2
+	macTest0 = interfaces2
+	console.log(interfaces2)
 	}
 	catch(err) {
   console.log("error");
@@ -211,9 +225,13 @@ var loadInterfaces = function(){
 		return "lol"
 	}
 	var interfaces = interfaces2.asciiSlice()
+	var macTest1 = interfaces
+	console.log(interfaces)//mac test
 	var parsedInterfaces = parseInterfaces(interfaces)
+	console.log(parsedInterfaces)//mac test
 	console.log(removeUnwantedElements(parsedInterfaces))
 	parsedInterfaces = removeUnwantedElements(parsedInterfaces)
+	var macTest2 = parsedInterfaces
 	var interfaceValues = parsedInterfaces[0]
 	var interfaceLabels = parsedInterfaces[1]
 	interfaceLabels = (OS == "win32" ? interfaceLabels : parseLinux(interfaceValues,interfaceLabels))
@@ -323,13 +341,13 @@ var importServerOfficialList = async function(){
 
 var getConfigOptionsInit = function(){
 	$('#lanPlayLocation')[0].value = lanPlayLocation;
-	$('#fakeInternet')[0].value = fakeInternetEnabled;
-	$('#Broadcast')[0].value = broadcastEnabled;
+	$('#fakeInternet').prop('checked', fakeInternetEnabled) 
+	$('#Broadcast').prop('checked', broadcastEnabled) 
 	$('#pmtu')[0].value = pmtu;
 }
 var setConfigOptions = function(){
-	config.set('broadcastEnabled',$('#Broadcast')[0].value);
-	config.set('fakeInternetEnabled',$('#fakeInternet')[0].value);
+	config.set('broadcastEnabled',$('#Broadcast').prop('checked'));
+	config.set('fakeInternetEnabled',$('#fakeInternet').prop('checked'));
 	config.set('lanPlayLocation',lanPlayLocation);
 	config.set('pmtu',$('#pmtu')[0].value);
 	config.set('serverList', serverListFile);
