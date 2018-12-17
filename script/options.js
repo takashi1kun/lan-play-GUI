@@ -276,9 +276,12 @@ var removeUnwantedElements = function(array){
 	var array4 = []
 	var length = array1.length
 	var ipCheck = new RegExp("IP:");
+	var ipCheck2 = new RegExp(/IP: \[\]/g)
+	var ipCheck3 = new RegExp(/0.0.0.0/g)
+	var ipCheck4 = new RegExp(/127.0.0.1/g)
 	var i2 = 0
 	for(i=0;i<length;i++){
-		if (ipCheck.test(array2[i])){
+		if (ipCheck.test(array2[i])&&!ipCheck2.test(array2[i])&&!ipCheck3.test(array2[i])&&!ipCheck4.test(array2[i])){
 			array3[i2] = array1[i]
 			array4[i2] = array2[i]
 			i2++
