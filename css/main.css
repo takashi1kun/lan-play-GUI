@@ -15,19 +15,59 @@ body{
 	 overflow-y:hidden;
 }
 .bar{
-	
+			 -webkit-user-select: none;
+	-webkit-app-region: drag;
 	position: -webkit-sticky;
   position: sticky;
-  top:0;
+  top:23px;
     margin-top: 0;
     position: fixed;
-    top: 0;
     z-index: 3;
 	width: 100%;
 }
 
+.header{
+	 display: flex;
+	 flex-direction:column;
+}
+
+.textHeader{
+	    color: #fff!important;
+	float:left;
+	padding: 0 !important;
+	font-size: large!important;
+	 -webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+
+header {
+	    background-color: #343a40!important;
+	display: flex;
+	flex-direction:row-reverse;
+	justify-content: flex-start;
+	align-self: stretch;
+		 -webkit-user-select: none;
+	-webkit-app-region: drag;
+	
+}
+
+.xButton, ._Button{
+		    color: #fff!important;
+  float: right;
+  padding: 0px 16px !important;
+	font-size: large!important;
+	margin:0!important;
+	-webkit-app-region: no-drag;
+}
+
+.xButton:hover{
+	background: red;
+}
+._Button:hover{
+	background: #585858;
+}
 .app{
-	top: 57px;
+	top: 80px;
 	width: 100%;
 	position:fixed;
 	overflow-y: scroll;
@@ -35,7 +75,11 @@ body{
 	height:100%
 }
 
-#app>div:last-child {margin-bottom: 58px;}
+.nodrag{
+	-webkit-app-region: no-drag;
+}
+
+#app>div:last-child {margin-bottom: 81px;}
 
 
 ::-webkit-scrollbar-track {

@@ -16,6 +16,17 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   </head>
   <body>
+  <div class="header">
+	<header>
+		<div class="textHeader navbar-brand">
+			Lan Play GUI
+		</div>
+		<div class="xButton navbar-brand" onClick="remote.getCurrentWindow().close();"><i class="fas fa-times"></i></div>
+		<div class="_Button navbar-brand" onClick="remote.getCurrentWindow().minimize();"><i class="far fa-window-minimize"></i></div>
+		
+		
+	</header>
+  </div>
     <div>
 		<div id="bar" class="bar">
 		<nav class="navbar navbar-dark navbar-expand bg-dark" style="position: -webkit-sticky;
@@ -26,7 +37,7 @@
     <a class="navbar-brand" href="#">Server List</a>
 	</div>
 	</div>
-	   <button style="margin-left: 263px" onClick="openConfiguration()" type="button" class="btn btn-secondary" ><i class="fas fa-cogs"></i>Settings</button>
+	   <button style="margin-left: 263px" onClick="openConfiguration()" type="button" class="nodrag btn btn-secondary" ><i class="fas fa-cogs"></i>Settings</button>
 
 <!-- 		<div class="row  justify-content-end">
 	<div class="col-sm-12" >
@@ -38,13 +49,13 @@
 	
 	<div class="row  justify-content-end">
 		<div class="col-sm-25" style="margin-right:20px">
-   <button onClick="updateServers()" type="button" class="btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
+   <button onClick="updateServers()" type="button" class="nodrag btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
 	</div>
 	</div>
 	</div>
 	<div class="row  justify-content-end">
 	<div class="col-sm-12">
-	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i>Add New Server</button>
+	<button type="button" class="nodrag btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i>Add New Server</button>
 	</div>
 	</div>
 	</div>

@@ -38,6 +38,47 @@ input[type="number"] {
   appearance: textfield;
 }
 
+.header{
+	 display: flex;
+	 flex-direction:column;
+}
+
+.textHeader{
+	    color: #fff!important;
+	float:left;
+	padding: 0 !important;
+	font-size: large!important;
+	 -webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+
+header {
+	    background-color: #343a40!important;
+	display: flex;
+	flex-direction:row-reverse;
+	justify-content: flex-start;
+	align-self: stretch;
+		 -webkit-user-select: none;
+	-webkit-app-region: drag;
+	
+}
+
+.xButton, ._Button{
+		    color: #fff!important;
+  float: right;
+  padding: 0px 16px !important;
+	font-size: large!important;
+	margin:0!important;
+	-webkit-app-region: no-drag;
+}
+
+.xButton:hover{
+	background: red;
+}
+._Button:hover{
+	background: #585858;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
