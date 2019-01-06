@@ -11,6 +11,7 @@
 	<script>window.jQuery = window.$ = require('jquery');</script>
 	<script>require('popper.js');</script>
 	<script>require('bootstrap');</script>
+	<script>window.i18n = new(require('./languages/i18n'));</script>
 	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -34,10 +35,10 @@
 		<div class="container">
 		<div class="row">
 		<div class="col-sm-4">
-    <a class="navbar-brand" href="#">Server List</a>
+    <a id="translateServerList" class="navbar-brand" href="#">Server List</a>
 	</div>
 	</div>
-	   <button style="margin-left: 263px" onClick="openConfiguration()" type="button" class="nodrag btn btn-secondary" ><i class="fas fa-cogs"></i>Settings</button>
+	   <button id="translateSettings" style="margin-left: 263px" onClick="openConfiguration()" type="button" class="nodrag btn btn-secondary" ><i class="fas fa-cogs"></i>Settings</button>
 
 <!-- 		<div class="row  justify-content-end">
 	<div class="col-sm-12" >
@@ -49,13 +50,13 @@
 	
 	<div class="row  justify-content-end">
 		<div class="col-sm-25" style="margin-right:20px">
-   <button onClick="updateServers()" type="button" class="nodrag btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
+   <button id="translateUpdate" onClick="updateServers()" type="button" class="nodrag btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
 	</div>
 	</div>
 	</div>
 	<div class="row  justify-content-end">
 	<div class="col-sm-12">
-	<button type="button" class="nodrag btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i>Add New Server</button>
+	<button id="translateAddNewServer" type="button" class="nodrag btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i>Add New Server</button>
 	</div>
 	</div>
 	</div>
@@ -70,34 +71,34 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Add New Server</h5>
+        <h5 id="translateAddNewServer" class="modal-title">Add New Server</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form id="addServerForm" class="form-inline">
-  <label class="sr-only" for="inlineFormInputName2">Server Name</label>
+  <label id="translateServerName1" class="sr-only" for="inlineFormInputName2">Server Name</label>
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Server Name</div>
+      <div id="translateServerName2" class="input-group-text">Server Name</div>
     </div>
   <input id="addServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
 </div>
-  <label class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
+  <label id="translateServerURL1" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
   <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Server URL</div>
+      <div id="translateServerURL2" class="input-group-text">Server URL</div>
     </div>
     <input type="text" id="addServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
   </div><br />
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Country</div>
+      <div id="translateCountry1" class="input-group-text">Country</div>
     </div>
 	
   <select class="form-control" id="addServerFormCountry" style="width: 200px">
-	<option value="NFlag">No Country</option>
+	<option value="NFlag" id="translateNoCountry1">No Country</option>
 	<option value="EU">Europe</option>
 	<option value="AF">Afghanistan</option>
 	<option value="AX">Åland Islands</option>
@@ -354,8 +355,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onClick="buttonAddServer()" data-dismiss="modal" class="btn btn-primary">Add Server</button>
+        <button id="translateClose1" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="translateAddServer" type="button" onClick="buttonAddServer()" data-dismiss="modal" class="btn btn-primary">Add Server</button>
       </div>
     </div>
   </div>
@@ -365,34 +366,34 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Server</h5>
+        <h5 class="modal-title" id="translateEditServer">Edit Server</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form id="addServerForm" class="form-inline">
-  <label class="sr-only" for="inlineFormInputName2">Server Name</label>
+  <label id="translateServerName3" class="sr-only" for="inlineFormInputName2">Server Name</label>
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Server Name</div>
+      <div id="translateServerName4" class="input-group-text">Server Name</div>
     </div>
   <input id="editServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
 </div>
-  <label class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
+  <label id="translateServerURL3" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
   <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Server URL</div>
+      <div id="translateServerURL4" class="input-group-text">Server URL</div>
     </div>
     <input type="text" id="editServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
   </div><br />
    <div class="input-group mb-1 mr-sm-1">
     <div class="input-group-prepend">
-      <div class="input-group-text">Country</div>
+      <div id="translateCountry2" class="input-group-text">Country</div>
     </div>
 	
   <select class="form-control" id="editServerFormCountry" style="width: 200px">
-	<option value="NFlag">No Country</option>
+	<option id="translateNoCountry2" value="NFlag">No Country</option>
 	<option value="EU">Europe</option>
 	<option value="AF">Afghanistan</option>
 	<option value="AX">Åland Islands</option>
@@ -649,8 +650,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onClick="saveEditServer()" data-dismiss="modal" class="btn btn-primary">Save</button>
+        <button id="translateClose2" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="translateSave" type="button" onClick="saveEditServer()" data-dismiss="modal" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
