@@ -10,7 +10,7 @@ function createWindow () {
 	win.setResizable(false)
 	win.center()
  win.webContents.openDevTools()
-	win.setMenu(null) 
+//	win.setMenu(null) 
 	win.on('closed', () => {
 		win = null
 	})

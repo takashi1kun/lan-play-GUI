@@ -4,7 +4,7 @@
 	"Settings": "Opciones",
 	"Update": "Actualizar",
 	"Add New Server": "Añadir Nuevo Servidor",
-	"Connect to Server": "Conectarse al Servidor",
+	"Connect to Server": "Conectar a Servidor",
 	"Remove": "Eliminar",
 	"Online": "En Linea",
 	"Playing": "Jugando",
@@ -20,10 +20,10 @@
 	"Main Configuration": "Configuracion Principal",
 	"Network Adapter": "Adaptador de Red",
 	"Main Configuration Text": "Esta es la configuracion general, asegurate de seleccionar donde esta lan play antes que nada.",
-	"Lan Play Location": "Localizacion de Lan Play: ",
+	"Lan Play Location": "Localizacion de Lan Play",
 	"Browse": "Buscar",
-	"Fake Internet": "Internet Falso: ",
-	"Broadcast": "Broadcast: ",
+	"Fake Internet": "Internet Falso",
+	"Broadcast": "Broadcast",
 	"PMTU": "PMTU",
 	"Ok": "Aceptar",
 	"Apply": "Aplicar",
@@ -39,6 +39,5 @@
 	"Are you sure?": "¿Estas Seguro?",
 	"Are you sure? Text": "Esto borrara tu lista de servidores actual y la remplazara con la oficial ¿estas seguro de querer eso?",
 	"No! Let me go back!": "¡No! ¡Atras!",
-	"I am okay whit that, replace it!": "Estoy conforme con ello¡Remplazala!",
-	"Enable Proxy:": "Activar Proxy: "
+	"I am okay whit that, replace it!": "Estoy conforme con ello¡Remplazala!"
 }

@@ -42,7 +42,28 @@ function udpPing (server, port = 11451, timeout = 350) {//this function was give
     console.log(ping)
 }
 main()*/
+var pmtuEnabled
+if(config.has('pmtuEnabled')){
+	pmtuEnabled = config.get('pmtuEnabled')
+} else{
+	config.set('pmtuEnabled', false)
+	pmtuEnabled = false
+}
+var proxyEnabled
+if(config.has('proxyEnabled')){
+	proxyEnabled = config.get('proxyEnabled')
+} else{
+	config.set('proxyEnabled', false)
+	proxyEnabled = false
+}
 
+var proxy
+if(config.has('proxy')){
+	proxy = config.get('proxy')
+} else{
+	config.set('proxy', "example.com:1234")
+	proxy = "example.com:1234"
+}
 
 var openServer = function(server){
 	if(fakeInternetEnabled){
@@ -55,11 +76,21 @@ var openServer = function(server){
 	} else{
 		var broadCast = ""
 	}
+	if(proxyEnabled){
+		var proxyOption = " --socks5-server-addr "+proxy
+	}else{
+		var proxyOption = ""
+	}
+	if(pmtuEnabled){
 	var pmtuCommand = " --pmtu "+pmtu
+	}else{
+		var pmtuCommand = ""
+	}
 	var netIf = " --netif "+networkInterface
 	if(networkInterface.trim() == "Not Selected"){
 		var netIf = ""
 	}
+	var argumments = fakeInternet+broadCast+pmtuCommand+netIf+proxyOption
 	if(testVersion() === 2){
 		$('#modalError1').modal('show')
 	}else if(testVersion() === 3){
@@ -67,14 +98,14 @@ var openServer = function(server){
 	}else{
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
-			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+argumments+" --relay-server-addr "+ server
 		} else { //win32
-			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+argumments+" --relay-server-addr "+ server
 		}
 	} else if(OS == "linux"){ //If OS is Linux
-		var commandString = "x-terminal-emulator -e "+`"`+lanPlayLocation+`"`+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server
+		var commandString = "x-terminal-emulator -e "+`"`+lanPlayLocation+`"`+argumments+" --relay-server-addr "+ server
 	} else if (OS == "darwin"){//If OS is MacOS
-		var commandString = `osascript -e 'tell app "Terminal" to do script "`+"sudo "+lanPlayLocation+fakeInternet+broadCast+pmtuCommand+netIf+" --relay-server-addr "+ server+`"'`;
+		var commandString = `osascript -e 'tell app "Terminal" to do script "`+"sudo "+lanPlayLocation+argumments+" --relay-server-addr "+ server+`"'`;
 		child_process.execSync(commandString);
 		return "lol"
 	} else {
@@ -212,11 +243,11 @@ var writeHtml = function(){
 			<div class="row">
 			<div class="col-sm-1"> <div style="padding-left: 5px;" onClick="upServer(`
 	+i+
-	`)"><i class="fas fa-sort-up"></i></div><div style="padding-top: 4px;padding-bottom: 4px;"><span title="fr" class="flag-icon flag-icon-`
+	`,$(this))"><i class="fas fa-sort-up"></i></div><div style="padding-top: 4px;padding-bottom: 4px;"><span title="fr" class="flag-icon flag-icon-`
 	+serverList[i].serverFlag.toLowerCase()+
 	`"></span></div><div style="padding-left: 5px;" onClick="downServer(`
 	+i+
-	`)"><i class="fas fa-sort-down"></i></div></div>
+	`,$(this))"><i class="fas fa-sort-down"></i></div></div>
 				<div class="col-8">
 				<strong>`
 	+serverList[i].serverName+
@@ -236,15 +267,15 @@ var writeHtml = function(){
 	`</div>
 				<div class="col-1">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<button style="width: 186px;" type="button" onClick="openServer('`
+					<button style="height: 38px;" type="button" onClick="openServer('`
 	+serverList[i].serverURL+
-	` ')" class="btn btn-success"><i class="fas fa-play"></i> `+i18n.__("Connect to Server")+`</button>
+	` ')" id="translateConnectToServer`+i+`" class="btn btn-success"><i class="fas fa-play"></i> `+i18n.__("Connect to Server")+`</button>
 </div><br />
 <div class="btn-group" role="group" aria-label="Basic example">
-					<button type="button" onClick="editServer(`
+					<button style="height: 38px;" id="translateEditServer`+i+`"type="button" onClick="editServer(`
 	+i+
 	`)" data-toggle="modal" data-target="#editServer" class="btn btn-primary"><i class="far fa-edit"></i>`+" "+i18n.__("Edit")+`</button>
-					<button type="button" onClick="removeServer(`
+					<button style="height: 38px;" id="translateRemoveServer`+i+`" type="button" onClick="removeServer(`
 	+i+
 	`)" class="btn btn-danger"><i class="fas fa-times"></i>`+" "+i18n.__("Remove")+`</button>
 </div>
@@ -255,6 +286,7 @@ var writeHtml = function(){
 	`
 	}
 	document.getElementById("app").innerHTML = innerHtml
+	
 }
 
 var editedServerIndex;
@@ -293,7 +325,28 @@ var translate = function(){
 	$("#translateServerList").text(i18n.__("Server List"))
 	$("#translateSettings").html(`<i class="fas fa-cogs"></i>`+i18n.__("Settings"))
 	$("#translateAddNewServer").html(`<i class="fas fa-plus-circle"></i>`+i18n.__("Add New Server"))
+	$("#translateAddNewServer2").text(i18n.__("Add New Server"))
 	$("#translateUpdate").html(`<i id="update" class="fas fa-sync-alt"></i>`+i18n.__("Update"))
+	translateServers()
+}
+
+var translateServers = function(){
+	for(var i=0;i<=serverList.length;i++){
+		resizeToFit($("#translateConnectToServer"+i),180)
+		resizeToFit($("#translateEditServer"+i),89.8)
+		resizeToFit($("#translateRemoveServer"+i),89.9)
+	}
+}
+
+var resizeToFit = function(elmnt, wd){
+	 var fontsize = parseFloat(elmnt.css('font-size'));
+	 if(elmnt.innerWidth()>wd){
+        for(var i=0;elmnt.innerWidth()>wd;i++){
+			elmnt.css('fontSize', (parseFloat(fontsize) - i)+"px");
+		}
+    } 
+		elmnt.innerWidth(wd)
+	
 }
 
 var saveEditServer = function(){
@@ -316,7 +369,7 @@ var saveEditServer = function(){
 	//serverList[obj.serverIndex] = objectUpdate(obj, obj.serverIndex)
 	//serverList = updateOrder(false, serverList);
 	//update();
-	
+	setTimeout(translate, 100);
 }
 
 var pingServer = async function(index){
@@ -414,6 +467,7 @@ var addServer = async function(serverName, serverURL, serverFlag){
 	var temp = objectUpdate(obj, index).then(function(result) {
    serverList[result[0]] = result[1]
    update()
+   setTimeout(translate, 100);
 });
 }
 
@@ -518,6 +572,7 @@ var resplice = function(array, index){
 var removeServer = function(serverNumber){
 	serverList = resplice(serverList, serverNumber);
 	update();
+	setTimeout(translate, 100);
 	/*var newArray = []
 	var length = serverList.length - 1
 	for(var i=0; i<length; i++){
@@ -546,9 +601,36 @@ var update = function(){
 	serverList = temporalArray2
 	updateConfig();
 	writeHtml();
+	translateServers()
 }
 
-var upServer = function(serverNumber) {
+function moveUp(item) {
+    var prev = item.prev();
+    if (prev.length == 0)
+        return;
+    prev.css('z-index', 999).css('position','relative').animate({ top: item.height() }, 250);
+    item.css('z-index', 1000).css('position', 'relative').animate({ top: '-' + prev.height() }, 300, function () {
+        prev.css('z-index', '').css('top', '').css('position', '');
+        item.css('z-index', '').css('top', '').css('position', '');
+        item.insertBefore(prev);
+    });
+	setTimeout(update, 400)
+}
+function moveDown(item) {
+    var next = item.next();
+    if (next.length == 0)
+        return;
+    next.css('z-index', 999).css('position', 'relative').animate({ top: '-' + item.height() }, 250);
+    item.css('z-index', 1000).css('position', 'relative').animate({ top: next.height() }, 300, function () {
+        next.css('z-index', '').css('top', '').css('position', '');
+        item.css('z-index', '').css('top', '').css('position', '');
+        item.insertAfter(next);
+    });
+	setTimeout(update, 400)
+}
+
+
+var upServer = function(serverNumber, buton) {
 	if (serverNumber != 0){
 		var serverNumber2 = serverNumber - 1 ;
 		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
@@ -557,16 +639,18 @@ var upServer = function(serverNumber) {
 			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
-				update();
+				//update();
 			}
 		}
 		
+		moveUp($("#server_"+serverNumber))
 	}
-	update();
+	//update();
+
 	//location.reload() 
 }
 
-var downServer = function(serverNumber) {
+var downServer = function(serverNumber, buton) {
 	if (serverNumber < serverList.length - 1){
 		var serverNumber2 = serverNumber + 1 ;
 		[ serverList[serverNumber], serverList[serverNumber2] ] = [ serverList[serverNumber2], serverList[serverNumber] ];
@@ -575,15 +659,16 @@ var downServer = function(serverNumber) {
 			var temp = serverList.length;
 			temp = temp - 2
 			if (i < temp){
-				update();
+				//update();
 				//console.log("yes")
 			} else{
 				//console.log("not")
 				}
 		}
 	}
-	update();
-	//location.reload() 
+	moveDown($("#server_"+serverNumber))
+	//update();
+
 }
 
 var updateOrder = function(sw, myArray1){
@@ -618,6 +703,7 @@ var updateServers = async function(){
    //update();
    if(result[0] === serverList.length-1) {
 	   update();
+
    }
 });
 	}
@@ -639,6 +725,7 @@ var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
 	changelog();
+	setTimeout(translate, 100);
 	/* $('#fakeInternet').checkboxpicker({
   html: true,
   offLabel: '<i class="fas fa-check"></i>',

@@ -21,10 +21,10 @@
 	"Network Adapter": "Network Adapter",
 	"Server List": "Server List",
 	"Main Configuration Text": "Here you select general configurations, be sure to select where lan-play is located before anything.",
-	"Lan Play Location": "Lan Play Location",
+	"Lan Play Location": "Lan Play Location: ",
 	"Browse": "Browse",
-	"Fake Internet": "Fake Internet",
-	"Broadcast": "Broadcast",
+	"Fake Internet": "Fake Internet: ",
+	"Broadcast": "Broadcast: ",
 	"PMTU": "PMTU",
 	"Ok": "Ok",
 	"Apply": "Apply",
@@ -40,5 +40,6 @@
 	"Are you sure?": "Are you sure?",
 	"Are you sure? Text": "This will erase your server list and replace it whit the official one, are you sure you want that?",
 	"No! Let me go back!": "No! Let me go back!",
-	"I am okay whit that, replace it!": "I am okay whit that, replace it!"
+	"I am okay whit that, replace it!": "I am okay whit that, replace it!",
+	"Enable Proxy:": "Enable Proxy: "
 }

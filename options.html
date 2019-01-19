@@ -11,6 +11,7 @@
 	<script>window.jQuery = window.$ = require('jquery');</script>
 	<script>require('popper.js');</script>
 	<script>require('bootstrap');</script>
+	<script>window.i18n = new(require('./languages/i18n'));</script>
 	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -40,50 +41,57 @@
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
 	<i class="fas fa-server"></i> Server List</a>
   </li>
+    <li class="nav-item">
+    <a class="nav-link" id="proxy-tab" data-toggle="tab" href="#proxy" role="tab" aria-controls="contact" aria-selected="false">
+	<i class="fas fa-filter"></i> Proxy</a>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
  <br /> <br />
-  Here you select general configurations, be sure to select where lan-play is located before anything<br />
+  <a id="configText1">Here you select general configurations, be sure to select where lan-play is located before anything</a><br />
   
   <br />
   <div style="margin-left:10px">
    <div class="input-group mb-1 mr-sm-1" style="width: fit-content;">
     <div class="input-group-prepend" >
-      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white;" class="input-group-text">Lan Play Location: </div>
+      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white;" class="input-group-text"><div id="LanPlayLocation3" style="display: contents;">Lan Play Location:</div> </div>
     </div>
-    <input type="text" readonly id="lanPlayLocation" style="width: 380px;color: white; background-color:#394046; border-color:#343a40!important" class="form-control" placeholder=""><button onClick="selectLanPlay()" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: 0px; background-color: #343a40!important; border-color: #343a40; color: white;" type="button" class="btn btn-primary center-block" ><i class="fas fa-search"></i> Browse</button>
+    <input type="text" readonly id="lanPlayLocation" style="width: 380px;color: white; background-color:#394046; border-color:#343a40!important" class="form-control" placeholder=""><button onClick="selectLanPlay()" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;margin-left: 0px; background-color: #343a40!important; border-color: #343a40; color: white;" type="button" class="btn btn-primary center-block" ><i class="fas fa-search"></i> <div id="browse3" style="display: contents;">Browse</div></button>
   </div>
   
   
    <br />
   	<a id="fakeInternet2" class="navbar-text" style="background-color:#343a40!important;padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
-	 Fake Internet: <input checked="checked" id="fakeInternet" type="checkbox"></a> 
+	 <div id="fakeInternet3" style="display: contents;">Fake Internet:</div> <input checked="checked" id="fakeInternet" type="checkbox"></a> 
   <br /><br />
   <a id="Broadcast2" class="navbar-text" style="background-color:#343a40!important;padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
-	 Broadcast: <input id="Broadcast" type="checkbox"></a> 
+	 <div id="Broadcast3" style="display: contents;">Broadcast: </div><input id="Broadcast" type="checkbox"></a> 
 	 <br /><br />
-   <div style="width:155px!important"  class="input-group mb-1 mr-sm-1" >
+   <div style="width:270px!important"  class="input-group mb-1 mr-sm-1" >
     <div class="input-group-prepend">
-      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white;" class="input-group-text">PMTU</div>
+      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white; padding-bottom: 0px; padding-top: 0px;    height: 38px;" class="input-group-text"><a style="    padding-right: 12px;">PMTU:</a>  <input id="pmtuEnable" type="checkbox"></div>
+
     </div>
 	<input class="form-control" style="border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height: 38px; padding-top: 6px; padding-bottom: 6px; border-top-width: 1px; border-bottom-width: 1px;"  type="number" value="1500" id="pmtu"> 
-	<div style="border-radius: 0px 6px 6px 0px; border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height: 38px; display: grid; width: 26px; border-right-width: 3px; padding-right: 2px;" class="number-input"> 
+	<div style="border-radius: 0px 6px 6px 0px; border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height:  38px; display: grid; width: 26px; border-right-width: 3px; padding-right: 2px;" class="number-input"> 
    <button style="height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="$('#pmtu')[0].stepUp()" class="plus"><i style="color:white;position: relative;top: -2.3px;" class="fas fa-plus"></i></button>
 	<button style=" height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="$('#pmtu')[0].stepDown()" ><i style="color:white;position: relative;top: -4.8px;" class="fas fa-minus"></i></button></div>
   </div>
+  	  <div id="overlayTest2"></div>
 </div>
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
   <div class="text-center">
    <br /> <br />
+   <div id="loadInterfacesText3" style="display: contents;">
   Here you select your network interface so when lan play is launched you dont have to select it manually<br />
   First click the "Load Interfaces" button and then select the one correspondig to your local IP<br />
-  
+  </div>
   <br />
-      <button onClick="loadInterfaces()" type="button" class="btn btn-primary center-block" ><i class="fas fa-ethernet"></i> Load Interfaces</button><br /><br />
+      <button onClick="loadInterfaces()" type="button" class="btn btn-primary center-block" ><i class="fas fa-ethernet"></i> <div id="loadInterfaces3" style="display: contents;">Load Interfaces</div></button><br /><br />
 	 </div> <select style="color: white; background-color:#394046; border-color:#343a40!important" size="1" id="interfaces" class="form-control form-control-lg">
-  <option value="Not Selectod">Load Interfaces First</option>
+  <option id="loadInterfacesHelp3" value="Not Selectod"><div id="loadInterfacesHelp3" style="display: contents;">Load Interfaces First</div></option>
 </select>
 
   
@@ -93,24 +101,47 @@
   
   
   <br /> <div class="text-center">
- <br />Here You can Export your server list to a local file, import a server list from a local file<br/>or download and import the official lan play server list from github.
+ <br /><div id="serverListText3" style="display: contents;">Here You can Export your server list to a local file, import a server list from a local file<br/>or download and import the official lan play server list from github.</div>
   <br /><br /><br />
-  <button onClick="exportServerList()" type="button" class="btn btn-primary center-block" ><i class="fas fa-upload"></i> Export Server List</button><br /><br />
-  <button onClick="importServerList()" type="button" class="btn btn-primary center-block"  ><i class="fas fa-download"></i> Import Server List</button><br /><br />
-  <button onClick="showAlert()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> Download Official Server List</button>
+  <button onClick="exportServerList()" type="button" class="btn btn-primary center-block" ><i class="fas fa-upload"></i> <div id="exportServerList3" style="display: contents;">Export Server List</div></button><br /><br />
+  <button onClick="importServerList()" type="button" class="btn btn-primary center-block"  ><i class="fas fa-download"></i> <div id="importServerList3" style="display: contents;">Import Server List</div></button><br /><br />
+  <button onClick="showAlert()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> <div id="downloadServerList3" style="display: contents;">Download Official Server List</div></button>
   </div>
  <input type="file" id="importFile" class="importFile" />
   </div>
+  
+  <div class="tab-pane fade" id="proxy" role="tabpanel" aria-labelledby="contact-tab">
+  
+  
+  <br /> 
+ <br /><a id="proxy2" class="navbar-text" style="background-color:#343a40!important;padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
+	<div id="enableProxy3" style="display: contents;"> Enable Proxy:</div> <input id="proxyEnabled" type="checkbox"></a> 
+	 <br /><br />
+	 <div class="input-group mb-1 mr-sm-1" style="width: fit-content;">
+    <div class="input-group-prepend" >
+      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white;" class="input-group-text">Proxy URL: </div>
+    </div>
+    <input type="text" id="proxyUrl" style="width: 380px;color: white; background-color:#394046; border-color:#343a40!important" class="form-control" placeholder="">
+  </div>
+  <div id="overlayTest"></div>
+ </div>
+
+ 
 </div>
 
 
-  <nav style="bottom:0; position: fixed; z-index: 3; width:100%"class="navbar navbar-dark bg-dark">
+  <nav style="bottom:0; position: fixed; z-index: 3; width: 784px;    display: block;"class="navbar navbar-dark bg-dark">
  
-  <div class="row justify-content-end" style="margin-left:510px">
+  <div class="row justify-content-end">
+  <div class="col-sm-25" style="margin-right:20px;     padding-left: 15px;">
   <div class="btn-group" role="group">
-  <button type="button" onClick="saveSettings()" class="btn btn-success"><i class="fas fa-check"></i> Ok </button>
-  <button type="button" onClick="setConfigOptions()" class="btn btn-primary"><i class="fas fa-save"></i> Apply</button>
-  <button type="button" onclick="returnToIndex()" class="btn btn-danger"><i class="fas fa-times"></i> Cancel</button>
+  <button type="button" onClick="saveSettings()" class="btn btn-success"><i class="fas fa-check"></i> 
+  <div id="ok3" style="display: contents;">Ok </div></button>
+  <button type="button" onClick="setConfigOptions()" class="btn btn-primary"><i class="fas fa-save"></i> 
+  <div id="apply3" style="display: contents;">Apply</div></button>
+  <button type="button" onclick="returnToIndex()" class="btn btn-danger"><i class="fas fa-times"></i> 
+  <div id="cancel3" style="display: contents;">Cancel</div></button>
+</div>
 </div>
 </div>
 

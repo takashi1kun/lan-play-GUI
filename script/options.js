@@ -86,9 +86,50 @@ if(config.has('networkInterface')){
 	config.set('networkInterface', "Not Selected")
 	networkInterface = "Not Selected"
 }
+var pmtuEnabled
+if(config.has('pmtuEnabled')){
+	pmtuEnabled = config.get('pmtuEnabled')
+} else{
+	config.set('pmtuEnabled', false)
+	pmtuEnabled = false
+}
+var proxyEnabled
+if(config.has('proxyEnabled')){
+	proxyEnabled = config.get('proxyEnabled')
+} else{
+	config.set('proxyEnabled', false)
+	proxyEnabled = false
+}
 
+var proxy
+if(config.has('proxy')){
+	proxy = config.get('proxy')
+} else{
+	config.set('proxy', "example.com:1234")
+	proxy = "example.com:1234"
+}
 
-
+var translate = function(){
+	$("#home-tab").html(`<i class="fas fa-cog"></i>`+i18n.__("Main Configuration"))
+	$("#profile-tab").html(`<i class="fas fa-network-wired"></i>`+i18n.__("Network Adapter"))
+	$("#contact-tab").html(`<i class="fas fa-server"></i>`+i18n.__("Server List"))
+	$('#configText1').text(i18n.__("Main Configuration Text"))
+	$('#LanPlayLocation3').text(i18n.__("Lan Play Location"))
+	$('#browse3').text(i18n.__("Browse"))
+	$('#fakeInternet3').text(i18n.__("Fake Internet"))
+	$('#Broadcast3').text(i18n.__("Broadcast"))
+	$('#loadInterfacesText3').text(i18n.__("Network Adapter Text"))
+	$('#loadInterfaces3').text(i18n.__("Load Interfaces"))
+	$('#loadInterfacesHelp3').text(i18n.__("Load Interfaces First"))
+	$('#serverListText3').text(i18n.__("Server List Text"))
+	$('#exportServerList3').text(i18n.__("Export Server List"))
+	$('#importServerList3').text(i18n.__("Import Server List"))
+	$('#downloadServerList3').text(i18n.__("Download Offical Server List"))
+	$('#enableProxy3').text(i18n.__("Enable Proxy:"))
+	$('#ok3').text(i18n.__("Ok"))
+	$('#apply3').text(i18n.__("Apply"))
+	$('#cancel3').text(i18n.__("Cancel"))
+}
 
 var inititalization = function(){
 	$('#importFile').hide()
@@ -110,10 +151,32 @@ $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClass
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
 $('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
 $('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#pmtuEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
+$('#pmtuEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#proxy2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
+$('#proxy2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#proxyEnabled').checkboxpicker().on('change',function(){
+	if($('#proxyEnabled').prop('checked')){
+		 $("#overlayTest").hide();
+		}else{
+			 $("#overlayTest").show();}
+	})
+	$('#pmtuEnable').checkboxpicker().on('change',function(){
+	if($('#pmtuEnable').prop('checked')){
+		 $("#overlayTest2").hide();
+		}else{
+			 $("#overlayTest2").show();}
+	})
 //document.getElementById("fakeInternet").value=1
 //$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
 
 	//loadInterfaces()
+	if(!proxyEnabled){
+		$("#overlayTest").show();
+	}
+	if(!pmtuEnabled){
+		$("#overlayTest2").show();
+	}
 	getConfigOptionsInit()
 } 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
@@ -315,7 +378,7 @@ var removeUnwantedElements = function(array){
 	var length = array1.length
 	var ipCheck = new RegExp("IP:");
 	var ipCheck2 = /IP: \[\]/g
-	var ipCheck3 = /0.0.0.0/g
+	var ipCheck3 = /0.0.0.1/g
 	var ipCheck4 = /127.0.0./g
 	ipCheck.lastIndex = 0
 		ipCheck2.lastIndex = 0
@@ -413,14 +476,20 @@ var getConfigOptionsInit = function(){
 	$('#lanPlayLocation')[0].value = lanPlayLocation;
 	$('#fakeInternet').prop('checked', fakeInternetEnabled) 
 	$('#Broadcast').prop('checked', broadcastEnabled) 
+	$('#pmtuEnable').prop('checked', pmtuEnabled) 
 	$('#pmtu')[0].value = pmtu;
+	$('#proxyEnabled').prop('checked', proxyEnabled)
+	$('#proxyUrl')[0].value = proxy;
 }
 var setConfigOptions = function(){
+	config.set('pmtuEnabled',$('#pmtuEnable').prop('checked'));
 	config.set('broadcastEnabled',$('#Broadcast').prop('checked'));
 	config.set('fakeInternetEnabled',$('#fakeInternet').prop('checked'));
 	config.set('lanPlayLocation',lanPlayLocation);
 	config.set('pmtu',$('#pmtu')[0].value);
 	config.set('serverList', serverListFile);
+	config.set('proxyEnabled', $('#proxyEnabled').prop('checked'))
+	config.set('proxy',$('#proxyUrl')[0].value);
 	if ($('#interfaces')[0].value.trim() != "Not Selectod"){
 		config.set('networkInterface',$('#interfaces')[0].value)
 	}
