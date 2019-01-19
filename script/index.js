@@ -99,6 +99,7 @@ var openServer = function(server){
 	if (OS == "win32"){ //If OS is Windows
 		if (os.arch == "x64"){ //win64
 			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+argumments+" --relay-server-addr "+ server
+			console.log(commandString)
 		} else { //win32
 			var commandString = "start cmd.exe /K "+`"`+lanPlayLocation+`"`+argumments+" --relay-server-addr "+ server
 		}

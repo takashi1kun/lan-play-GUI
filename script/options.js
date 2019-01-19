@@ -178,6 +178,7 @@ $('#proxyEnabled').checkboxpicker().on('change',function(){
 		$("#overlayTest2").show();
 	}
 	getConfigOptionsInit()
+	translate()
 } 
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
