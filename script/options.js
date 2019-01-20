@@ -127,8 +127,15 @@ var translate = function(){
 	$('#downloadServerList3').text(i18n.__("Download Offical Server List"))
 	$('#enableProxy3').text(i18n.__("Enable Proxy:"))
 	$('#ok3').text(i18n.__("Ok"))
+	$('#ok4').text(i18n.__("Ok"))
 	$('#apply3').text(i18n.__("Apply"))
 	$('#cancel3').text(i18n.__("Cancel"))
+	$('#success3').text(i18n.__("Success!!"))
+	$('#successText3').text(i18n.__("Success!! Text"))
+	$('#areYouSure3').text(i18n.__("Are you sure?"))
+	$('#areYouSureText3').text(i18n.__("Are you sure? Text")) 
+	$('#areYouSureNo3').text(i18n.__("No! Let me go back!"))
+	$('#areYouSureYes3').text(i18n.__("I am okay whit that, replace it!"))
 }
 
 var inititalization = function(){

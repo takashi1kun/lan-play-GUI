@@ -41,5 +41,9 @@
 	"Are you sure? Text": "This will erase your server list and replace it whit the official one, are you sure you want that?",
 	"No! Let me go back!": "No! Let me go back!",
 	"I am okay whit that, replace it!": "I am okay whit that, replace it!",
-	"Enable Proxy:": "Enable Proxy: "
+	"Enable Proxy:": "Enable Proxy: ",
+	"Success!!": "Success!!",
+	"Success!! Text" : "The operation was a success!",
+	"Offline" : "Offline",
+	"Not Online" : "Not Online"
 }

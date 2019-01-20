@@ -226,11 +226,11 @@ var writeHtml = function(){
 		}
 		if (serverList[i].serverInfo === undefined) {
 			var online = "0"
-			var version = "Not Online"
+			var version = i18n.__("Not Online")
 		} else {
 			if(serverList[i].serverInfo.version === undefined){
 				var online = "0"
-				var version = "Not Online"
+				var version = i18n.__("Not Online")
 			}else{
 				var online = serverList[i].serverInfo.online
 				var version = serverList[i].serverInfo.version
@@ -555,6 +555,69 @@ catch(err) {
 	return returnedValue
 }
 
+var progress = 0
+var progressMax = 0
+var serverStatusArray = []
+var pingStatusArray = []
+
+var changeValue = function(value){$("#loadingBar")
+      .css("width", value + "%")
+      .attr("aria-valuenow", value)
+      .text(value + "%");}
+	  
+var newFetchServers = function(){
+	progress = 0
+	progressMax= 0
+	  $('#loadingBarModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                }); 
+	progressMax = serverList.length * 2
+	for (var i = 0;i<serverList.length;i++){
+		$.when(newPingServer(serverList[i])).done(function() { 
+    progress++
+	changeValue(progress*100/progressMax)
+	if(progress==progressMax){
+		setTimeout(fetchCompleted,500)
+	}
+})
+		$.when(newStatusServer(serverList[i])).done(function () { 
+    progress++
+	changeValue(progress*100/progressMax)
+	if(progress==progressMax){
+		setTimeout(fetchCompleted,500)
+	}
+})
+	}
+}
+
+var fetchCompleted = function(){
+	$('#loadingBarModal').modal("hide")
+	for(var i=0;i<serverList.length;i++){
+		serverList[i].serverInfo = serverStatusArray[i]
+		serverList[i].serverPing = pingStatusArray[i]
+	}
+	update();
+}
+
+var newPingServer = async function(obj){
+	try {
+		pingStatusArray[obj.serverIndex] = await pingServer(obj.serverIndex)
+	}catch(err){
+		pingStatusArray[obj.serverIndex] ="+350ms"
+	}
+}
+
+var newStatusServer = async function(obj){
+	var serverInfoURL = "http://" + obj.serverURL + "/info";
+	try {
+		serverStatusArray[obj.serverIndex] = await (await fetch(serverInfoURL)).json()
+	}catch(err){
+		serverStatusArray[obj.serverIndex] = {online:0,version:"Not Online"}
+	}
+}
+
+
 var resplice = function(array, index){
 	var newArray = []
 	for(var i=0; i<array.length; i++){
@@ -688,7 +751,7 @@ var updateOrder = function(sw, myArray1){
 	return myArray2
 }
 
-var updateServers = async function(){
+var updateServers2 = async function(){
 	document.getElementById("update").classList.add("gly-spin");
 	//var tmp = serverList
 	var veryTemp = []
@@ -715,6 +778,16 @@ var updateServers = async function(){
 	//setTimeout(writeHtml, 400)
 	setTimeout(function(){
 		document.getElementById("update").classList.remove("gly-spin");
+	}, 2000)
+}
+
+
+var updateServers = async function(){
+	document.getElementById("update").classList.add("gly-spin");
+	newFetchServers()
+	setTimeout(function(){
+		document.getElementById("update").classList.remove("gly-spin");
+		$('#loadingBarModal').modal("hide")
 	}, 2000)
 }
 

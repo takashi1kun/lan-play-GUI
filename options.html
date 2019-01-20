@@ -130,7 +130,7 @@
 </div>
 
 
-  <nav style="bottom:0; position: fixed; z-index: 3; width: 784px;    display: block;"class="navbar navbar-dark bg-dark">
+  <nav style="bottom:0; position: fixed; z-index: 3; width: 100%;    display: block;"class="navbar navbar-dark bg-dark">
  
   <div class="row justify-content-end">
   <div class="col-sm-25" style="margin-right:20px;     padding-left: 15px;">
@@ -151,17 +151,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Success!!</h5>
+        <h5 class="modal-title"><div id="success3" style="display: contents;">Success!!</div></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>The operation was a success!</p>
+        <p><div id="successText3" style="display: contents;">The operation was a success!</div></p>
       </div>
       <div class="modal-footer">
         
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"><div id="ok4" style="display: contents;">Ok</div></button>
       </div>
     </div>
   </div>
@@ -171,17 +171,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Are you sure?</h5>
+        <h5 class="modal-title"><div id="areYouSure3" style="display: contents;">Are you sure?</div></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>This will erase your server list and replace it whit the official one, are you sure you want that?</p>
+        <p><div id="areYouSureText3" style="display: contents;">This will erase your server list and replace it whit the official one, are you sure you want that?</div></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">No! Let me go back!</button>
-        <button type="button" onClick="importServerOfficialList()" class="btn btn-primary" data-dismiss="modal">I am okay whit that, replace it!</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureNo3" style="display: contents;">No! Let me go back!</div></button>
+        <button type="button" onClick="importServerOfficialList()" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureYes3" style="display: contents;">I am okay whit that, replace it!</div></button>
       </div>
     </div>
   </div>

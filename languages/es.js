@@ -40,5 +40,9 @@
 	"Are you sure? Text": "Esto borrara tu lista de servidores actual y la remplazara con la oficial ¿estas seguro de querer eso?",
 	"No! Let me go back!": "¡No! ¡Atras!",
 	"I am okay whit that, replace it!": "Estoy conforme con ello¡Remplazala!",
-	"Enable Proxy:": "Activar Proxy: "
+	"Enable Proxy:": "Activar Proxy: ",
+	"Success!!": "¡Todo Correcto!",
+	"Success!! Text" : "¡La operacion fue todo un exito!",
+	"Offline" : "Desconectado",
+	"Not Online" : "No Online"
 }
