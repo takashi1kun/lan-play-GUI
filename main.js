@@ -5,7 +5,7 @@ let win
 
 
 function createWindow () {
-	win = new BrowserWindow({ width: 800, height: 623, frame: false })
+	win = new BrowserWindow({ width: 800, height: 623, frame: true })
 	win.loadFile('index.html')
 	win.setResizable(false)
 	win.center()

@@ -10,7 +10,7 @@
     "distWin": "electron-builder --ia32 --x64 -w",
     "distLin": "electron-builder --linux",
     "distMac": "electron-builder -o",
-	"distPi": "electron-builder --linux --armv7l"
+    "distPi": "electron-builder --linux --armv7l"
   },
   "repository": {
     "type": "git",
@@ -61,6 +61,7 @@
     "popper.js": "^1.14.6",
     "q": "^1.5.1",
     "request": "^2.88.0",
+    "semver": "^5.6.0",
     "tcpdump": "0.0.1"
   }
 }

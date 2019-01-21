@@ -309,11 +309,11 @@ var loadInterfaces = function(){
 	catch(err) {
   console.log("error");
 }
-	if (version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0"){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Update Lan Play to v0.0.7 or higher</option>`
+	if (version ==="switch-lan-play 0.0.5" || version ==="switch-lan-play 0.0.3" || version ==="switch-lan-play 0.0.1" || version ==="switch-lan-play v0.0.0" || version ==="switch-lan-play v0.0.7"){
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">`+i18n.__("Error 403: Update Lan Play to the lastest version")+`</option>`
 		return "lol" 
 	} else if(version === undefined){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Lan Play not found, Download v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">`+i18n.__("Error 404: Lan Play not found!")+`</option>` 
 		return "lol"
 	}
 	var interfaces2
@@ -327,10 +327,10 @@ var loadInterfaces = function(){
   console.log("error");
 }
 	if (interfaces2 === undefined){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">`+i18n.__("Error 403: Update Lan Play to the lastest version")+`</option>`
 		return "lol"
 	} else if(interfaces2.asciiSlice().trim()=="Input the relay server address [ domain/ip:port ]:"){
-		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">Download Lan Play v0.0.7 or higher and configure it in main config.</option>`
+		document.getElementById("interfaces").innerHTML = `<option style="color:white!important" value="Not Selectod">`+i18n.__("Error 403: Update Lan Play to the lastest version")+`</option>`
 		return "lol"
 	}
 	var interfaces = interfaces2.asciiSlice()

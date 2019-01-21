@@ -45,5 +45,10 @@
 	"Success!!": "Success!!",
 	"Success!! Text" : "The operation was a success!",
 	"Offline" : "Offline",
-	"Not Online" : "Not Online"
+	"Not Online" : "Not Online",
+	"Error 404: Lan Play not found!" : "Error 404: Lan Play not found!",
+	"Error 403: Update Lan Play to the lastest version" : "Error 403: Update Lan Play to the lastest version",
+	"NEW UPDATE AVALIABLE" : "NEW UPDATE AVALIABLE",
+	"NEW UPDATE AVALIABLE text" : "You have version $VERSION_NUMBER$ of the GUI and the new version %VERSION_NUMBER% of the GUI has been released, please update.",
+	"Download Update" : "Download Update"
 }

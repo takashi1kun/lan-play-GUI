@@ -11,7 +11,9 @@ const dns = require('dns')
 var Q = require('q');
 const { remote } = require('electron')
 const path = require('path')
-
+const semver = require('semver');
+const http = require('http');
+const https = require('https')
 
 function udpPing (server, port = 11451, timeout = 350) {//this function was given to me by space, thanks very much
     return new Promise((resolve, reject) => {
@@ -328,6 +330,9 @@ var translate = function(){
 	$("#translateAddNewServer").html(`<i class="fas fa-plus-circle"></i>`+i18n.__("Add New Server"))
 	$("#translateAddNewServer2").text(i18n.__("Add New Server"))
 	$("#translateUpdate").html(`<i id="update" class="fas fa-sync-alt"></i>`+i18n.__("Update"))
+	$("#updateAvaliable").text(i18n.__("NEW UPDATE AVALIABLE"))
+	$("#updateAvaliableText").text(i18n.__("NEW UPDATE AVALIABLE text"))
+	$("#downloadUpdate").text(i18n.__("Download Update"))
 	translateServers()
 }
 
@@ -591,6 +596,109 @@ var newFetchServers = function(){
 	}
 }
 
+var guiVersion = "1.0.0"
+
+var versionCheck = function(){
+	$.getJSON("https://api.github.com/repos/takashi1kun/lan-play-GUI/releases/latest").done(function(release){
+var versionActual1 = release.tag_name;
+var versionActual2 = versionActual1.substr(1)
+if(semver.lt(guiVersion, versionActual2)){
+	$("#updateAvaliable").text(i18n.__("NEW UPDATE AVALIABLE")+" "+versionActual1)
+	$("#updateAvaliableText").text(i18n.__("NEW UPDATE AVALIABLE text").replace('$VERSION_NUMBER$', "v"+guiVersion).replace('%VERSION_NUMBER%', versionActual1))
+	$('#modalUpdate').modal('show')
+}
+})	
+}
+
+var downloadFile = function(url, path, cb) {
+    var http_or_https = http;
+    if (/^https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/.test(url)) {
+        http_or_https = https;
+    }
+    http_or_https.get(url, function(response) {
+        var headers = JSON.stringify(response.headers);
+        switch(response.statusCode) {
+            case 200:
+                var file = fs.createWriteStream(path);
+                response.on('data', function(chunk){
+                    file.write(chunk);
+                }).on('end', function(){
+                    file.end();
+                    cb(null);
+                });
+                break;
+            case 301:
+            case 302:
+            case 303:
+            case 307:
+                downloadFile(response.headers.location, path, cb);
+                break;
+            default:
+                cb(new Error('Server responded with status code ' + response.statusCode));
+        }
+
+    })
+    .on('error', function(err) {
+        cb(err);
+    });
+}
+
+var checkOsString = function(str){
+	var arch = os.arch()
+	var sys = os.platform()
+	if(wordInString(str, "linux")&&sys=="linux"&&arch!="arm"){
+		return [true, "linux"]
+	}else if(wordInString(str, "OSX")&&sys=="darwin"){
+		return [true, "OSX"]
+	}else if(wordInString(str, "win32")&&sys=="win32"&&arch!="x64"){
+		return [true, "win32"]
+	}else if(wordInString(str, "win64")&&sys=="win32"&&arch=="x64"){
+		return [true, "win64"]
+	}else if(wordInString(str, "raspberryPi")&&sys=="linux"&&arch=="arm"){
+		return [true, "rPi"]
+	}else{
+		return false
+	}
+}
+
+var wordInString = function(s, word){
+  return new RegExp( '\\b' + word + '\\b', 'i').test(s);
+}
+
+var downloadDir
+var downloadLink = ["no","no"]
+var updateGui = function(){
+	$.getJSON("https://api.github.com/repos/takashi1kun/lan-play-GUI/releases/latest").done(function(release){
+		var downloadInfo = release.assets
+		downloadLink = ["no","no"]
+		for (var i=0;i<downloadInfo.length;i++){
+			var a = downloadInfo[i]
+			var b = checkOsString(a.name)
+			if(b[0]){
+				downloadLink = [a.browser_download_url,b,a.name];
+				break;
+			}
+		}
+		if(downloadLink[0]!="no"){
+			if(OS=="win32"){
+				if (!fs.existsSync(os.homedir()+"\\temporalGUIfolder")){
+    fs.mkdirSync(os.homedir()+"\\temporalGUIfolder");
+}
+				downloadDir = os.homedir()+"\\temporalGUIfolder\\"+downloadLink[2]
+			}else{
+				if (!fs.existsSync(os.homedir()+"/temporalGUIfolder")){
+    fs.mkdirSync(os.homedir()+"/temporalGUIfolder");
+}
+				downloadDir = os.homedir()+"/temporalGUIfolder/"+downloadLink[2]
+			}
+			downloadFile(downloadLink[0],downloadDir,function(){
+				shell.showItemInFolder(downloadDir)
+			})
+		}
+		
+	})
+}
+
 var fetchCompleted = function(){
 	$('#loadingBarModal').modal("hide")
 	for(var i=0;i<serverList.length;i++){
@@ -800,6 +908,7 @@ var initializationFunction = function(){
 	writeHtml();
 	changelog();
 	setTimeout(translate, 100);
+	setTimeout(versionCheck, 500)
 	/* $('#fakeInternet').checkboxpicker({
   html: true,
   offLabel: '<i class="fas fa-check"></i>',

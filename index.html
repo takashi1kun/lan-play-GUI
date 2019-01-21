@@ -673,7 +673,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Update lan play to v0.0.7 or higher to use the GUI
+        Update lan play to v0.1.0 or higher to use the GUI
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
@@ -693,10 +693,37 @@
         </button>
       </div>
       <div class="modal-body">
-        Download lan play v0.0.7 or higher and put it on the default folder or configured location.
+        Download lan play v0.1.0 or higher and put it on the default folder or configured location.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateAvaliable">UPDATE AVALIABLE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  <div class="text-center">
+       <div id="updateAvaliableText" style="display: contents;"> You have version $VERSION_NUMBER$ of the GUI and the new version %VERSION_NUMBER% of the GUI has been released, please update.</div>
+	   <br />
+		
+		</div>
+      </div>
+      <div class="modal-footer">
+	  <div class="container">
+  <div class="row">
+    <div class="col text-center">
+	  <button type="button" onClick="updateGui()" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-download"></i> <div id="downloadUpdate" style="display: contents;">Download Update</div></button>
+	  </div></div></div>
       </div>
     </div>
   </div>
