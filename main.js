@@ -5,12 +5,12 @@ let win
 
 
 function createWindow () {
-	win = new BrowserWindow({ width: 800, height: 623, frame: true })
+	win = new BrowserWindow({ width: 800, height: 623, frame: false })
 	win.loadFile('index.html')
 	win.setResizable(false)
 	win.center()
  //win.webContents.openDevTools()
-//	win.setMenu(null) 
+	win.setMenu(null) 
 	win.on('closed', () => {
 		win = null
 	})

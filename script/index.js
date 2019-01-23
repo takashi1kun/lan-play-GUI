@@ -597,13 +597,13 @@ var newFetchServers = function(){
 	}
 }
 
-var guiVersion = "1.0.0"
+var guiVersion = "1.3.0"
 var versionActual = ""
 var updateAvaliable=""
 
 if(config.has('skipVersion')){
 	if(semver.lt(config.get('skipVersion'),guiVersion)){
-		//config.set('skipVersion', guiVersion)
+		config.set('skipVersion', guiVersion)
 	}
 } else{
 	config.set('skipVersion', guiVersion)
