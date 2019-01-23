@@ -333,6 +333,7 @@ var translate = function(){
 	$("#updateAvaliable").text(i18n.__("NEW UPDATE AVALIABLE"))
 	$("#updateAvaliableText").text(i18n.__("NEW UPDATE AVALIABLE text"))
 	$("#downloadUpdate").text(i18n.__("Download Update"))
+	$("#versionTitle").text(" "+guiVersion+updateAvaliable)
 	translateServers()
 }
 
@@ -597,15 +598,33 @@ var newFetchServers = function(){
 }
 
 var guiVersion = "1.0.0"
+var versionActual = ""
+var updateAvaliable=""
 
+if(config.has('skipVersion')){
+	if(semver.lt(config.get('skipVersion'),guiVersion)){
+		//config.set('skipVersion', guiVersion)
+	}
+} else{
+	config.set('skipVersion', guiVersion)
+}
+
+var skipVersion = function(){
+	config.set('skipVersion', versionActual)
+}
 var versionCheck = function(){
 	$.getJSON("https://api.github.com/repos/takashi1kun/lan-play-GUI/releases/latest").done(function(release){
 var versionActual1 = release.tag_name;
 var versionActual2 = versionActual1.substr(1)
+versionActual = versionActual2
 if(semver.lt(guiVersion, versionActual2)){
 	$("#updateAvaliable").text(i18n.__("NEW UPDATE AVALIABLE")+" "+versionActual1)
 	$("#updateAvaliableText").text(i18n.__("NEW UPDATE AVALIABLE text").replace('$VERSION_NUMBER$', "v"+guiVersion).replace('%VERSION_NUMBER%', versionActual1))
-	$('#modalUpdate').modal('show')
+	if(semver.lt(config.get('skipVersion'),versionActual2)){
+		$('#modalUpdate').modal('show')
+	}
+	updateAvaliable= " "+i18n.__("NEW UPDATE AVALIABLE")+" "+versionActual2
+	$("#versionTitle").text(" "+guiVersion+updateAvaliable)
 }
 })	
 }

@@ -136,8 +136,10 @@ var translate = function(){
 	$('#areYouSureText3').text(i18n.__("Are you sure? Text")) 
 	$('#areYouSureNo3').text(i18n.__("No! Let me go back!"))
 	$('#areYouSureYes3').text(i18n.__("I am okay whit that, replace it!"))
+	$("#versionTitle").text(" "+guiVersion)
 }
 
+var guiVersion = "1.3.0"
 var inititalization = function(){
 	$('#importFile').hide()
 	$('#importFile').change(function(ev) {
