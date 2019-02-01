@@ -13,7 +13,8 @@ const { remote } = require('electron')
 const path = require('path')
 const semver = require('semver');
 const http = require('http');
-const https = require('https')
+const https = require('https');
+const win = remote.getCurrentWindow();
 
 function udpPing (server, port = 11451, timeout = 350) {//this function was given to me by space, thanks very much
     return new Promise((resolve, reject) => {
@@ -214,7 +215,59 @@ var testVersion = function(){
 	}
 }
 
+var taskBarMenuUpdate = function(){
+	var tasks = []
+	if(fakeInternetEnabled){
+		var fakeInternet = " --fake-internet"
+	}else{
+		var fakeInternet = ""
+	}
+	if(broadcastEnabled){
+		var broadCast = " --broadcast"
+	} else{
+		var broadCast = ""
+	}
+	if(proxyEnabled){
+		var proxyOption = " --socks5-server-addr "+proxy
+	}else{
+		var proxyOption = ""
+	}
+	if(pmtuEnabled){
+	var pmtuCommand = " --pmtu "+pmtu
+	}else{
+		var pmtuCommand = ""
+	}
+	var netIf = " --netif "+networkInterface
+	if(networkInterface.trim() == "Not Selected"){
+		var netIf = ""
+	}
+	
+	var argumments = fakeInternet+broadCast+pmtuCommand+netIf+proxyOption
+	
+	for(var i = 0; i<serverList.length;i++){
+		var argus = argumments+" --relay-server-addr "+ serverList[i].serverURL
+		if(serverList[i].serverOnline){
+			var ico = path.resolve(__dirname+`/images/online.ico`)
+		}else{
+			var ico = path.resolve(__dirname+`/images/offline.ico`)
+		}
+		tasks[i] = {
+			program: lanPlayLocation,
+			arguments: argus,
+			iconPath: ico,
+			iconIndex: 0,
+			title: serverList[i].serverName+" "+serverList[i].serverPing+" "+serverList[i].serverInfo.online+"👥",
+			description: serverList[i].serverURL
+		}
+	}
+console.log(tasks)
+	remote.app.setUserTasks(tasks)
+}
+
+
+
 var writeHtml = function(){
+	taskBarMenuUpdate()
 	var innerHtml = ``;
 	for(var i = 0; i < serverList.length; i++){
 		if (serverList[i].serverOnline){
@@ -481,6 +534,7 @@ var addServer = async function(serverName, serverURL, serverFlag){
 var globalTest;
 
 var openConfiguration = function(){
+	win.setThumbarButtons([])
 	//remote.getCurrentWindow().loadURL('file://options.html')
 	remote.getCurrentWindow().loadURL(`file://${__dirname}/options.html`)
 }
@@ -566,7 +620,9 @@ var progressMax = 0
 var serverStatusArray = []
 var pingStatusArray = []
 
-var changeValue = function(value){$("#loadingBar")
+var changeValue = function(value){
+	win.setProgressBar(value/100);
+	$("#loadingBar")
       .css("width", value + "%")
       .attr("aria-valuenow", value)
       .text(value + "%");}
@@ -584,6 +640,7 @@ var newFetchServers = function(){
     progress++
 	changeValue(progress*100/progressMax)
 	if(progress==progressMax){
+		win.setProgressBar(0)
 		setTimeout(fetchCompleted,500)
 	}
 })
@@ -591,6 +648,7 @@ var newFetchServers = function(){
     progress++
 	changeValue(progress*100/progressMax)
 	if(progress==progressMax){
+		win.setProgressBar(0)
 		setTimeout(fetchCompleted,500)
 	}
 })
@@ -630,12 +688,38 @@ if(semver.lt(guiVersion, versionActual2)){
 }
 
 var downloadFile = function(url, path, cb) {
+	 $('#loadingBarModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                }); 
     var http_or_https = http;
     if (/^https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/.test(url)) {
         http_or_https = https;
     }
     http_or_https.get(url, function(response) {
         var headers = JSON.stringify(response.headers);
+		var len = parseInt(response.headers['content-length'], 10);
+        var body = "";
+        var cur = 0;
+        var total = len / 1048576;
+		response.on("data", function(chunk) {
+                body += chunk;
+                cur += chunk.length;
+                //win.setProgressBar((100.0 * cur / len).toFixed(2)/100)
+				changeValue((100.0 * cur / len).toFixed(2)/100*100)
+				if(((100.0 * cur / len).toFixed(2)/100) == 1){
+					win.setProgressBar(0)
+					$('#loadingBarModal').modal("hide");
+				}
+            });
+		response.on("end", function(){
+			//win.setProgressBar(0)
+			//$('#loadingBarModal').modal("hide");
+		})
+		response.on("error", function(e){
+			//win.setProgressBar(0)
+			console.log("Error: "+e.message)
+		})
         switch(response.statusCode) {
             case 200:
                 var file = fs.createWriteStream(path);
@@ -719,7 +803,8 @@ var updateGui = function(){
 }
 
 var fetchCompleted = function(){
-	$('#loadingBarModal').modal("hide")
+	$('#loadingBarModal').modal("hide");
+	win.setProgressBar(0);
 	for(var i=0;i<serverList.length;i++){
 		serverList[i].serverInfo = serverStatusArray[i]
 		serverList[i].serverPing = pingStatusArray[i]
@@ -913,6 +998,7 @@ var updateServers = async function(){
 	document.getElementById("update").classList.add("gly-spin");
 	newFetchServers()
 	setTimeout(function(){
+		win.setProgressBar(0);
 		document.getElementById("update").classList.remove("gly-spin");
 		$('#loadingBarModal').modal("hide")
 	}, 2000)
@@ -926,6 +1012,17 @@ var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
 	changelog();
+	win.setThumbarButtons([{
+icon: path.resolve(__dirname+`/images/gears.ico`),
+click: function(){openConfiguration()},
+tooltip:i18n.__("Settings")},{
+icon: path.resolve(__dirname+`/images/update.ico`),
+click: function(){updateServers()},
+tooltip:i18n.__("Update")},
+{
+icon: path.resolve(__dirname+`/images/newserver.ico`),
+click: function(){$('#addNewServer').modal()},
+tooltip:i18n.__("Add New Server")}])
 	setTimeout(translate, 100);
 	setTimeout(versionCheck, 500)
 	/* $('#fakeInternet').checkboxpicker({
