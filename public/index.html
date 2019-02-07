@@ -3,17 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <title>Lan-Play GUI</title>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="script/index.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/flag-icon.min.css">
 	<script src="script/bootstrap-checkbox.js" defer></script>
-	<script>window.jQuery = window.$ = require('jquery');</script>
-	<script>require('popper.js');</script>
-	<script>require('bootstrap');</script>
-	<script>window.i18n = new(require('./languages/i18n'));</script>
-	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   </head>
   <body>
@@ -759,23 +755,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="stopServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Lan Play Started</h5>
-    
-      </div>
-      <div class="modal-body">
-     <button type="button" onClick="killServer()" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-power-off">Stop Lan Play</i></button>
-      </div>
-      <div class="modal-footer">
-        
       </div>
     </div>
   </div>
