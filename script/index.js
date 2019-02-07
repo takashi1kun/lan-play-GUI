@@ -74,7 +74,7 @@ var openServerOnline = function(server){
 	}else if(testVersion() === 3){
 		$('#modalError2').modal('show')
 	}else{
-		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server])
+		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: false})
 		openedServer [0] = true
 	}
 }
