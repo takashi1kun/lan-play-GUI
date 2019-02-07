@@ -33,7 +33,7 @@ app.get("/variable", (req, res, next) => {
 var openedServer = [false,{}]
 
 var killServer = function(){
-	openedServer[1].kill()
+	child_process.spawn("taskkill", ["/pid", openedServer[1].pid, '/f', '/t']);
 		openedServer[0] = false
 		$('#stopServer').modal('hide')
 }
@@ -41,7 +41,7 @@ var killServer = function(){
 var openServerOnline = function(server){
 	$('#stopServer').modal('show')
 	if (openedServer[0]){
-		openedServer[1].kill()
+		child_process.spawn("taskkill", ["/pid", openedServer[1].pid, '/f', '/t']);
 		openedServer[0] = false
 	}
 	if(fakeInternetEnabled){
@@ -74,7 +74,7 @@ var openServerOnline = function(server){
 	}else if(testVersion() === 3){
 		$('#modalError2').modal('show')
 	}else{
-		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: false})
+		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: true})
 		openedServer [0] = true
 	}
 }
