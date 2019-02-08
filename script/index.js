@@ -22,6 +22,9 @@ app.listen(3000, () => {
  console.log("Server running on port 3000");
 });
 
+app.use(express.static('public'));
+
+
 function testFunc(){
 app.get("/variable", (req, res, next) => {
  res.json(serverList);
@@ -30,19 +33,22 @@ app.get("/variable", (req, res, next) => {
 }
 
 
-var openedServer = [false,{}]
+var openedServer = [false,{},-1]
 
 var killServer = function(){
 	child_process.spawn("taskkill", ["/pid", openedServer[1].pid, '/f', '/t']);
 		openedServer[0] = false
+		openedServer[2] = -1
 		$('#stopServer').modal('hide')
 }
 
-var openServerOnline = function(server){
+var openServerOnline = function(serverObject){
+	var server = serverObject.serverURL
 	$('#stopServer').modal('show')
 	if (openedServer[0]){
 		child_process.spawn("taskkill", ["/pid", openedServer[1].pid, '/f', '/t']);
 		openedServer[0] = false
+		openedServer[2] = -1
 	}
 	if(fakeInternetEnabled){
 		var fakeInternet = " --fake-internet"
@@ -76,18 +82,37 @@ var openServerOnline = function(server){
 	}else{
 		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: true})
 		openedServer [0] = true
+		openedServer[2] = serverObject.serverIndex
 	}
 }
 
 var htmlServer = function(serverNumber){
 var a = serverList[serverNumber]
-var ahtml= `
-`+a.serverName+` | `+a.serverURL+` | `+((a.serverOnline) ? 'Online' : 'Offline')+` | `+a.serverPing+` | `+a.serverInfo.online+` players | <a href="/startServer`+a.serverIndex+`">Connect to Server</a> <hr>  
+var ahtml= `<div class="alert alert-primary" style="margin-bottom: 1px; "><strong>
+`+a.serverName+`</strong> | <i class="fas fa-server"></i>`+a.serverURL+` | `+((a.serverOnline) ? `<i style="color: limegreen;transform: scale(0.5)" class="fas fa-circle"></i>Online` : `<i style="color: red;transform: scale(0.5)" class="fas fa-circle"></i>
+Offline`)+` | <i class="fas fa-broadcast-tower"></i>`+a.serverPing+` | 
+<img style="width: 22px;" src="data:image/png;base64,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" class="icon">
+`+a.serverInfo.online+` players | 
+<div class="btn-group" role="group" aria-label="Basic example">
+					`+((serverNumber != openedServer[2]) ? `<a role="button" href="/startServer`+a.serverIndex+`" class="btn btn-success"><i class="fas fa-play"></i> Connect to Server</a>` : `<a role="button" href="/stopServer" class="btn btn-danger"><i class="fas fa-stop"></i> Disconnect from Server</a>
+					`)+`
+</div>
+</div>  
 `
 return ahtml
 }
 
 var generateNewHtml = function(){
+	var myHtmlHead = `<head>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/flag-icon.min.css">
+	<link rel="stylesheet" href="css/all.css">
+	<script src="script/jquery-3.3.1.min.js" defer></script>
+	<script src="script/bootstrap-checkbox.js" defer></script>
+	<script src="script/bootstrap.min.js" defer></script>
+	</head>`
 	var myHtml= ``
 	for(var i = 0;i<serverList.length;i++){
 		myHtml = myHtml+htmlServer(i)
@@ -96,6 +121,7 @@ var generateNewHtml = function(){
 	if(openedServer[0]){
 		myHtml = myHtml+`<a href="/stopServer">Stop Server</a><hr>` 
 	}
+	var myHtml = `<html>`+myHtmlHead+`<body>`+myHtml+`</body></html>`
 	return myHtml
 }
 
@@ -365,7 +391,7 @@ var updateServerUrl = function(){
 	//for(var i = 0;i<serverList.length;i++){
 		app.get("/startServer:number", (req, res, next) => {
 			var numberi = req.params.number
-			serverUrele = serverList[numberi].serverURL
+			serverUrele = serverList[numberi]
  openServerOnline(serverUrele);
  res.send(generateNewHtml())
 });
