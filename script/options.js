@@ -18,9 +18,25 @@ var app = elerem.app;
 var request = require('request');
 var http = require('http');
 var serverListFile
-
+var ip = require("ip");
 
 var serverList = []
+
+var portWebService
+if(config.has('portWebService')){
+	portWebService = config.get('portWebService')
+} else{
+	config.set('portWebService', 8008)
+	portWebService = 8008
+}
+
+var enabledWebService
+if(config.has('enabledWebService')){
+	enabledWebService = config.get('enabledWebService')
+} else{
+	config.set('enabledWebService', true)
+	enabledWebService = true
+}
 
 if(config.has('serverList')){
 	serverList = config.get('serverList')
@@ -160,6 +176,8 @@ $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClass
 $('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-check"></i>'
 $('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
 $('#Broadcast2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
+$('#webServerEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
+$('#webServerEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
 $('#pmtuEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
 $('#pmtuEnable').parent()[0].getElementsByClassName("btn-group")[0].getElementsByClassName("active")[0].innerHTML = '<i class="fas fa-times"></i>'
 $('#proxy2')[0].getElementsByClassName("btn-group")[0].getElementsByClassName("btn-default")[0].innerHTML = '<i class="fas fa-check"></i>'
@@ -176,6 +194,16 @@ $('#proxyEnabled').checkboxpicker().on('change',function(){
 		}else{
 			 $("#overlayTest2").show();}
 	})
+	
+	$('#webServerEnable').checkboxpicker().on('change',function(){
+	if($('#webServerEnable').prop('checked')){
+		 $("#overlayTest3").hide();
+		  $("#serverIP").text("http://"+ip.address()+":"+$('#webServer')[0].value)
+		}else{
+			
+			 $("#serverIP").text("")
+			 $("#overlayTest3").show();}
+	})
 //document.getElementById("fakeInternet").value=1
 //$('#fakeInternet2')[0].getElementsByClassName("btn-group")[0].setAttribute("style", "background-color: gray; border-radius: 5px;");
 
@@ -186,9 +214,23 @@ $('#proxyEnabled').checkboxpicker().on('change',function(){
 	if(!pmtuEnabled){
 		$("#overlayTest2").show();
 	}
+	if(!enabledWebService){
+		$("#overlayTest3").show();
+		$("#serverIP").text("")
+	} else {
+		$("#serverIP").text("http://"+ip.address()+":"+$('#webServer')[0].value)
+	}
 	getConfigOptionsInit()
 	translate()
 } 
+var goUpWebServer = function(){
+	 $('#webServer')[0].stepUp()
+	$("#serverIP").text("http://"+ip.address()+":"+$('#webServer')[0].value)
+}
+var goDownWebServer = function(){
+	$('#webServer')[0].stepDown()
+	$("#serverIP").text("http://"+ip.address()+":"+$('#webServer')[0].value)
+}
 var serverObject = function(serverIndex, serverName, serverURL, serverFlag){
 	this.serverIndex = serverIndex,
 	this.serverName = serverName,
@@ -488,11 +530,15 @@ var getConfigOptionsInit = function(){
 	$('#Broadcast').prop('checked', broadcastEnabled) 
 	$('#pmtuEnable').prop('checked', pmtuEnabled) 
 	$('#pmtu')[0].value = pmtu;
+	$('#webServerEnable').prop('checked', enabledWebService)
+	$('#webServer')[0].value = portWebService;
 	$('#proxyEnabled').prop('checked', proxyEnabled)
 	$('#proxyUrl')[0].value = proxy;
 }
 var setConfigOptions = function(){
 	config.set('pmtuEnabled',$('#pmtuEnable').prop('checked'));
+	config.set('enabledWebService',$('#webServerEnable').prop('checked'));
+	config.set('portWebService',$('#webServer')[0].value);
 	config.set('broadcastEnabled',$('#Broadcast').prop('checked'));
 	config.set('fakeInternetEnabled',$('#fakeInternet').prop('checked'));
 	config.set('lanPlayLocation',lanPlayLocation);

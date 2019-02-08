@@ -66,6 +66,7 @@
     "child_process": "^1.0.2",
     "electron-json-config": "^1.5.3",
     "express": "^4.16.4",
+    "ip": "^1.1.5",
     "jquery": "^3.3.1",
     "network-interfaces": "^1.1.0",
     "node-static": "^0.7.11",

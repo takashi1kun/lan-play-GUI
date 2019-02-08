@@ -89,6 +89,19 @@ header {
     border-radius: 0px 6px 6px 0px;
 }
 
+#overlayTest3 {
+  display: none;
+    position: absolute;
+    width: 100px;
+    height: 38px;
+    background-color: gray;
+    top: 431px;
+    left: 194px;
+    padding: 10px;
+    opacity: .8;
+    border-radius: 0px 6px 6px 0px;
+}
+
 .xButton, ._Button{
 		    color: #fff!important;
   float: right;

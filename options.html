@@ -80,7 +80,24 @@
    <button style="height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="$('#pmtu')[0].stepUp()" class="plus"><i style="color:white;position: relative;top: -2.3px;" class="fas fa-plus"></i></button>
 	<button style=" height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="$('#pmtu')[0].stepDown()" ><i style="color:white;position: relative;top: -4.8px;" class="fas fa-minus"></i></button></div>
   </div>
+  
+  
+  <br />
+   <div style="width:284px!important"  class="input-group mb-1 mr-sm-1" >
+    <div class="input-group-prepend">
+      <div style="border-radius: 6px 0px 0px 6px;border: 1px solid #343a40!important; background-color: #343a40!important; color: white; padding-bottom: 0px; padding-top: 0px;    height: 38px;" class="input-group-text"><a style="    padding-right: 12px;">Switch GUI:</a>  <input id="webServerEnable" type="checkbox"></div>
+
+    </div>
+	<input class="form-control" style="border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height: 38px; padding-top: 6px; padding-bottom: 6px; border-top-width: 1px; border-bottom-width: 1px;"  type="number" value="8008" id="webServer"> 
+	<div style="border-radius: 0px 6px 6px 0px; border: 1px solid #343a40!important; background-color: #343a40!important; color: white;height:  38px; display: grid; width: 26px; border-right-width: 3px; padding-right: 2px;" class="number-input"> 
+   <button style="height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="goUpWebServer()" class="plus"><i style="color:white;position: relative;top: -2.3px;" class="fas fa-plus"></i></button>
+	<button style=" height: 16px; padding-left: 0px; padding-right: 0px; width: 22px;" onclick="goDownWebServer()" ><i style="color:white;position: relative;top: -4.8px;" class="fas fa-minus"></i></button></div>
+  </div>
+  <a id="serverIP"></a>
+  
+  
   	  <div id="overlayTest2"></div>
+	  <div id="overlayTest3"></div>
 </div>
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

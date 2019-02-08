@@ -18,11 +18,52 @@ const win = remote.getCurrentWindow();
 
 var express = require("express");
 var app = express();
-app.listen(3000, () => {
- console.log("Server running on port 3000");
+
+var portWebService
+if(config.has('portWebService')){
+	portWebService = config.get('portWebService')
+} else{
+	config.set('portWebService', 8008)
+	portWebService = 8008
+}
+
+var enabledWebService
+if(config.has('enabledWebService')){
+	enabledWebService = config.get('enabledWebService')
+} else{
+	config.set('enabledWebService', true)
+	enabledWebService = true
+}
+
+if(enabledWebService){
+app.listen(portWebService, () => {
+ console.log("Server running on port "+portWebService);
 });
 
 app.use(express.static('public'));
+
+app.get("/stopServer", (req, res, next) => {
+			killServer()
+			res.send(generateNewHtml())
+});
+
+app.get("/", (req, res, next) => {
+ res.send(generateNewHtml())
+});
+}
+
+
+
+var updateServerUrl = function(){
+	//for(var i = 0;i<serverList.length;i++){
+		app.get("/startServer:number", (req, res, next) => {
+			var numberi = req.params.number
+			serverUrele = serverList[numberi]
+ openServerOnline(serverUrele);
+ res.send(generateNewHtml())
+});
+	//}
+}
 
 
 function testFunc(){
@@ -125,9 +166,6 @@ var generateNewHtml = function(){
 	return myHtml
 }
 
-app.get("/", (req, res, next) => {
- res.send(generateNewHtml())
-});
 
 
 function udpPing (server, port = 11451, timeout = 350) {//this function was given to me by space, thanks very much
@@ -170,6 +208,8 @@ if(config.has('pmtuEnabled')){
 	config.set('pmtuEnabled', false)
 	pmtuEnabled = false
 }
+
+
 var proxyEnabled
 if(config.has('proxyEnabled')){
 	proxyEnabled = config.get('proxyEnabled')
@@ -382,25 +422,15 @@ console.log(tasks)
 	remote.app.setUserTasks(tasks)
 }
 
-app.get("/stopServer", (req, res, next) => {
-			killServer()
-			res.send(generateNewHtml())
-});
 
-var updateServerUrl = function(){
-	//for(var i = 0;i<serverList.length;i++){
-		app.get("/startServer:number", (req, res, next) => {
-			var numberi = req.params.number
-			serverUrele = serverList[numberi]
- openServerOnline(serverUrele);
- res.send(generateNewHtml())
-});
-	//}
-}
+
+
 var innerHtml = ``;
 var writeHtml = function(){
+	if(enabledWebService){
 	updateServerUrl()
 	testFunc()
+	}
 	taskBarMenuUpdate()
 	innerHtml = ``;
 	for(var i = 0; i < serverList.length; i++){
