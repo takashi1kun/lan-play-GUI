@@ -17,17 +17,6 @@ function createWindow () {
 
 app.on('ready', createWindow)
 
-app.setUserTasks([
-    {
-      program: process.execPath,
-      arguments: '--new-window',
-      iconPath: process.execPath,
-      iconIndex: 0,
-      title: 'New Window',
-      description: 'Create a new window'
-    }
-  ])
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()

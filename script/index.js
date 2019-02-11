@@ -631,7 +631,8 @@ var taskBarMenuUpdate = function(){
 		}
 	}
 console.log(tasks)
-	remote.app.setUserTasks(tasks)
+	if(OS="win32"){
+	remote.app.setUserTasks(tasks)}
 }
 
 
@@ -1459,6 +1460,7 @@ var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
 	changelog();
+	if(OS="win32"){
 	win.setThumbarButtons([{
 icon: path.resolve(__dirname+`/images/gears.ico`),
 click: function(){openConfiguration();},
@@ -1469,6 +1471,7 @@ tooltip:i18n.__("Update")},{
 icon: path.resolve(__dirname+`/images/newserver.ico`),
 click: function(){$('#addNewServer').modal();},
 tooltip:i18n.__("Add New Server")}])
+	}
 	setTimeout(translate, 100);
 	setTimeout(versionCheck, 500)
 	/* $('#fakeInternet').checkboxpicker({
