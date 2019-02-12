@@ -66,7 +66,7 @@ app.listen(portWebService, () => {
  console.log("Server running on port "+portWebService);
 });
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res, next) => {
  res.send(generateNewHtml())
@@ -1486,7 +1486,7 @@ var initializationFunction = function(){
 	testId();
 	$(':checkbox').checkboxpicker();
 	writeHtml();
-	changelog();
+	//changelog();
 	if(OS=="win32"){
 	win.setThumbarButtons([{
 icon: path.resolve(__dirname+`/images/gears.ico`),
