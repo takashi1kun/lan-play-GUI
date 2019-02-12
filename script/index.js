@@ -20,12 +20,38 @@ var express = require("express");
 var app = express();
 app.use(express.urlencoded())
 var portWebService
+var goOptions = false
+var closeSwitch = false
+
+$(window).on('beforeunload', function () {
+  if (true) {
+	  if(!closeSwitch){
+	  killServer();
+	  setTimeout(closeEvent, 100)
+	  console.log("false")
+	  return false;
+	  }else{
+		  console.log("true")
+	  }
+  }
+})
+
+var closeEvent = function(){
+closeSwitch = true
+if(goOptions){
+	openConfiguration()
+}else{
+remote.getCurrentWindow().close();
+}
+}
+
 if(config.has('portWebService')){
 	portWebService = config.get('portWebService')
 } else{
 	config.set('portWebService', 8008)
 	portWebService = 8008
 }
+
 
 var enabledWebService
 if(config.has('enabledWebService')){
@@ -209,7 +235,7 @@ var openServerOnline = function(serverObject){
 	}else if(testVersion() === 3){
 		$('#modalError2').modal('show')
 	}else{
-		openedServer[1] = child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: true})
+		openedServer[1] = ((OS == "win32") ? child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: true, windowsHide:true, stdio: 'inherit'}) : child_process.spawn(lanPlayLocation,[argumments," --relay-server-addr "+ server], {shell: true, detached: true}))
 		openedServer [0] = true
 		openedServer[2] = serverObject.id
 		update()
@@ -631,7 +657,7 @@ var taskBarMenuUpdate = function(){
 		}
 	}
 console.log(tasks)
-	if(OS="win32"){
+	if(OS=="win32"){
 	remote.app.setUserTasks(tasks)}
 }
 
@@ -939,7 +965,8 @@ var addServer = async function(serverName, serverURL, serverFlag){
 var globalTest;
 
 var openConfiguration = function(){
-	win.setThumbarButtons([])
+	if(OS=="win32"){win.setThumbarButtons([])}
+	goOptions = true
 	//remote.getCurrentWindow().loadURL('file://options.html')
 	remote.getCurrentWindow().loadURL(`file://${__dirname}/options.html`)
 }
@@ -1026,7 +1053,7 @@ var serverStatusArray = []
 var pingStatusArray = []
 
 var changeValue = function(value){
-	win.setProgressBar(value/100);
+	if(OS=="win32"){win.setProgressBar(value/100);}
 	$("#loadingBar")
       .css("width", Math.round(value) + "%")
       .attr("aria-valuenow", Math.round(value))
@@ -1046,7 +1073,7 @@ var newFetchServers = function(){
     progress.a++
 	changeValue(Math.round(progress.c()*100/progressMax))
 	if(progress.c()===progressMax){
-		win.setProgressBar(0)
+		if(OS=="win32"){win.setProgressBar(0)}
 		setTimeout(fetchCompleted,500)
 	}
 })
@@ -1056,7 +1083,7 @@ var newFetchServers = function(){
     progress.b++
 	changeValue(Math.round(progress.c()*100/progressMax))
 	if(progress.c()===progressMax){
-		win.setProgressBar(0)
+		if(OS=="win32"){win.setProgressBar(0)}
 		setTimeout(fetchCompleted,500)
 	}
 })
@@ -1116,7 +1143,7 @@ var downloadFile = function(url, path, cb) {
                 //win.setProgressBar((100.0 * cur / len).toFixed(2)/100)
 				changeValue((100.0 * cur / len).toFixed(2)/100*100)
 				if(((100.0 * cur / len).toFixed(2)/100) == 1){
-					win.setProgressBar(0)
+					if(OS=="win32"){win.setProgressBar(0)}
 					$('#loadingBarModal').modal("hide");
 				}
             });
@@ -1213,7 +1240,7 @@ var updateGui = function(){
 var fetchCompleted = function(){
 	testId();
 	$('#loadingBarModal').modal("hide");
-	win.setProgressBar(0);
+	if(OS=="win32"){win.setProgressBar(0);}
 	for(var i=0;i<serverList.length;i++){
 		serverList[i].serverInfo = serverStatusArray[i]
 		serverList[i].serverPing = pingStatusArray[i]
@@ -1460,7 +1487,7 @@ var initializationFunction = function(){
 	$(':checkbox').checkboxpicker();
 	writeHtml();
 	changelog();
-	if(OS="win32"){
+	if(OS=="win32"){
 	win.setThumbarButtons([{
 icon: path.resolve(__dirname+`/images/gears.ico`),
 click: function(){openConfiguration();},

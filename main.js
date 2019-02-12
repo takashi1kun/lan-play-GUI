@@ -1,8 +1,10 @@
 const { app, BrowserWindow } = require('electron')
 const config = require('electron-json-config');
 let win
-
-
+const os = require('os');
+if(os.arch == "arm"){
+	app.disableHardwareAcceleration()
+}
 function createWindow () {
 	win = new BrowserWindow({ width: 800, height: 623, frame: false })
 	win.loadFile('index.html')
@@ -16,6 +18,10 @@ function createWindow () {
 }
 
 app.on('ready', createWindow)
+
+app.on('closed', () => {
+    window.webContents.send('ping', 'whoooooooh!');
+  });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
