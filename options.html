@@ -124,7 +124,8 @@
   <br /><br /><br />
   <button onClick="exportServerList()" type="button" class="btn btn-primary center-block" ><i class="fas fa-upload"></i> <div id="exportServerList3" style="display: contents;">Export Server List</div></button><br /><br />
   <button onClick="importServerList()" type="button" class="btn btn-primary center-block"  ><i class="fas fa-download"></i> <div id="importServerList3" style="display: contents;">Import Server List</div></button><br /><br />
-  <button onClick="showAlert()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> <div id="downloadServerList3" style="display: contents;">Download Official Server List</div></button>
+  <button onClick="showAlert()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> <div id="downloadServerList3" style="display: contents;">Download Official Server List</div></button><br /><br />
+  <button onClick="showAlert2()" type="button" data-toggle="modal" data-target="#alert" class="btn btn-primary center-block" ><i class="fas fa-cloud-download-alt"></i> <div id="downloadServerList4" style="display: contents;">Download lan-play.com's Server List</div></button>
   </div>
  <input type="file" id="importFile" class="importFile" />
   </div>
@@ -201,6 +202,26 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureNo3" style="display: contents;">No! Let me go back!</div></button>
         <button type="button" onClick="importServerOfficialList()" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureYes3" style="display: contents;">I am okay whit that, replace it!</div></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alert2" class="modal" tabindex="-1" role="dialog" style="margin-top:120px;color:black !important">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><div id="areYouSure4" style="display: contents;">Are you sure?</div></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><div id="areYouSureText4" style="display: contents;">This will erase your server list and replace it whit the one from lan-play.com, are you sure you want that?</div></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureNo4" style="display: contents;">No! Let me go back!</div></button>
+        <button type="button" onClick="importServerLanPlayList()" class="btn btn-primary" data-dismiss="modal"><div id="areYouSureYes4" style="display: contents;">I am okay whit that, replace it!</div></button>
       </div>
     </div>
   </div>

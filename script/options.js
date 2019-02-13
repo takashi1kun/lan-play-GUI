@@ -141,6 +141,7 @@ var translate = function(){
 	$('#exportServerList3').text(i18n.__("Export Server List"))
 	$('#importServerList3').text(i18n.__("Import Server List"))
 	$('#downloadServerList3').text(i18n.__("Download Offical Server List"))
+	$('#downloadServerList4').text(i18n.__("Download lan-play.com's Server List"))
 	$('#enableProxy3').text(i18n.__("Enable Proxy:"))
 	$('#ok3').text(i18n.__("Ok"))
 	$('#ok4').text(i18n.__("Ok"))
@@ -152,6 +153,10 @@ var translate = function(){
 	$('#areYouSureText3').text(i18n.__("Are you sure? Text")) 
 	$('#areYouSureNo3').text(i18n.__("No! Let me go back!"))
 	$('#areYouSureYes3').text(i18n.__("I am okay whit that, replace it!"))
+	$('#areYouSure4').text(i18n.__("Are you sure?"))
+	$('#areYouSureText4').text(i18n.__("Are you sure?2 Text")) 
+	$('#areYouSureNo4').text(i18n.__("No! Let me go back!"))
+	$('#areYouSureYes4').text(i18n.__("I am okay whit that, replace it!"))
 	$("#versionTitle").text(" "+guiVersion)
 }
 
@@ -249,7 +254,65 @@ var serverObjectMin = function(serverName, serverURL, serverFlag){
 	this.serverURL = serverURL,
 	this.serverFlag = serverFlag
 }
+
+var plusOneArray = function(array, name, index){
+	var a = {}
+	var b = false
+	var c = array.length
+	a.name = name
+	a.number = 1
+	a.indexes = [index]
+	for (var i = 0 ; i<=c;i++){
+		if(array[i] != undefined){
+			if(array[i].name == a.name && i<c){
+				array[i].number = array[i].number + 1
+				array[i].indexes.push(index)
+				b = true
+			}else if(i == c && !b){
+				array.push(a)
+			}
+		}else if(i == c && !b){
+			array.push(a)
+		}
+	}
+	return array
+}
+
+var importLanPlayParse = function(a){
+	var b = []
+	var c = a.length
+	var e = []
+	for(var i = 0; i<c;i++){
+		if(a[i].platform == "switch"){
+			var d = {}
+			d.serverName = (a[i].ip.split(".", 1))[0]
+			d.serverName = ((isNaN(d.serverName))?d.serverName: a[i].flag)
+			d.serverName = ((d.serverName == "switch")? (a[i].ip.split(".", 2))[1]:d.serverName)
+			d.serverName = d.serverName.replace("-", " ")
+			d.serverURL = a[i].ip+":"+a[i].port
+			d.serverFlag = a[i].flag
+			b.push(d)
+			e = plusOneArray(e,d.serverName,b.length-1)
+		}
+	}
+	for(var i = 0;i<e.length;i++){
+	if(e[i].indexes.length > 1){
+		for (var i2 = 0; i2<e[i].indexes.length; i2++){
+			b[e[i].indexes[i2]].serverName = e[i].name+" "+(i2+1)
+		}
+	}
+	}
+	return b 
+}
 	
+var importServerLanPlayList = async function(){
+	var dataStream = await fetch(`http://lan-play.com/data/servers.json`)
+	var array1 = await dataStream.json()
+	var array2 = importLanPlayParse(array1)
+	serverListFile = createObject(array2)
+	$('#myModal').modal('show')
+}
+
 /* var parseInterfaces = function(str){
 	var str2 = []
 	var str3 = []
@@ -494,6 +557,9 @@ var exportServerList = function(){
 }
 var showAlert = function(){
 	$('#alert').modal('show')
+}
+var showAlert2 = function(){
+	$('#alert2').modal('show')
 }
 var testGlobal
 var importServerList = function(){ 
