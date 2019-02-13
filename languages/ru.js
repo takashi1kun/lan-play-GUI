@@ -14,7 +14,7 @@
 	"Server Name": "Название сервера",
 	"Server URL": "URL сервера",
 	"Country": "Страна",
-	"New Server Information":"New Server Information",
+	"New Server Information":"Добавить сервер",
 	"This will remove the server": "Это удалит сервер",
 	"from the list permanently": "из списка",
 	"Delete":"Удалить",
