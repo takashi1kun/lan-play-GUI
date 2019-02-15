@@ -56,7 +56,7 @@
 	"Offline" : "Offline",
 	"Not Online" : "Not Online",
 	"ERROR!":"ERROR!",
-	"Error 1 text":"Your Lan Play Version is not updated, please update to the most recent one from this place:",
+	"Error 1 text":"Your Lan Play Version is not unupdated, please update to the most recent one from this place:",
 	"Error 2 text":"You need to download Lan Play and configure in settings where is place, you can download lan play here:",
 	"Error 404: Lan Play not found!" : "Error 404: Lan Play not found!",
 	"Error 403: Update Lan Play to the lastest version" : "Error 403: Update Lan Play to the lastest version",
