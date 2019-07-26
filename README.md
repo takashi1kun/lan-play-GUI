@@ -6,8 +6,8 @@ This is a Visual Interface based on electron for lan play, it also doubles as a 
 It also tells you if the server is online, and if it is online, also can tell you the users playing on it on that moment, and the version of lan-play the server is using.
 ## Instructions
 ### Windows  
-1.- Download the executable of lan-play adequate for your system (64/32 bits)  
-2.- Download the RAR with lan play GUI adequate for your system (64/32 bits)  
+1.- Download the executable of [lan-play](https://github.com/spacemeowx2/switch-lan-play) adequate for your system (64/32 bits)  
+2.- Download the RAR with [lan-play-GUI](https://github.com/takashi1kun/lan-play-GUI/releases) adequate for your system (64/32 bits)  
 3.- Uncompress the RAR wherever you want  
 4.- Put the executable of lan-play without renaming it in the same folder as lan play GUI  
 5.- if you have done this well you should have lan-play-GUI.exe and the executable of lan play on the same folder  
@@ -16,20 +16,19 @@ It also tells you if the server is online, and if it is online, also can tell yo
 8.- Profit  
 PS.- When you Connect to a server a cmd windows would pop up, you just select your interface and it would work, when you want to change server close that command line window and click Connect to Server on a new server
 ### Linux
-1.- Download lan-play-linux  
-2.- Download lan-play-GUI-linux  
-3.- Put lan-play-linux in home  
-4.- sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' lan-play-linux  
-5.- chmod 777 lan-play-linux  
-6.- Execute lan-play-gui-linux  
+1.- Download [lan-play-linux](https://github.com/spacemeowx2/switch-lan-play/releases)  
+2.- Download [lan-play-GUI-linux](https://github.com/takashi1kun/lan-play-GUI/releases)  
+3.- Put _lan-play-linux_ in home  
+4.- ```sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' lan-play-linux```  
+5.- ```chmod 777 lan-play-linux```  
+6.- Execute _lan-play-gui-linux_  
 7.- ???  
 8.- Profit  
 PS.- When you Connect to a server a terminal would pop up, you just select your interface and it would work, when you want to change server close that terminal and click Connect to Server on a new server
-
 #### Arch Linux  
 1.- Download [switch-lan-play](https://aur.archlinux.org/packages/switch-lan-play/) from the AUR  
-2.- Download ```lan-play-GUI-linux``` from releases  
-3.- Open ```lan-play-GUI``` and go to settings  
+2.- Download [lan-play-GUI-linux](https://github.com/takashi1kun/lan-play-GUI/releases)   
+3.- Open _lan-play-GUI_ and go to _Settings_  
 4.- On the _Main Configuration_ page, browse to ```/usr/local/bin/lan-play```  
 4a.- If ```lan-play``` isn't there, run ```pacman -Ql switch-lan-play``` in a terminal to find your directory  
 5.- ???  
