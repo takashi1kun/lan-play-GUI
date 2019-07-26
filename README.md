@@ -26,15 +26,15 @@ PS.- When you Connect to a server a cmd windows would pop up, you just select yo
 8.- Profit  
 PS.- When you Connect to a server a terminal would pop up, you just select your interface and it would work, when you want to change server close that terminal and click Connect to Server on a new server
 
-#### Arch Linux
-1.- Download [switch-lan-play](https://aur.archlinux.org/packages/switch-lan-play/) from the AUR
-2.- Download lan-play-GUI-linux from releases
-3.- Open lan-play-GUI and go to settings
-4.- On the _Main Configuration_ page, browse to /usr/local/bin/lan-play
-4a.- If it's not got lan-play there, run ```pacman -Ql switch-lan-play``` to find your directory
-5.- ???
-6.- Profit
-
+#### Arch Linux  
+1.- Download [switch-lan-play](https://aur.archlinux.org/packages/switch-lan-play/) from the AUR  
+2.- Download ```lan-play-GUI-linux``` from releases  
+3.- Open ```lan-play-GUI``` and go to settings  
+4.- On the _Main Configuration_ page, browse to ```/usr/local/bin/lan-play```  
+4a.- If ```lan-play``` isn't there, run ```pacman -Ql switch-lan-play``` in a terminal to find your directory  
+5.- ???  
+6.- Profit  
+  
 ## Credits
 
 ### Main Credits:
