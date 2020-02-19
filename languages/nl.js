@@ -40,7 +40,7 @@
 	"Are you sure?": "Zeker weten?",
 	"Are you sure? Text": "Hiermee wis je je server lijst en vervang je deze met een officiële. Weet je dit zeker?",
 	"No! Let me go back!": "Nee! Ga terug!",
-	"I am okay whit that, replace it!": "Dat is prima, vervangen maar!",
+	"I am okay with that, replace it!": "Dat is prima, vervangen maar!",
 	"Enable Proxy:": "Activeer Proxy: ",
 	"Success!!": "Succes!!",
 	"Success!! Text" : "De handeling is gelukt!",
