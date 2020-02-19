@@ -48,7 +48,7 @@
 	"Are you sure?2 Text": "Esto borrara tu lista de servidores actual y la remplazara con la de lan-play.com ¿estas seguro de querer eso?",
 	"Download lan-play.com's Server List": "Descargar La lista de Servidores de lan-play.com",
 	"No! Let me go back!": "¡No! ¡Atras!",
-	"I am okay whit that, replace it!": "Estoy conforme con ello¡Remplazala!",
+	"I am okay with that, replace it!": "Estoy conforme con ello¡Remplazala!",
 	"Enable Proxy:": "Activar Proxy: ",
 	"Success!!": "¡Todo Correcto!",
 	"Success!! Text" : "¡La operacion fue todo un exito!",

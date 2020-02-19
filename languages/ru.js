@@ -49,7 +49,7 @@
 	"Are you sure?2 Text": "Это сотрёт ваш Список серверов и заменит его  lan-play.com, вы уверены?",
 	"Download lan-play.com's Server List": "Загрузить lan-play.com Список серверов",
 	"No! Let me go back!": "Нет! Дайте мне вернуться!",
-	"I am okay whit that, replace it!": "Я понял это, заменить!",
+	"I am okay with that, replace it!": "Я понял это, заменить!",
 	"Enable Proxy:": "Включить прокси: ",
 	"Success!!": "Успех!!",
 	"Success!! Text" : "Операция прошла успешно!",

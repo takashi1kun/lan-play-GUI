@@ -40,7 +40,7 @@
 	"Are you sure?": "Etes vous sur ?",
 	"Are you sure? Text": "Votre liste de serveurs va etre effacee et remplacee par la liste de serveurs officielle.",
 	"No! Let me go back!": "Je veux retourner en arriere",
-	"I am okay whit that, replace it!": "C'est ce que je veux, remplacez la !",
+	"I am okay with that, replace it!": "C'est ce que je veux, remplacez la !",
 	"Enable Proxy:": "Activer proxy: ",
 	"Success!!": "Succes!!",
 	"Success!! Text" : "L'operation a ete un succes",

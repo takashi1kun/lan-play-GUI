@@ -152,11 +152,11 @@ var translate = function(){
 	$('#areYouSure3').text(i18n.__("Are you sure?"))
 	$('#areYouSureText3').text(i18n.__("Are you sure? Text")) 
 	$('#areYouSureNo3').text(i18n.__("No! Let me go back!"))
-	$('#areYouSureYes3').text(i18n.__("I am okay whit that, replace it!"))
+	$('#areYouSureYes3').text(i18n.__("I am okay with that, replace it!"))
 	$('#areYouSure4').text(i18n.__("Are you sure?"))
 	$('#areYouSureText4').text(i18n.__("Are you sure?2 Text")) 
 	$('#areYouSureNo4').text(i18n.__("No! Let me go back!"))
-	$('#areYouSureYes4').text(i18n.__("I am okay whit that, replace it!"))
+	$('#areYouSureYes4').text(i18n.__("I am okay with that, replace it!"))
 	$("#versionTitle").text(" "+guiVersion)
 }
 

@@ -49,7 +49,7 @@
 	"Are you sure?2 Text": "TIsto apagará sua lista de servidores e substituirá pelo lan-play.com, está certo disto?",
 	"Download lan-play.com's Server List": "Baixar lista de servidores lan-play.com",
 	"No! Let me go back!": "Não! Me leve de volta",
-	"I am okay whit that, replace it!": "Esto certo disto, subistituir!",
+	"I am okay with that, replace it!": "Esto certo disto, subistituir!",
 	"Enable Proxy:": "Habilitar Proxy: ",
 	"Success!!": "Sucesso!!",
 	"Success!! Text" : "A operação foi um sucesso",
