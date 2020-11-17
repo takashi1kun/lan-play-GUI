@@ -1,114 +1,116 @@
 .elementToFadeInAndOut {
-    width:200px;
-    height: 200px;
-    background: red;
-    -webkit-animation: fadeinout 4s linear forwards;
-    animation: fadeinout 4s linear forwards;
-    opacity: 0;
+  width: 200px;
+  height: 200px;
+  background: red;
+  -webkit-animation: fadeinout 4s linear forwards;
+  animation: fadeinout 4s linear forwards;
+  opacity: 0;
 }
 
 ::-webkit-scrollbar {
   width: 3px;
 }
-body{
-	background-color: #454d54!important;
-	 overflow-y:hidden;
-}
-.bar{
-			 -webkit-user-select: none;
-	-webkit-app-region: drag;
-	position: -webkit-sticky;
-  position: sticky;
-  top:23px;
-    margin-top: 0;
-    position: fixed;
-    z-index: 3;
-	width: 100%;
+
+body {
+  background-color: #454d54!important;
+  overflow-y: hidden;
 }
 
-.header{
-	 display: flex;
-	 flex-direction:column;
+.bar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  top: 23px;
+  z-index: 3;
+  width: 100%;
+  padding: 5px;
 }
 
-.textHeader{
-	    color: #fff!important;
-	float:left;
-	padding: 0 !important;
-	font-size: large!important;
-	 -webkit-user-select: none;
-	-webkit-app-region: drag;
+.textHeader {
+  color: #fff!important;
+  float: left;
+  padding: 0 !important;
+  font-size: large!important;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-	    background-color: #343a40!important;
-	display: flex;
-	flex-direction:row-reverse;
-	justify-content: flex-start;
-	align-self: stretch;
-		 -webkit-user-select: none;
-	-webkit-app-region: drag;
-	
+  background-color: #343a40!important;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-self: stretch;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 
-.xButton, ._Button{
-		    color: #fff!important;
+.xButton, ._Button {
+  color: #fff!important;
   float: right;
   padding: 0px 16px !important;
-	font-size: large!important;
-	margin:0!important;
-	-webkit-app-region: no-drag;
+  font-size: large!important;
+  margin: 0!important;
+  -webkit-app-region: no-drag;
 }
 
-.xButton:hover{
-	background: red;
-}
-._Button:hover{
-	background: #585858;
-}
-.app{
-	top: 80px;
-	width: 100%;
-	position:fixed;
-	overflow-y: scroll;
-	/*height:464px*/
-	height:100%
+.xButton:hover {
+  background: red;
 }
 
-.nodrag{
-	-webkit-app-region: no-drag;
+._Button:hover {
+  background: #585858;
 }
 
-#app>div:last-child {margin-bottom: 81px;}
+.nodrag {
+  -webkit-app-region: no-drag;
+}
 
+#app {
+  width: 100%;
+  overflow-y: scroll;
+  height: -webkit-fill-available;
+}
+
+#app>div:last-child {
+  margin-bottom: 81px;
+}
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
 
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 @-webkit-keyframes fadeinout {
-  50% { opacity: 1; }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeinout {
-  50% { opacity: 1; }
+  50% {
+    opacity: 1;
+  }
 }
+
 .gly-spin {
   -webkit-animation: spin 2s infinite linear;
   -moz-animation: spin 2s infinite linear;
   -o-animation: spin 2s infinite linear;
   animation: spin 2s infinite linear;
 }
+
 @-moz-keyframes spin {
   0% {
     -moz-transform: rotate(0deg);
@@ -117,6 +119,7 @@ header {
     -moz-transform: rotate(359deg);
   }
 }
+
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -125,6 +128,7 @@ header {
     -webkit-transform: rotate(359deg);
   }
 }
+
 @-o-keyframes spin {
   0% {
     -o-transform: rotate(0deg);
@@ -133,6 +137,7 @@ header {
     -o-transform: rotate(359deg);
   }
 }
+
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);

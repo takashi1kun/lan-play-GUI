@@ -1,796 +1,746 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <script>window.jQuery = window.$ = require('jquery');</script>
-    <meta charset="UTF-8">
-    <title>Lan-Play GUI</title>
-	<script src="script/index.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/flag-icon.min.css">
-	<script src="script/bootstrap-checkbox.js" defer></script>
-	<script>require('popper.js');</script>
-	<script>require('bootstrap');</script>
-	<script>window.i18n = new(require('./languages/i18n'));</script>
-	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-  </head>
-  <body>
-  <div class="header" style="z-index:100000">
-	<header>
-		<div class="textHeader navbar-brand">
-		<svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: top;width: 2.8em;height: 2.0833em;fill: #fff!important;" viewBox="0 0 297 210" class="undefined"><style>.a{fill:none;stroke-opacity:0.9;stroke-width:0.3;stroke:#1028ee;}.b{stroke-width:0.08;}</style><defs><clipPath clipPathUnits="userSpaceOnUse"><circle transform="matrix(0.529082 0 0 0.529082 -58.670054 34.729406)" cx="9.4" cy="64.5" r="27.5" style="fill:#d40000;stroke-opacity:0.9;stroke-width:3;stroke:#8a0141"/></clipPath><clipPath clipPathUnits="userSpaceOnUse"><circle transform="matrix(0.9717522 0 0 0.9717522 -77.408822 -3.6996891)" cx="64.6" cy="41" r="30.3" style="fill:none;stroke-opacity:0.9;stroke-width:3;stroke:#ee105f"/></clipPath><clipPath clipPathUnits="userSpaceOnUse"><circle transform="matrix(1.0062809 0 0 1.0062809 -17.473294 44.65514)" cx="-36" cy="24" r="14" class="a"/></clipPath><clipPath clipPathUnits="userSpaceOnUse"><circle transform="matrix(2.0595523 0 0 2.0595523 204.76054 173.24915)" cx="-36" cy="24" r="14" class="a"/></clipPath><clipPath clipPathUnits="userSpaceOnUse"><circle transform="matrix(2.0595523 0 0 2.0595523 59.52284 -13.38377)" cx="-36" cy="24" r="14" class="a"/></clipPath></defs><g transform="translate(-0.33508523 -4.3102593)matrix(0.01566953 0 0 -0.01566953 -5.0685587 153.87304)"><path d="m820 4863c-14-2-39-11-57-19-17-8-37-14-45-14-23-1-144-73-184-110-54-49-106-117-131-170-64-133-58-35-58-1025v-900l22-60c74-202 208-338 408-412 43-15 81-18 265-18h215v1365 1365l-205 1c-113 1-216 0-230-3zm94-473c46-21 111-85 126-126 6-14 10-53 10-86 0-79-26-131-91-181-84-66-195-62-277 9-59 50-82 99-82 174 0 94 43 160 135 209 50 27 122 27 179 1zm-33-673c50-42 59-78 33-132-19-40-61-60-108-51-48 9-76 47-76 103 0 85 89 132 151 80zM667 3491c34-21 49-62 38-110-20-91-150-99-190-11-17 37-17 40 1 77 31 62 91 80 151 44zm417 8c26-12 56-63 56-96 0-34-36-78-73-90-29-9-42-7-75 7-44 20-52 34-52 94 0 74 73 117 144 85zM894 3271c16-16 21-34 21-71 0-55-11-71-66-94-32-14-39-13-70 2-19 9-43 33-54 53-18 36-19 38-1 77 10 22 28 45 40 51 32 17 105 7 130-18zm150-297c12-5 16-21 16-70 0-73-11-84-80-84-69 0-80 11-80 85 0 41 4 65 13 68 18 8 113 8 131 1z"/><path d="m1335 4858c-3-7-4-625-3-1373l3-1360h2165 2165v1370 1370l-2163 3c-1725 2-2164 0-2167-10zM5215 3500V2425l-1712-3-1713-2v1080 1080l1713-2 1712-3z"/><path d="m5747 4863c-4-3-7-617-7-1363 0-1205 2-1359 15-1370 12-10 62-12 213-8 178 5 204 8 270 31 182 65 328 213 390 398l22 65v900c0 885 0 901-21 959-11 32-29 76-40 97-31 62-144 174-218 216-61 35-88 45-191 72-40 11-423 13-433 3zm479-374c85-52 47-189-52-189-59 0-114 69-100 126 10 39 59 84 92 84 14 0 42-9 60-21zm-199-234c32-32 35-39 30-78-8-55-43-87-98-87-51 0-75 13-94 50-19 37-19 65 1 96 41 62 110 70 161 19zm435-3c11-10 22-38 25-60 7-51-14-88-62-108-29-12-38-12-68 1-44 18-58 36-63 82-9 71 38 118 110 109 21-2 48-13 58-24zm-221-211c52-53 35-138-33-166-36-14-41-14-76 4-59 30-76 84-46 142 29 56 108 67 155 20zm-2-427c104-34 161-111 161-219 0-111-60-189-169-221-44-13-63-13-100-4-64 16-117 53-152 107-25 41-29 56-29 118 0 61 4 77 28 116 38 58 60 76 118 99 60 24 82 24 143 4zm-140-643c26-25 31-36 31-78 0-59-18-88-66-103-43-15-73-8-113 26-27 22-31 32-31 74 0 42 4 52 35 79 48 42 100 43 144 2z"/></g><g transform="translate(-0.33508523 -4.3102593)matrix(0.01566953 0 0 -0.01566953 192.68857 153.31012)"><path d="m820 4863c-14-2-39-11-57-19-17-8-37-14-45-14-23-1-144-73-184-110-54-49-106-117-131-170-64-133-58-35-58-1025v-900l22-60c74-202 208-338 408-412 43-15 81-18 265-18h215v1365 1365l-205 1c-113 1-216 0-230-3zm94-473c46-21 111-85 126-126 6-14 10-53 10-86 0-79-26-131-91-181-84-66-195-62-277 9-59 50-82 99-82 174 0 94 43 160 135 209 50 27 122 27 179 1zm-33-673c50-42 59-78 33-132-19-40-61-60-108-51-48 9-76 47-76 103 0 85 89 132 151 80zM667 3491c34-21 49-62 38-110-20-91-150-99-190-11-17 37-17 40 1 77 31 62 91 80 151 44zm417 8c26-12 56-63 56-96 0-34-36-78-73-90-29-9-42-7-75 7-44 20-52 34-52 94 0 74 73 117 144 85zM894 3271c16-16 21-34 21-71 0-55-11-71-66-94-32-14-39-13-70 2-19 9-43 33-54 53-18 36-19 38-1 77 10 22 28 45 40 51 32 17 105 7 130-18zm150-297c12-5 16-21 16-70 0-73-11-84-80-84-69 0-80 11-80 85 0 41 4 65 13 68 18 8 113 8 131 1z"/><path d="m1335 4858c-3-7-4-625-3-1373l3-1360h2165 2165v1370 1370l-2163 3c-1725 2-2164 0-2167-10zM5215 3500V2425l-1712-3-1713-2v1080 1080l1713-2 1712-3z"/><path d="m5747 4863c-4-3-7-617-7-1363 0-1205 2-1359 15-1370 12-10 62-12 213-8 178 5 204 8 270 31 182 65 328 213 390 398l22 65v900c0 885 0 901-21 959-11 32-29 76-40 97-31 62-144 174-218 216-61 35-88 45-191 72-40 11-423 13-433 3zm479-374c85-52 47-189-52-189-59 0-114 69-100 126 10 39 59 84 92 84 14 0 42-9 60-21zm-199-234c32-32 35-39 30-78-8-55-43-87-98-87-51 0-75 13-94 50-19 37-19 65 1 96 41 62 110 70 161 19zm435-3c11-10 22-38 25-60 7-51-14-88-62-108-29-12-38-12-68 1-44 18-58 36-63 82-9 71 38 118 110 109 21-2 48-13 58-24zm-221-211c52-53 35-138-33-166-36-14-41-14-76 4-59 30-76 84-46 142 29 56 108 67 155 20zm-2-427c104-34 161-111 161-219 0-111-60-189-169-221-44-13-63-13-100-4-64 16-117 53-152 107-25 41-29 56-29 118 0 61 4 77 28 116 38 58 60 76 118 99 60 24 82 24 143 4zm-140-643c26-25 31-36 31-78 0-59-18-88-66-103-43-15-73-8-113 26-27 22-31 32-31 74 0 42 4 52 35 79 48 42 100 43 144 2z"/></g><g transform="translate(-0.33508523 -4.3102593)matrix(0.01566953 0 0 -0.01566953 92.195235 80.612816)"><path d="m820 4863c-14-2-39-11-57-19-17-8-37-14-45-14-23-1-144-73-184-110-54-49-106-117-131-170-64-133-58-35-58-1025v-900l22-60c74-202 208-338 408-412 43-15 81-18 265-18h215v1365 1365l-205 1c-113 1-216 0-230-3zm94-473c46-21 111-85 126-126 6-14 10-53 10-86 0-79-26-131-91-181-84-66-195-62-277 9-59 50-82 99-82 174 0 94 43 160 135 209 50 27 122 27 179 1zm-33-673c50-42 59-78 33-132-19-40-61-60-108-51-48 9-76 47-76 103 0 85 89 132 151 80zM667 3491c34-21 49-62 38-110-20-91-150-99-190-11-17 37-17 40 1 77 31 62 91 80 151 44zm417 8c26-12 56-63 56-96 0-34-36-78-73-90-29-9-42-7-75 7-44 20-52 34-52 94 0 74 73 117 144 85zM894 3271c16-16 21-34 21-71 0-55-11-71-66-94-32-14-39-13-70 2-19 9-43 33-54 53-18 36-19 38-1 77 10 22 28 45 40 51 32 17 105 7 130-18zm150-297c12-5 16-21 16-70 0-73-11-84-80-84-69 0-80 11-80 85 0 41 4 65 13 68 18 8 113 8 131 1z"/><path d="m1335 4858c-3-7-4-625-3-1373l3-1360h2165 2165v1370 1370l-2163 3c-1725 2-2164 0-2167-10zM5215 3500V2425l-1712-3-1713-2v1080 1080l1713-2 1712-3z"/><path d="m5747 4863c-4-3-7-617-7-1363 0-1205 2-1359 15-1370 12-10 62-12 213-8 178 5 204 8 270 31 182 65 328 213 390 398l22 65v900c0 885 0 901-21 959-11 32-29 76-40 97-31 62-144 174-218 216-61 35-88 45-191 72-40 11-423 13-433 3zm479-374c85-52 47-189-52-189-59 0-114 69-100 126 10 39 59 84 92 84 14 0 42-9 60-21zm-199-234c32-32 35-39 30-78-8-55-43-87-98-87-51 0-75 13-94 50-19 37-19 65 1 96 41 62 110 70 161 19zm435-3c11-10 22-38 25-60 7-51-14-88-62-108-29-12-38-12-68 1-44 18-58 36-63 82-9 71 38 118 110 109 21-2 48-13 58-24zm-221-211c52-53 35-138-33-166-36-14-41-14-76 4-59 30-76 84-46 142 29 56 108 67 155 20zm-2-427c104-34 161-111 161-219 0-111-60-189-169-221-44-13-63-13-100-4-64 16-117 53-152 107-25 41-29 56-29 118 0 61 4 77 28 116 38 58 60 76 118 99 60 24 82 24 143 4zm-140-643c26-25 31-36 31-78 0-59-18-88-66-103-43-15-73-8-113 26-27 22-31 32-31 74 0 42 4 52 35 79 48 42 100 43 144 2z"/></g><rect width="15.8" height="6.1" x="97" y="92.6" class="b"/><rect width="8.3" height="18.5" x="141.6" y="42.9" stroke-width="0.2"/><rect width="18.3" height="6.1" x="180.5" y="92.6" class="b"/><g transform="translate(-0.33508523 -4.3102593)matrix(1.1445591 0 0 1.1445591 -3.3985587 -155.92517)"><path d="M130.6 190.8C113 190.8 98.6 205.1 98.6 222.8 98.6 240.4 113 254.8 130.6 254.8 148.3 254.8 162.6 240.4 162.6 222.8 162.6 205.1 148.3 190.8 130.6 190.8Zm-1.2 4.5c0 0.1 0 11 0 11.9-4.1 0-8.1-0.5-12-1.3 1.1-3.3 2.5-6.3 4.2-9C124 195.9 126.7 195.4 129.4 195.3Zm2.5 0c2.7 0.1 5.4 0.7 7.8 1.5 1.6 2.7 3.1 5.7 4.2 9-3.9 0.8-7.9 1.3-12 1.3 0-0.9 0-11.8 0-11.9zM117.7 198.5c-1.1 2.1-2 4.4-2.8 6.8C113.5 204.9 112.1 204.4 110.6 203.9 112.7 201.8 115.1 199.9 117.7 198.5Zm25.8 0c2.6 1.4 5.1 3.3 7.1 5.4-1.4 0.5-2.9 0.9-4.3 1.3-0.8-2.4-1.7-4.6-2.8-6.7zM108.9 206c1.7 0.6 3.5 1.2 5.3 1.7-1.2 4.3-1.9 9-2 13.9-5.7 0-1.1 0-9 0 0.3-5.9 2.3-11.2 5.6-15.6zm43.5 0c3.3 4.3 5.4 9.7 5.6 15.6-7.9 0-3.3 0-9 0-0.1-4.9-0.8-9.6-2-13.9 1.8-0.5 3.6-1 5.3-1.7zm-35.7 2.3c4.1 0.9 8.3 1.4 12.7 1.4 0 1.1 0 9 0 11.9-4.1 0-6.2 0-14.6 0 0.1-4.7 0.8-9.2 1.9-13.3zm27.9 0c1.1 4.1 1.8 8.6 1.9 13.3-8.4 0-10.5 0-14.6 0 0-2.9 0-10.8 0-11.9 4.3 0 8.6-0.5 12.7-1.4zM103.3 224c7.9 0 3.3 0 9 0 0.1 4.9 0.8 9.6 2 13.9C112.4 238.4 110.6 239 108.9 239.6 105.6 235.2 103.5 229.9 103.3 224Zm11.5 0c8.4 0 10.5 0 14.6 0 0 2.9 0 10.8 0 11.9-4.3 0-8.6 0.5-12.7 1.4C115.6 233.2 114.9 228.7 114.8 224Zm17.1 0c4.1 0 6.2 0 14.6 0-0.1 4.7-0.8 9.2-1.9 13.3-4.1-0.9-8.3-1.4-12.7-1.4 0-1.1 0-9 0-11.9zm17.1 0c5.7 0 1.1 0 9 0C157.8 229.9 155.7 235.2 152.4 239.6 150.6 239 148.9 238.4 147 237.9 148.2 233.6 148.9 228.9 149 224ZM129.4 238.4c0 0.9 0 11.8 0 11.9-2.7-0.1-5.4-0.7-7.8-1.5-1.6-2.7-3.1-5.7-4.2-9 3.9-0.8 7.9-1.3 12-1.3zm2.5 0c4.1 0 8.1 0.5 12 1.3-1.1 3.3-2.5 6.3-4.2 9-2.5 0.9-5.1 1.4-7.8 1.5 0-0.1 0-11 0-11.9zm-16.9 1.9c0.8 2.4 1.7 4.6 2.8 6.8C115.1 245.6 112.7 243.8 110.6 241.6c1.4-0.5 2.9-0.9 4.3-1.3zm31.4 0c1.5 0.4 2.9 0.8 4.3 1.3-2 2.2-4.4 4-7.1 5.4 1.1-2.1 2-4.4 2.8-6.7z"/></g></svg>
- 
-		Lan Play GUI <div id="versionTitle" style="display: contents;z-index:9900001"></div>
+	<head>
+		<script>window.jQuery = window.$ = require('jquery');</script>
+			<meta charset="UTF-8">
+			<title>Lan-Play GUI</title>
+			<script src="script/index.js"></script>
+			<link rel="stylesheet" type="text/css" href="css/main.css">
+			<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="css/flag-icon.min.css">
+			<script src="script/bootstrap-checkbox.js" defer></script>
+			<script>require('popper.js');</script>
+			<script>require('bootstrap');</script>
+			<script>window.i18n = new(require('./languages/i18n'));</script>
+			<script src="node_modules/popper.js/dist/umd/popper.js"></script>
+			<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="header">
+			<header style="z-index: 10001;">
+				<div class="textHeader navbar-brand" style="margin-bottom: -10px;">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="#fff" class="undefined" style="vertical-align:top;width:2.8em;height:2.0833em" viewBox="0 0 297 210"><defs/><path d="M7.4 73.4c-.2 0-.6.1-.8.3l-.8.2A10 10 0 003 75.6a7 7 0 00-2 2.7c-1 2-1 .5-1 16v14.1l.3 1c1.2 3.1 3.3 5.3 6.4 6.4.7.3 1.3.3 4.2.3h3.4V73.3H7.4zM9 80.8c.7.3 1.8 1.3 2 2V84c0 1.2-.4 2-1.4 2.8-1.3 1-3 1-4.3-.1C4.3 86 4 85.2 4 84c0-1.5.7-2.5 2.1-3.3.8-.4 2-.4 2.8 0zm-.5 10.5c.8.7 1 1.2.5 2-.3.7-1 1-1.7.9-.7-.2-1.2-.7-1.2-1.6 0-1.4 1.4-2.1 2.4-1.3zM5 95c.6.3.8 1 .6 1.7-.3 1.4-2.3 1.5-3 .2-.2-.6-.2-.7 0-1.3.6-1 1.5-1.2 2.4-.6zm6.6-.2c.4.2.9 1 .9 1.5 0 .6-.6 1.3-1.2 1.4-.4.2-.6.2-1.2 0-.6-.4-.8-.6-.8-1.5 0-1.2 1.2-1.9 2.3-1.4zm-3 3.6c.3.3.3.5.3 1.1 0 .9-.1 1.1-1 1.5-.5.2-.6.2-1.1 0-.3-.2-.7-.6-.8-.9-.3-.5-.3-.6 0-1.2l.6-.8c.5-.2 1.6 0 2 .3zM11 103c.1 0 .2.3.2 1 0 1.2-.2 1.4-1.2 1.4-1.1 0-1.3-.2-1.3-1.4 0-.6 0-1 .2-1a6 6 0 012 0zm4.5-29.6v42.9h67.9v-43h-34l-33.9.1zm60.8 21.3v16.9H22.6V77.8h53.7zm8.3-21.3a1034 1034 0 00.2 42.8c.2.1 1 .2 3.3.1 2.8 0 3.2-.1 4.2-.5a10 10 0 006.2-6.2l.3-1V94.5c0-13.9 0-14.1-.3-15l-.7-1.6a9.7 9.7 0 00-6.4-4.5 47 47 0 00-6.8 0zm7.6 5.8c1.3.8.7 3-.9 3-.9 0-1.7-1.1-1.5-2 .1-.6.9-1.3 1.4-1.3.2 0 .7.1 1 .3zM89 83c.5.5.6.6.5 1.2-.1.9-.7 1.4-1.5 1.4s-1.2-.2-1.5-.8c-.3-.6-.3-1 0-1.5.7-1 1.7-1.1 2.5-.3zm6.9 0c.1.2.3.6.3 1 .2.8-.2 1.4-1 1.7-.4.2-.5.2-1 0-.7-.3-.9-.6-1-1.3-.1-1.1.6-1.9 1.7-1.7.4 0 .8.2 1 .3zm-3.5 3.3c.8.9.5 2.2-.5 2.6-.6.3-.7.3-1.2 0-1-.5-1.2-1.3-.7-2.2.4-1 1.7-1 2.4-.4zm0 6.7c1.6.6 2.5 1.8 2.5 3.5s-1 3-2.7 3.4c-.7.2-1 .2-1.5 0a4 4 0 01-2.4-1.6c-.4-.6-.5-.9-.5-1.8 0-1 0-1.2.5-1.9.6-.9 1-1.1 1.8-1.5 1-.4 1.3-.4 2.3 0zm-2.2 10c.4.4.5.6.5 1.2 0 1-.3 1.4-1 1.6-.8.3-1.2.2-1.9-.4-.4-.3-.4-.5-.4-1.1 0-.7 0-.8.5-1.3.8-.6 1.6-.6 2.3 0zm115-30.2l-.9.3-.7.2c-.4 0-2.3 1.2-2.9 1.7-.8.8-1.6 1.9-2 2.7-1 2-1 .6-1 16V108l.4 1a11 11 0 006.4 6.4c.7.2 1.3.2 4.1.2h3.4V72.8h-6.8zm1.5 7.4c.7.3 1.7 1.3 2 2l.1 1.3c0 1.3-.4 2-1.4 2.9-1.3 1-3 1-4.4-.2a3.1 3.1 0 01-1.2-2.7c0-1.5.6-2.5 2-3.3.9-.4 2-.4 2.9 0zm-.5 10.6c.7.6.9 1.2.5 2-.3.7-1 1-1.7.8-.8-.1-1.2-.7-1.2-1.6 0-1.3 1.4-2 2.4-1.2zm-3.4 3.5c.5.3.8 1 .6 1.7-.3 1.4-2.3 1.6-3 .2-.2-.6-.2-.6 0-1.2.5-1 1.5-1.3 2.4-.7zm6.5-.1c.4.2 1 1 1 1.5s-.6 1.2-1.2 1.4c-.5.1-.7.1-1.2-.1-.7-.3-.8-.6-.8-1.5 0-1.2 1.1-1.8 2.2-1.3zm-3 3.5c.3.3.4.6.4 1.2 0 .8-.2 1-1 1.4-.5.2-.7.2-1.1 0-.3-.1-.7-.5-.9-.8-.3-.6-.3-.6 0-1.2l.6-.8c.5-.3 1.7-.1 2 .2zm2.4 4.7c.2 0 .3.3.3 1.1 0 1.1-.2 1.3-1.3 1.3-1 0-1.2-.2-1.2-1.3 0-.7 0-1 .2-1a6 6 0 012-.1zm4.6-29.5v42.8h67.9V72.8h-68zM274 94.2V111h-53.7V77.3h26.8l26.9.1zm8.4-21.4a1034 1034 0 00.1 42.8c.2.2 1 .2 3.4.1 2.8 0 3.2 0 4.2-.4a10 10 0 006.1-6.3l.4-1V94c0-14 0-14.2-.4-15.1l-.6-1.5a11 11 0 00-3.4-3.4c-1-.6-1.4-.7-3-1.2a47 47 0 00-6.8 0zm7.5 5.9c1.3.8.7 3-.8 3-1 0-1.8-1.2-1.6-2 .2-.7 1-1.4 1.5-1.4l1 .4zm-3.1 3.6c.5.5.5.6.5 1.2-.2 1-.7 1.4-1.6 1.4-.8 0-1.1-.2-1.4-.8-.3-.6-.3-1 0-1.5.6-1 1.7-1 2.5-.3zm6.8 0c.2.2.4.7.4 1 .1.8-.2 1.4-1 1.7-.4.2-.6.2-1 0-.7-.3-1-.6-1-1.3-.2-1.1.6-1.8 1.7-1.7.3 0 .8.2 1 .4zm-3.5 3.4c.9.8.6 2.1-.5 2.6-.5.2-.6.2-1.2 0-.9-.6-1.2-1.4-.7-2.3.5-.9 1.7-1 2.4-.3zm0 6.7c1.6.5 2.5 1.7 2.5 3.4s-.9 3-2.6 3.5c-.7.2-1 .2-1.6 0a4 4 0 01-2.4-1.6c-.4-.7-.4-1-.4-1.9 0-1 0-1.2.4-1.8.6-1 1-1.2 1.9-1.6 1-.3 1.3-.3 2.2 0zm-2.2 10c.4.4.5.6.5 1.3 0 .9-.3 1.3-1 1.6-.7.2-1.2.1-1.8-.4-.4-.4-.5-.5-.5-1.2 0-.6 0-.8.6-1.2.7-.7 1.5-.7 2.2 0zM104.7.1l-.9.3-.7.2c-.3 0-2.2 1.2-2.9 1.7-.8.8-1.6 1.9-2 2.7-1 2-1 .6-1 16v14.2l.4 1a11 11 0 006.4 6.4c.7.2 1.3.2 4.2.2h3.3V.1h-6.8zm1.5 7.4c.7.3 1.7 1.3 2 2l.1 1.3c0 1.3-.4 2-1.4 2.9-1.3 1-3 1-4.4-.2a3.1 3.1 0 01-1.2-2.7c0-1.5.6-2.5 2-3.3.9-.4 2-.4 2.9 0zm-.5 10.6c.7.6.9 1.2.5 2-.3.7-1 1-1.7.8-.8-.1-1.2-.7-1.2-1.6 0-1.3 1.4-2 2.4-1.2zm-3.4 3.5c.5.3.8 1 .6 1.7-.3 1.4-2.3 1.6-3 .2-.2-.6-.2-.6 0-1.2.5-1 1.5-1.3 2.4-.7zm6.5-.1c.5.2 1 1 1 1.5s-.6 1.2-1.2 1.4c-.5.1-.7.1-1.2-.1-.7-.3-.8-.6-.8-1.5 0-1.2 1.1-1.8 2.2-1.3zm-3 3.5c.3.3.4.6.4 1.2 0 .8-.2 1-1 1.4-.5.3-.6.2-1.1 0-.3-.1-.7-.5-.9-.8-.3-.6-.3-.6 0-1.2l.6-.8c.5-.3 1.7-.1 2 .2zm2.4 4.7c.2 0 .3.3.3 1.1 0 1.1-.2 1.3-1.3 1.3-1 0-1.2-.2-1.2-1.3 0-.7 0-1 .2-1a6 6 0 012-.1zM112.8.2V43h67.9V.1h-68zm60.8 21.3v16.8h-53.7V4.6h26.9l26.8.1zM182 .1a1034 1034 0 000 42.8c.2.2 1 .2 3.4.2 2.8-.1 3.2-.2 4.2-.5a10 10 0 006.1-6.3l.4-1v-14c0-14 0-14.2-.4-15.1l-.6-1.5a9.7 9.7 0 00-6.4-4.5 47 47 0 00-6.8-.1zm7.4 5.9c1.4.8.8 3-.8 3-1 0-1.8-1.2-1.6-2 .2-.7 1-1.4 1.5-1.4l1 .4zm-3.1 3.6c.5.5.5.6.5 1.3-.2.8-.7 1.3-1.6 1.3-.8 0-1.1-.2-1.4-.8-.3-.5-.3-1 0-1.5.6-1 1.7-1 2.5-.3zm6.8 0c.2.2.4.7.4 1 .1.8-.2 1.4-1 1.7-.4.2-.6.2-1 0-.7-.3-1-.6-1-1.3-.2-1.1.6-1.8 1.7-1.7.3 0 .8.2 1 .4zm-3.4 3.4c.8.8.5 2.1-.6 2.6-.5.2-.6.2-1.2 0-.9-.5-1.1-1.4-.7-2.3.5-.9 1.7-1 2.5-.3zm0 6.7c1.6.5 2.4 1.7 2.4 3.4s-.9 3-2.6 3.5c-.7.2-1 .2-1.6 0a4 4 0 01-2.4-1.6c-.3-.7-.4-1-.4-1.9 0-1 0-1.2.4-1.8.6-1 1-1.2 1.9-1.6 1-.3 1.3-.3 2.2 0zm-2.3 10c.4.4.5.6.5 1.3 0 .9-.3 1.3-1 1.6-.7.2-1.2.1-1.8-.4-.4-.4-.5-.5-.5-1.2 0-.6 0-.8.6-1.2.7-.7 1.5-.7 2.2 0z"/><path d="M97 92.6h15.8v6.1H97z" class="b"/><path stroke-width=".2" d="M141.6 42.9h8.3v18.5h-8.3z"/><path d="M180.5 92.6h18.3v6.1h-18.3z" class="b"/><path d="M145.7 58.1a36.7 36.7 0 10.1 73.4 36.7 36.7 0 000-73.4zm-1.3 5.2v13.6c-4.7 0-9.3-.6-13.8-1.5 1.3-3.7 2.9-7.2 4.8-10.3 2.8-1.1 5.9-1.7 9-1.8zm2.8 0c3.1.1 6.2.8 9 1.7 1.8 3.1 3.5 6.5 4.8 10.3-4.5 1-9 1.5-13.8 1.5V63.2zM131 67a48 48 0 00-3.2 7.7c-1.6-.4-3.2-1-5-1.6 2.5-2.4 5.2-4.5 8.2-6.1zm29.5 0c3 1.6 5.8 3.7 8.1 6.1-1.6.6-3.3 1-4.9 1.5-.9-2.7-2-5.2-3.2-7.6zM121 75.5l6 2c-1.3 5-2.1 10.3-2.2 15.9h-10.3c.3-6.8 2.6-12.8 6.4-17.9zm49.8 0a31 31 0 016.4 17.9h-10.3c-.1-5.6-1-11-2.3-16 2-.5 4.1-1 6-1.9zm-40.9 2.7c4.7 1 9.5 1.6 14.6 1.6v13.6h-16.7c0-5.4.9-10.5 2.1-15.2zm32 0c1.2 4.7 2 9.8 2.1 15.2h-16.7V79.8c5 0 9.9-.6 14.6-1.6zm-47.3 18h10.3c.1 5.6 1 11 2.3 15.9-2.2.5-4.2 1.2-6.2 1.9-3.8-5-6.2-11.1-6.4-17.9zm13.2 0h16.7v13.6c-5 0-9.9.5-14.6 1.6-1.2-4.7-2-9.9-2.1-15.3zm19.5 0H164a62 62 0 01-2.1 15.2c-4.7-1-9.5-1.6-14.6-1.6V96zm19.6 0h10.3a31.3 31.3 0 01-6.4 17.8c-2-.7-4-1.4-6.2-2a61.6 61.6 0 002.3-15.9zm-22.4 16.4v13.6a30 30 0 01-9-1.7c-1.8-3-3.5-6.5-4.8-10.3 4.5-.9 9-1.5 13.8-1.5zm2.8 0c4.7 0 9.3.6 13.8 1.5a47.3 47.3 0 01-4.8 10.3c-2.9 1-5.9 1.6-9 1.7v-13.6zm-19.3 2.2c1 2.7 2 5.3 3.2 7.8-3-1.7-5.8-3.8-8.2-6.3 1.6-.6 3.3-1 4.9-1.5zm36 0l4.9 1.5c-2.3 2.5-5 4.6-8.2 6.2a57 57 0 003.2-7.7z"/></svg>
+					Lan Play GUI <div id="versionTitle" style="display: contents;z-index:9900001"></div>
+				</div>
+				<div class="xButton navbar-brand" onClick="remote.getCurrentWindow().close();"><i class="fas fa-times"></i></div>
+				<div class="_Button navbar-brand" onClick="remote.getCurrentWindow().minimize();"><i class="far fa-window-minimize"></i></div>
+			</header>
 		</div>
-		<div class="xButton navbar-brand" onClick="remote.getCurrentWindow().close();"><i class="fas fa-times"></i></div>
-		<div class="_Button navbar-brand" onClick="remote.getCurrentWindow().minimize();"><i class="far fa-window-minimize"></i></div>
-		
-		
-	</header>
-  </div>
-    <div>
 		<div id="bar" class="bar">
-		<nav class="navbar navbar-dark navbar-expand bg-dark" style="position: -webkit-sticky;
-  position: sticky;;">
-		<div class="container">
-		<div class="row">
-		<div class="col-sm-4">
-    <a id="translateServerList" class="navbar-brand" href="#">Server List</a>
-	</div>
-	</div>
-	</div>
-	<div class="row  justify-content-end">
-		<div class="col-sm-25" style="margin-right:20px">
-	   <button id="translateSettings" onClick="openConfiguration()" type="button" class="nodrag btn btn-secondary" ><i class="fas fa-cogs"></i>Settings</button>
-	</div>
-	</div>
-<!-- 		<div class="row  justify-content-end">
-	<div class="col-sm-12" >
-	<a id="fakeInternet2" class="navbar-text" style="padding-left: 12px; ;padding-top: 0px;padding-bottom: 0px;border-radius: 6px;margin-left: 7px;text-decoration:none;white-space: nowrap;color:#fff;-webkit-tap-highlight-color: transparent;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";" href="#">
-	Fake Internet: <input checked="checked" id="fakeInternet" type="checkbox"></a> 
-	</div>
-	</div>
-	 -->
-	
-	<div class="row  justify-content-end">
-		<div class="col-sm-25" style="margin-right:20px;     padding-left: 15px;">
-   <button id="translateUpdate" onClick="updateServers()" type="button" class="nodrag btn btn-primary" ><i id="update" class="fas fa-sync-alt"></i>Update</button>
-	</div>
-	</div>
-	
-	<div class="row  justify-content-end">
-	<div class="col-sm-12">
-	<button id="translateAddNewServer" type="button" class="nodrag btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i>Add New Server</button>
-	</div>
-	</div>
-	</div>
-	</div>
-</nav>
+			<nav>
+				<span id="translateServerList" class="navbar-brand text-light">Server List</span>
+				<button id="translateAddNewServer" type="button" class="nodrag ml-2 float-right btn btn-success" data-toggle="modal" data-target="#addNewServer"><i class="fas fa-plus-circle"></i> Add New Server</button>
+				<button id="translateUpdate" type="button" class="nodrag ml-2 float-right btn btn-primary" onClick="updateServers()"><i id="update" class="fas fa-sync-alt"></i> Update</button>
+				<button id="translateSettings" type="button" class="nodrag ml-2 float-right btn btn-secondary" onClick="openConfiguration()"><i class="fas fa-cogs"></i> Settings</button>
+			</nav>
 		</div>
-		<div id="app" class="app">
-
+		<div id="app" class="app"></div>
+		<div class="modal fade" id="addNewServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 id="translateAddNewServer2" class="modal-title">Add New Server</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="addServerForm" class="form-inline">
+							<label id="translateServerName1" class="sr-only" for="inlineFormInputName2">Server Name</label>
+							<div class="input-group mb-1 col-12">
+								<div class="input-group-prepend">
+									<div id="translateServerName2" class="input-group-text">Server Name</div>
+								</div>
+								<input id="addServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
+							</div>
+							<label id="translateServerURL1" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
+							<div class="input-group mb-1 col-12">
+								<div class="input-group-prepend">
+									<div id="translateServerURL2" class="input-group-text">Server URL</div>
+								</div>
+								<input type="text" id="addServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451"/>
+							</div><br />
+							<div class="input-group mb-1 col-12">
+								<div class="input-group-prepend">
+									<div id="translateCountry1" class="input-group-text">Country</div>
+								</div>
+								<select class="form-control" id="addServerFormCountry" style="width: 200px">
+									<option value="NFlag" id="translateNoCountry1">No Country</option>
+									<option value="EU">Europe</option>
+									<option value="AF">Afghanistan</option>
+									<option value="AX">Åland Islands</option>
+									<option value="AL">Albania</option>
+									<option value="DZ">Algeria</option>
+									<option value="AS">American Samoa</option>
+									<option value="AD">Andorra</option>
+									<option value="AO">Angola</option>
+									<option value="AI">Anguilla</option>
+									<option value="AQ">Antarctica</option>
+									<option value="AG">Antigua and Barbuda</option>
+									<option value="AR">Argentina</option>
+									<option value="AM">Armenia</option>
+									<option value="AW">Aruba</option>
+									<option value="AU">Australia</option>
+									<option value="AT">Austria</option>
+									<option value="AZ">Azerbaijan</option>
+									<option value="BS">Bahamas</option>
+									<option value="BH">Bahrain</option>
+									<option value="BD">Bangladesh</option>
+									<option value="BB">Barbados</option>
+									<option value="BY">Belarus</option>
+									<option value="BE">Belgium</option>
+									<option value="BZ">Belize</option>
+									<option value="BJ">Benin</option>
+									<option value="BM">Bermuda</option>
+									<option value="BT">Bhutan</option>
+									<option value="BO">Bolivia, Plurinational State of</option>
+									<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+									<option value="BA">Bosnia and Herzegovina</option>
+									<option value="BW">Botswana</option>
+									<option value="BV">Bouvet Island</option>
+									<option value="BR">Brazil</option>
+									<option value="IO">British Indian Ocean Territory</option>
+									<option value="BN">Brunei Darussalam</option>
+									<option value="BG">Bulgaria</option>
+									<option value="BF">Burkina Faso</option>
+									<option value="BI">Burundi</option>
+									<option value="KH">Cambodia</option>
+									<option value="CM">Cameroon</option>
+									<option value="CA">Canada</option>
+									<option value="CV">Cape Verde</option>
+									<option value="KY">Cayman Islands</option>
+									<option value="CF">Central African Republic</option>
+									<option value="TD">Chad</option>
+									<option value="CL">Chile</option>
+									<option value="CN">China</option>
+									<option value="CX">Christmas Island</option>
+									<option value="CC">Cocos (Keeling) Islands</option>
+									<option value="CO">Colombia</option>
+									<option value="KM">Comoros</option>
+									<option value="CG">Congo</option>
+									<option value="CD">Congo, the Democratic Republic of the</option>
+									<option value="CK">Cook Islands</option>
+									<option value="CR">Costa Rica</option>
+									<option value="CI">Côte d'Ivoire</option>
+									<option value="HR">Croatia</option>
+									<option value="CU">Cuba</option>
+									<option value="CW">Curaçao</option>
+									<option value="CY">Cyprus</option>
+									<option value="CZ">Czech Republic</option>
+									<option value="DK">Denmark</option>
+									<option value="DJ">Djibouti</option>
+									<option value="DM">Dominica</option>
+									<option value="DO">Dominican Republic</option>
+									<option value="EC">Ecuador</option>
+									<option value="EG">Egypt</option>
+									<option value="SV">El Salvador</option>
+									<option value="GQ">Equatorial Guinea</option>
+									<option value="ER">Eritrea</option>
+									<option value="EE">Estonia</option>
+									<option value="ET">Ethiopia</option>
+									<option value="FK">Falkland Islands (Malvinas)</option>
+									<option value="FO">Faroe Islands</option>
+									<option value="FJ">Fiji</option>
+									<option value="FI">Finland</option>
+									<option value="FR">France</option>
+									<option value="GF">French Guiana</option>
+									<option value="PF">French Polynesia</option>
+									<option value="TF">French Southern Territories</option>
+									<option value="GA">Gabon</option>
+									<option value="GM">Gambia</option>
+									<option value="GE">Georgia</option>
+									<option value="DE">Germany</option>
+									<option value="GH">Ghana</option>
+									<option value="GI">Gibraltar</option>
+									<option value="GR">Greece</option>
+									<option value="GL">Greenland</option>
+									<option value="GD">Grenada</option>
+									<option value="GP">Guadeloupe</option>
+									<option value="GU">Guam</option>
+									<option value="GT">Guatemala</option>
+									<option value="GG">Guernsey</option>
+									<option value="GN">Guinea</option>
+									<option value="GW">Guinea-Bissau</option>
+									<option value="GY">Guyana</option>
+									<option value="HT">Haiti</option>
+									<option value="HM">Heard Island and McDonald Islands</option>
+									<option value="VA">Holy See (Vatican City State)</option>
+									<option value="HN">Honduras</option>
+									<option value="HK">Hong Kong</option>
+									<option value="HU">Hungary</option>
+									<option value="IS">Iceland</option>
+									<option value="IN">India</option>
+									<option value="ID">Indonesia</option>
+									<option value="IR">Iran, Islamic Republic of</option>
+									<option value="IQ">Iraq</option>
+									<option value="IE">Ireland</option>
+									<option value="IM">Isle of Man</option>
+									<option value="IL">Israel</option>
+									<option value="IT">Italy</option>
+									<option value="JM">Jamaica</option>
+									<option value="JP">Japan</option>
+									<option value="JE">Jersey</option>
+									<option value="JO">Jordan</option>
+									<option value="KZ">Kazakhstan</option>
+									<option value="KE">Kenya</option>
+									<option value="KI">Kiribati</option>
+									<option value="KP">Korea, Democratic People's Republic of</option>
+									<option value="KR">Korea, Republic of</option>
+									<option value="KW">Kuwait</option>
+									<option value="KG">Kyrgyzstan</option>
+									<option value="LA">Lao People's Democratic Republic</option>
+									<option value="LV">Latvia</option>
+									<option value="LB">Lebanon</option>
+									<option value="LS">Lesotho</option>
+									<option value="LR">Liberia</option>
+									<option value="LY">Libya</option>
+									<option value="LI">Liechtenstein</option>
+									<option value="LT">Lithuania</option>
+									<option value="LU">Luxembourg</option>
+									<option value="MO">Macao</option>
+									<option value="MK">Macedonia, the former Yugoslav Republic of</option>
+									<option value="MG">Madagascar</option>
+									<option value="MW">Malawi</option>
+									<option value="MY">Malaysia</option>
+									<option value="MV">Maldives</option>
+									<option value="ML">Mali</option>
+									<option value="MT">Malta</option>
+									<option value="MH">Marshall Islands</option>
+									<option value="MQ">Martinique</option>
+									<option value="MR">Mauritania</option>
+									<option value="MU">Mauritius</option>
+									<option value="YT">Mayotte</option>
+									<option value="MX">Mexico</option>
+									<option value="FM">Micronesia, Federated States of</option>
+									<option value="MD">Moldova, Republic of</option>
+									<option value="MC">Monaco</option>
+									<option value="MN">Mongolia</option>
+									<option value="ME">Montenegro</option>
+									<option value="MS">Montserrat</option>
+									<option value="MA">Morocco</option>
+									<option value="MZ">Mozambique</option>
+									<option value="MM">Myanmar</option>
+									<option value="NA">Namibia</option>
+									<option value="NR">Nauru</option>
+									<option value="NP">Nepal</option>
+									<option value="NL">Netherlands</option>
+									<option value="NC">New Caledonia</option>
+									<option value="NZ">New Zealand</option>
+									<option value="NI">Nicaragua</option>
+									<option value="NE">Niger</option>
+									<option value="NG">Nigeria</option>
+									<option value="NU">Niue</option>
+									<option value="NF">Norfolk Island</option>
+									<option value="MP">Northern Mariana Islands</option>
+									<option value="NO">Norway</option>
+									<option value="OM">Oman</option>
+									<option value="PK">Pakistan</option>
+									<option value="PW">Palau</option>
+									<option value="PS">Palestinian Territory, Occupied</option>
+									<option value="PA">Panama</option>
+									<option value="PG">Papua New Guinea</option>
+									<option value="PY">Paraguay</option>
+									<option value="PE">Peru</option>
+									<option value="PH">Philippines</option>
+									<option value="PN">Pitcairn</option>
+									<option value="PL">Poland</option>
+									<option value="PT">Portugal</option>
+									<option value="PR">Puerto Rico</option>
+									<option value="QA">Qatar</option>
+									<option value="RE">Réunion</option>
+									<option value="RO">Romania</option>
+									<option value="RU">Russian Federation</option>
+									<option value="RW">Rwanda</option>
+									<option value="BL">Saint Barthélemy</option>
+									<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+									<option value="KN">Saint Kitts and Nevis</option>
+									<option value="LC">Saint Lucia</option>
+									<option value="MF">Saint Martin (French part)</option>
+									<option value="PM">Saint Pierre and Miquelon</option>
+									<option value="VC">Saint Vincent and the Grenadines</option>
+									<option value="WS">Samoa</option>
+									<option value="SM">San Marino</option>
+									<option value="ST">Sao Tome and Principe</option>
+									<option value="SA">Saudi Arabia</option>
+									<option value="SN">Senegal</option>
+									<option value="RS">Serbia</option>
+									<option value="SC">Seychelles</option>
+									<option value="SL">Sierra Leone</option>
+									<option value="SG">Singapore</option>
+									<option value="SX">Sint Maarten (Dutch part)</option>
+									<option value="SK">Slovakia</option>
+									<option value="SI">Slovenia</option>
+									<option value="SB">Solomon Islands</option>
+									<option value="SO">Somalia</option>
+									<option value="ZA">South Africa</option>
+									<option value="GS">South Georgia and the South Sandwich Islands</option>
+									<option value="SS">South Sudan</option>
+									<option value="ES">Spain</option>
+									<option value="LK">Sri Lanka</option>
+									<option value="SD">Sudan</option>
+									<option value="SR">Suriname</option>
+									<option value="SJ">Svalbard and Jan Mayen</option>
+									<option value="SZ">Swaziland</option>
+									<option value="SE">Sweden</option>
+									<option value="CH">Switzerland</option>
+									<option value="SY">Syrian Arab Republic</option>
+									<option value="TW">Taiwan, Province of China</option>
+									<option value="TJ">Tajikistan</option>
+									<option value="TZ">Tanzania, United Republic of</option>
+									<option value="TH">Thailand</option>
+									<option value="TL">Timor-Leste</option>
+									<option value="TG">Togo</option>
+									<option value="TK">Tokelau</option>
+									<option value="TO">Tonga</option>
+									<option value="TT">Trinidad and Tobago</option>
+									<option value="TN">Tunisia</option>
+									<option value="TR">Turkey</option>
+									<option value="TM">Turkmenistan</option>
+									<option value="TC">Turks and Caicos Islands</option>
+									<option value="TV">Tuvalu</option>
+									<option value="UG">Uganda</option>
+									<option value="UA">Ukraine</option>
+									<option value="AE">United Arab Emirates</option>
+									<option value="GB">United Kingdom</option>
+									<option value="US">United States</option>
+									<option value="UM">United States Minor Outlying Islands</option>
+									<option value="UY">Uruguay</option>
+									<option value="UZ">Uzbekistan</option>
+									<option value="VU">Vanuatu</option>
+									<option value="VE">Venezuela, Bolivarian Republic of</option>
+									<option value="VN">Viet Nam</option>
+									<option value="VG">Virgin Islands, British</option>
+									<option value="VI">Virgin Islands, U.S.</option>
+									<option value="WF">Wallis and Futuna</option>
+									<option value="EH">Western Sahara</option>
+									<option value="YE">Yemen</option>
+									<option value="ZM">Zambia</option>
+									<option value="ZW">Zimbabwe</option>
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button id="translateClose1" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button id="translateAddServer" type="button" onClick="buttonAddServer()" data-dismiss="modal" class="btn btn-primary">Add Server</button>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="modal fade" id="addNewServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="translateAddNewServer2" class="modal-title">Add New Server</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="addServerForm" class="form-inline">
-  <label id="translateServerName1" class="sr-only" for="inlineFormInputName2">Server Name</label>
-   <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateServerName2" class="input-group-text">Server Name</div>
-    </div>
-  <input id="addServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
-</div>
-  <label id="translateServerURL1" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
-  <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateServerURL2" class="input-group-text">Server URL</div>
-    </div>
-    <input type="text" id="addServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
-  </div><br />
-   <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateCountry1" class="input-group-text">Country</div>
-    </div>
-	
-  <select class="form-control" id="addServerFormCountry" style="width: 200px">
-	<option value="NFlag" id="translateNoCountry1">No Country</option>
-	<option value="EU">Europe</option>
-	<option value="AF">Afghanistan</option>
-	<option value="AX">Åland Islands</option>
-	<option value="AL">Albania</option>
-	<option value="DZ">Algeria</option>
-	<option value="AS">American Samoa</option>
-	<option value="AD">Andorra</option>
-	<option value="AO">Angola</option>
-	<option value="AI">Anguilla</option>
-	<option value="AQ">Antarctica</option>
-	<option value="AG">Antigua and Barbuda</option>
-	<option value="AR">Argentina</option>
-	<option value="AM">Armenia</option>
-	<option value="AW">Aruba</option>
-	<option value="AU">Australia</option>
-	<option value="AT">Austria</option>
-	<option value="AZ">Azerbaijan</option>
-	<option value="BS">Bahamas</option>
-	<option value="BH">Bahrain</option>
-	<option value="BD">Bangladesh</option>
-	<option value="BB">Barbados</option>
-	<option value="BY">Belarus</option>
-	<option value="BE">Belgium</option>
-	<option value="BZ">Belize</option>
-	<option value="BJ">Benin</option>
-	<option value="BM">Bermuda</option>
-	<option value="BT">Bhutan</option>
-	<option value="BO">Bolivia, Plurinational State of</option>
-	<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-	<option value="BA">Bosnia and Herzegovina</option>
-	<option value="BW">Botswana</option>
-	<option value="BV">Bouvet Island</option>
-	<option value="BR">Brazil</option>
-	<option value="IO">British Indian Ocean Territory</option>
-	<option value="BN">Brunei Darussalam</option>
-	<option value="BG">Bulgaria</option>
-	<option value="BF">Burkina Faso</option>
-	<option value="BI">Burundi</option>
-	<option value="KH">Cambodia</option>
-	<option value="CM">Cameroon</option>
-	<option value="CA">Canada</option>
-	<option value="CV">Cape Verde</option>
-	<option value="KY">Cayman Islands</option>
-	<option value="CF">Central African Republic</option>
-	<option value="TD">Chad</option>
-	<option value="CL">Chile</option>
-	<option value="CN">China</option>
-	<option value="CX">Christmas Island</option>
-	<option value="CC">Cocos (Keeling) Islands</option>
-	<option value="CO">Colombia</option>
-	<option value="KM">Comoros</option>
-	<option value="CG">Congo</option>
-	<option value="CD">Congo, the Democratic Republic of the</option>
-	<option value="CK">Cook Islands</option>
-	<option value="CR">Costa Rica</option>
-	<option value="CI">Côte d'Ivoire</option>
-	<option value="HR">Croatia</option>
-	<option value="CU">Cuba</option>
-	<option value="CW">Curaçao</option>
-	<option value="CY">Cyprus</option>
-	<option value="CZ">Czech Republic</option>
-	<option value="DK">Denmark</option>
-	<option value="DJ">Djibouti</option>
-	<option value="DM">Dominica</option>
-	<option value="DO">Dominican Republic</option>
-	<option value="EC">Ecuador</option>
-	<option value="EG">Egypt</option>
-	<option value="SV">El Salvador</option>
-	<option value="GQ">Equatorial Guinea</option>
-	<option value="ER">Eritrea</option>
-	<option value="EE">Estonia</option>
-	<option value="ET">Ethiopia</option>
-	<option value="FK">Falkland Islands (Malvinas)</option>
-	<option value="FO">Faroe Islands</option>
-	<option value="FJ">Fiji</option>
-	<option value="FI">Finland</option>
-	<option value="FR">France</option>
-	<option value="GF">French Guiana</option>
-	<option value="PF">French Polynesia</option>
-	<option value="TF">French Southern Territories</option>
-	<option value="GA">Gabon</option>
-	<option value="GM">Gambia</option>
-	<option value="GE">Georgia</option>
-	<option value="DE">Germany</option>
-	<option value="GH">Ghana</option>
-	<option value="GI">Gibraltar</option>
-	<option value="GR">Greece</option>
-	<option value="GL">Greenland</option>
-	<option value="GD">Grenada</option>
-	<option value="GP">Guadeloupe</option>
-	<option value="GU">Guam</option>
-	<option value="GT">Guatemala</option>
-	<option value="GG">Guernsey</option>
-	<option value="GN">Guinea</option>
-	<option value="GW">Guinea-Bissau</option>
-	<option value="GY">Guyana</option>
-	<option value="HT">Haiti</option>
-	<option value="HM">Heard Island and McDonald Islands</option>
-	<option value="VA">Holy See (Vatican City State)</option>
-	<option value="HN">Honduras</option>
-	<option value="HK">Hong Kong</option>
-	<option value="HU">Hungary</option>
-	<option value="IS">Iceland</option>
-	<option value="IN">India</option>
-	<option value="ID">Indonesia</option>
-	<option value="IR">Iran, Islamic Republic of</option>
-	<option value="IQ">Iraq</option>
-	<option value="IE">Ireland</option>
-	<option value="IM">Isle of Man</option>
-	<option value="IL">Israel</option>
-	<option value="IT">Italy</option>
-	<option value="JM">Jamaica</option>
-	<option value="JP">Japan</option>
-	<option value="JE">Jersey</option>
-	<option value="JO">Jordan</option>
-	<option value="KZ">Kazakhstan</option>
-	<option value="KE">Kenya</option>
-	<option value="KI">Kiribati</option>
-	<option value="KP">Korea, Democratic People's Republic of</option>
-	<option value="KR">Korea, Republic of</option>
-	<option value="KW">Kuwait</option>
-	<option value="KG">Kyrgyzstan</option>
-	<option value="LA">Lao People's Democratic Republic</option>
-	<option value="LV">Latvia</option>
-	<option value="LB">Lebanon</option>
-	<option value="LS">Lesotho</option>
-	<option value="LR">Liberia</option>
-	<option value="LY">Libya</option>
-	<option value="LI">Liechtenstein</option>
-	<option value="LT">Lithuania</option>
-	<option value="LU">Luxembourg</option>
-	<option value="MO">Macao</option>
-	<option value="MK">Macedonia, the former Yugoslav Republic of</option>
-	<option value="MG">Madagascar</option>
-	<option value="MW">Malawi</option>
-	<option value="MY">Malaysia</option>
-	<option value="MV">Maldives</option>
-	<option value="ML">Mali</option>
-	<option value="MT">Malta</option>
-	<option value="MH">Marshall Islands</option>
-	<option value="MQ">Martinique</option>
-	<option value="MR">Mauritania</option>
-	<option value="MU">Mauritius</option>
-	<option value="YT">Mayotte</option>
-	<option value="MX">Mexico</option>
-	<option value="FM">Micronesia, Federated States of</option>
-	<option value="MD">Moldova, Republic of</option>
-	<option value="MC">Monaco</option>
-	<option value="MN">Mongolia</option>
-	<option value="ME">Montenegro</option>
-	<option value="MS">Montserrat</option>
-	<option value="MA">Morocco</option>
-	<option value="MZ">Mozambique</option>
-	<option value="MM">Myanmar</option>
-	<option value="NA">Namibia</option>
-	<option value="NR">Nauru</option>
-	<option value="NP">Nepal</option>
-	<option value="NL">Netherlands</option>
-	<option value="NC">New Caledonia</option>
-	<option value="NZ">New Zealand</option>
-	<option value="NI">Nicaragua</option>
-	<option value="NE">Niger</option>
-	<option value="NG">Nigeria</option>
-	<option value="NU">Niue</option>
-	<option value="NF">Norfolk Island</option>
-	<option value="MP">Northern Mariana Islands</option>
-	<option value="NO">Norway</option>
-	<option value="OM">Oman</option>
-	<option value="PK">Pakistan</option>
-	<option value="PW">Palau</option>
-	<option value="PS">Palestinian Territory, Occupied</option>
-	<option value="PA">Panama</option>
-	<option value="PG">Papua New Guinea</option>
-	<option value="PY">Paraguay</option>
-	<option value="PE">Peru</option>
-	<option value="PH">Philippines</option>
-	<option value="PN">Pitcairn</option>
-	<option value="PL">Poland</option>
-	<option value="PT">Portugal</option>
-	<option value="PR">Puerto Rico</option>
-	<option value="QA">Qatar</option>
-	<option value="RE">Réunion</option>
-	<option value="RO">Romania</option>
-	<option value="RU">Russian Federation</option>
-	<option value="RW">Rwanda</option>
-	<option value="BL">Saint Barthélemy</option>
-	<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
-	<option value="KN">Saint Kitts and Nevis</option>
-	<option value="LC">Saint Lucia</option>
-	<option value="MF">Saint Martin (French part)</option>
-	<option value="PM">Saint Pierre and Miquelon</option>
-	<option value="VC">Saint Vincent and the Grenadines</option>
-	<option value="WS">Samoa</option>
-	<option value="SM">San Marino</option>
-	<option value="ST">Sao Tome and Principe</option>
-	<option value="SA">Saudi Arabia</option>
-	<option value="SN">Senegal</option>
-	<option value="RS">Serbia</option>
-	<option value="SC">Seychelles</option>
-	<option value="SL">Sierra Leone</option>
-	<option value="SG">Singapore</option>
-	<option value="SX">Sint Maarten (Dutch part)</option>
-	<option value="SK">Slovakia</option>
-	<option value="SI">Slovenia</option>
-	<option value="SB">Solomon Islands</option>
-	<option value="SO">Somalia</option>
-	<option value="ZA">South Africa</option>
-	<option value="GS">South Georgia and the South Sandwich Islands</option>
-	<option value="SS">South Sudan</option>
-	<option value="ES">Spain</option>
-	<option value="LK">Sri Lanka</option>
-	<option value="SD">Sudan</option>
-	<option value="SR">Suriname</option>
-	<option value="SJ">Svalbard and Jan Mayen</option>
-	<option value="SZ">Swaziland</option>
-	<option value="SE">Sweden</option>
-	<option value="CH">Switzerland</option>
-	<option value="SY">Syrian Arab Republic</option>
-	<option value="TW">Taiwan, Province of China</option>
-	<option value="TJ">Tajikistan</option>
-	<option value="TZ">Tanzania, United Republic of</option>
-	<option value="TH">Thailand</option>
-	<option value="TL">Timor-Leste</option>
-	<option value="TG">Togo</option>
-	<option value="TK">Tokelau</option>
-	<option value="TO">Tonga</option>
-	<option value="TT">Trinidad and Tobago</option>
-	<option value="TN">Tunisia</option>
-	<option value="TR">Turkey</option>
-	<option value="TM">Turkmenistan</option>
-	<option value="TC">Turks and Caicos Islands</option>
-	<option value="TV">Tuvalu</option>
-	<option value="UG">Uganda</option>
-	<option value="UA">Ukraine</option>
-	<option value="AE">United Arab Emirates</option>
-	<option value="GB">United Kingdom</option>
-	<option value="US">United States</option>
-	<option value="UM">United States Minor Outlying Islands</option>
-	<option value="UY">Uruguay</option>
-	<option value="UZ">Uzbekistan</option>
-	<option value="VU">Vanuatu</option>
-	<option value="VE">Venezuela, Bolivarian Republic of</option>
-	<option value="VN">Viet Nam</option>
-	<option value="VG">Virgin Islands, British</option>
-	<option value="VI">Virgin Islands, U.S.</option>
-	<option value="WF">Wallis and Futuna</option>
-	<option value="EH">Western Sahara</option>
-	<option value="YE">Yemen</option>
-	<option value="ZM">Zambia</option>
-	<option value="ZW">Zimbabwe</option>
-</select>
-</div>
-</form>
 
-      </div>
-      <div class="modal-footer">
-        <button id="translateClose1" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="translateAddServer" type="button" onClick="buttonAddServer()" data-dismiss="modal" class="btn btn-primary">Add Server</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-	<div class="modal fade" id="editServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="translateEditServer">Edit Server</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="addServerForm" class="form-inline">
-  <label id="translateServerName3" class="sr-only" for="inlineFormInputName2">Server Name</label>
-   <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateServerName4" class="input-group-text">Server Name</div>
-    </div>
-  <input id="editServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
-</div>
-  <label id="translateServerURL3" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
-  <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateServerURL4" class="input-group-text">Server URL</div>
-    </div>
-    <input type="text" id="editServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
-  </div><br />
-   <div class="input-group mb-1 mr-sm-1">
-    <div class="input-group-prepend">
-      <div id="translateCountry2" class="input-group-text">Country</div>
-    </div>
-	
-  <select class="form-control" id="editServerFormCountry" style="width: 200px">
-	<option id="translateNoCountry2" value="NFlag">No Country</option>
-	<option value="EU">Europe</option>
-	<option value="AF">Afghanistan</option>
-	<option value="AX">Åland Islands</option>
-	<option value="AL">Albania</option>
-	<option value="DZ">Algeria</option>
-	<option value="AS">American Samoa</option>
-	<option value="AD">Andorra</option>
-	<option value="AO">Angola</option>
-	<option value="AI">Anguilla</option>
-	<option value="AQ">Antarctica</option>
-	<option value="AG">Antigua and Barbuda</option>
-	<option value="AR">Argentina</option>
-	<option value="AM">Armenia</option>
-	<option value="AW">Aruba</option>
-	<option value="AU">Australia</option>
-	<option value="AT">Austria</option>
-	<option value="AZ">Azerbaijan</option>
-	<option value="BS">Bahamas</option>
-	<option value="BH">Bahrain</option>
-	<option value="BD">Bangladesh</option>
-	<option value="BB">Barbados</option>
-	<option value="BY">Belarus</option>
-	<option value="BE">Belgium</option>
-	<option value="BZ">Belize</option>
-	<option value="BJ">Benin</option>
-	<option value="BM">Bermuda</option>
-	<option value="BT">Bhutan</option>
-	<option value="BO">Bolivia, Plurinational State of</option>
-	<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-	<option value="BA">Bosnia and Herzegovina</option>
-	<option value="BW">Botswana</option>
-	<option value="BV">Bouvet Island</option>
-	<option value="BR">Brazil</option>
-	<option value="IO">British Indian Ocean Territory</option>
-	<option value="BN">Brunei Darussalam</option>
-	<option value="BG">Bulgaria</option>
-	<option value="BF">Burkina Faso</option>
-	<option value="BI">Burundi</option>
-	<option value="KH">Cambodia</option>
-	<option value="CM">Cameroon</option>
-	<option value="CA">Canada</option>
-	<option value="CV">Cape Verde</option>
-	<option value="KY">Cayman Islands</option>
-	<option value="CF">Central African Republic</option>
-	<option value="TD">Chad</option>
-	<option value="CL">Chile</option>
-	<option value="CN">China</option>
-	<option value="CX">Christmas Island</option>
-	<option value="CC">Cocos (Keeling) Islands</option>
-	<option value="CO">Colombia</option>
-	<option value="KM">Comoros</option>
-	<option value="CG">Congo</option>
-	<option value="CD">Congo, the Democratic Republic of the</option>
-	<option value="CK">Cook Islands</option>
-	<option value="CR">Costa Rica</option>
-	<option value="CI">Côte d'Ivoire</option>
-	<option value="HR">Croatia</option>
-	<option value="CU">Cuba</option>
-	<option value="CW">Curaçao</option>
-	<option value="CY">Cyprus</option>
-	<option value="CZ">Czech Republic</option>
-	<option value="DK">Denmark</option>
-	<option value="DJ">Djibouti</option>
-	<option value="DM">Dominica</option>
-	<option value="DO">Dominican Republic</option>
-	<option value="EC">Ecuador</option>
-	<option value="EG">Egypt</option>
-	<option value="SV">El Salvador</option>
-	<option value="GQ">Equatorial Guinea</option>
-	<option value="ER">Eritrea</option>
-	<option value="EE">Estonia</option>
-	<option value="ET">Ethiopia</option>
-	<option value="FK">Falkland Islands (Malvinas)</option>
-	<option value="FO">Faroe Islands</option>
-	<option value="FJ">Fiji</option>
-	<option value="FI">Finland</option>
-	<option value="FR">France</option>
-	<option value="GF">French Guiana</option>
-	<option value="PF">French Polynesia</option>
-	<option value="TF">French Southern Territories</option>
-	<option value="GA">Gabon</option>
-	<option value="GM">Gambia</option>
-	<option value="GE">Georgia</option>
-	<option value="DE">Germany</option>
-	<option value="GH">Ghana</option>
-	<option value="GI">Gibraltar</option>
-	<option value="GR">Greece</option>
-	<option value="GL">Greenland</option>
-	<option value="GD">Grenada</option>
-	<option value="GP">Guadeloupe</option>
-	<option value="GU">Guam</option>
-	<option value="GT">Guatemala</option>
-	<option value="GG">Guernsey</option>
-	<option value="GN">Guinea</option>
-	<option value="GW">Guinea-Bissau</option>
-	<option value="GY">Guyana</option>
-	<option value="HT">Haiti</option>
-	<option value="HM">Heard Island and McDonald Islands</option>
-	<option value="VA">Holy See (Vatican City State)</option>
-	<option value="HN">Honduras</option>
-	<option value="HK">Hong Kong</option>
-	<option value="HU">Hungary</option>
-	<option value="IS">Iceland</option>
-	<option value="IN">India</option>
-	<option value="ID">Indonesia</option>
-	<option value="IR">Iran, Islamic Republic of</option>
-	<option value="IQ">Iraq</option>
-	<option value="IE">Ireland</option>
-	<option value="IM">Isle of Man</option>
-	<option value="IL">Israel</option>
-	<option value="IT">Italy</option>
-	<option value="JM">Jamaica</option>
-	<option value="JP">Japan</option>
-	<option value="JE">Jersey</option>
-	<option value="JO">Jordan</option>
-	<option value="KZ">Kazakhstan</option>
-	<option value="KE">Kenya</option>
-	<option value="KI">Kiribati</option>
-	<option value="KP">Korea, Democratic People's Republic of</option>
-	<option value="KR">Korea, Republic of</option>
-	<option value="KW">Kuwait</option>
-	<option value="KG">Kyrgyzstan</option>
-	<option value="LA">Lao People's Democratic Republic</option>
-	<option value="LV">Latvia</option>
-	<option value="LB">Lebanon</option>
-	<option value="LS">Lesotho</option>
-	<option value="LR">Liberia</option>
-	<option value="LY">Libya</option>
-	<option value="LI">Liechtenstein</option>
-	<option value="LT">Lithuania</option>
-	<option value="LU">Luxembourg</option>
-	<option value="MO">Macao</option>
-	<option value="MK">Macedonia, the former Yugoslav Republic of</option>
-	<option value="MG">Madagascar</option>
-	<option value="MW">Malawi</option>
-	<option value="MY">Malaysia</option>
-	<option value="MV">Maldives</option>
-	<option value="ML">Mali</option>
-	<option value="MT">Malta</option>
-	<option value="MH">Marshall Islands</option>
-	<option value="MQ">Martinique</option>
-	<option value="MR">Mauritania</option>
-	<option value="MU">Mauritius</option>
-	<option value="YT">Mayotte</option>
-	<option value="MX">Mexico</option>
-	<option value="FM">Micronesia, Federated States of</option>
-	<option value="MD">Moldova, Republic of</option>
-	<option value="MC">Monaco</option>
-	<option value="MN">Mongolia</option>
-	<option value="ME">Montenegro</option>
-	<option value="MS">Montserrat</option>
-	<option value="MA">Morocco</option>
-	<option value="MZ">Mozambique</option>
-	<option value="MM">Myanmar</option>
-	<option value="NA">Namibia</option>
-	<option value="NR">Nauru</option>
-	<option value="NP">Nepal</option>
-	<option value="NL">Netherlands</option>
-	<option value="NC">New Caledonia</option>
-	<option value="NZ">New Zealand</option>
-	<option value="NI">Nicaragua</option>
-	<option value="NE">Niger</option>
-	<option value="NG">Nigeria</option>
-	<option value="NU">Niue</option>
-	<option value="NF">Norfolk Island</option>
-	<option value="MP">Northern Mariana Islands</option>
-	<option value="NO">Norway</option>
-	<option value="OM">Oman</option>
-	<option value="PK">Pakistan</option>
-	<option value="PW">Palau</option>
-	<option value="PS">Palestinian Territory, Occupied</option>
-	<option value="PA">Panama</option>
-	<option value="PG">Papua New Guinea</option>
-	<option value="PY">Paraguay</option>
-	<option value="PE">Peru</option>
-	<option value="PH">Philippines</option>
-	<option value="PN">Pitcairn</option>
-	<option value="PL">Poland</option>
-	<option value="PT">Portugal</option>
-	<option value="PR">Puerto Rico</option>
-	<option value="QA">Qatar</option>
-	<option value="RE">Réunion</option>
-	<option value="RO">Romania</option>
-	<option value="RU">Russian Federation</option>
-	<option value="RW">Rwanda</option>
-	<option value="BL">Saint Barthélemy</option>
-	<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
-	<option value="KN">Saint Kitts and Nevis</option>
-	<option value="LC">Saint Lucia</option>
-	<option value="MF">Saint Martin (French part)</option>
-	<option value="PM">Saint Pierre and Miquelon</option>
-	<option value="VC">Saint Vincent and the Grenadines</option>
-	<option value="WS">Samoa</option>
-	<option value="SM">San Marino</option>
-	<option value="ST">Sao Tome and Principe</option>
-	<option value="SA">Saudi Arabia</option>
-	<option value="SN">Senegal</option>
-	<option value="RS">Serbia</option>
-	<option value="SC">Seychelles</option>
-	<option value="SL">Sierra Leone</option>
-	<option value="SG">Singapore</option>
-	<option value="SX">Sint Maarten (Dutch part)</option>
-	<option value="SK">Slovakia</option>
-	<option value="SI">Slovenia</option>
-	<option value="SB">Solomon Islands</option>
-	<option value="SO">Somalia</option>
-	<option value="ZA">South Africa</option>
-	<option value="GS">South Georgia and the South Sandwich Islands</option>
-	<option value="SS">South Sudan</option>
-	<option value="ES">Spain</option>
-	<option value="LK">Sri Lanka</option>
-	<option value="SD">Sudan</option>
-	<option value="SR">Suriname</option>
-	<option value="SJ">Svalbard and Jan Mayen</option>
-	<option value="SZ">Swaziland</option>
-	<option value="SE">Sweden</option>
-	<option value="CH">Switzerland</option>
-	<option value="SY">Syrian Arab Republic</option>
-	<option value="TW">Taiwan, Province of China</option>
-	<option value="TJ">Tajikistan</option>
-	<option value="TZ">Tanzania, United Republic of</option>
-	<option value="TH">Thailand</option>
-	<option value="TL">Timor-Leste</option>
-	<option value="TG">Togo</option>
-	<option value="TK">Tokelau</option>
-	<option value="TO">Tonga</option>
-	<option value="TT">Trinidad and Tobago</option>
-	<option value="TN">Tunisia</option>
-	<option value="TR">Turkey</option>
-	<option value="TM">Turkmenistan</option>
-	<option value="TC">Turks and Caicos Islands</option>
-	<option value="TV">Tuvalu</option>
-	<option value="UG">Uganda</option>
-	<option value="UA">Ukraine</option>
-	<option value="AE">United Arab Emirates</option>
-	<option value="GB">United Kingdom</option>
-	<option value="US">United States</option>
-	<option value="UM">United States Minor Outlying Islands</option>
-	<option value="UY">Uruguay</option>
-	<option value="UZ">Uzbekistan</option>
-	<option value="VU">Vanuatu</option>
-	<option value="VE">Venezuela, Bolivarian Republic of</option>
-	<option value="VN">Viet Nam</option>
-	<option value="VG">Virgin Islands, British</option>
-	<option value="VI">Virgin Islands, U.S.</option>
-	<option value="WF">Wallis and Futuna</option>
-	<option value="EH">Western Sahara</option>
-	<option value="YE">Yemen</option>
-	<option value="ZM">Zambia</option>
-	<option value="ZW">Zimbabwe</option>
-</select>
-</div>
-</form>
-
-      </div>
-      <div class="modal-footer">
-        <button id="translateClose2" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="translateSave" type="button" onClick="saveEditServer()" data-dismiss="modal" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="modal fade" id="modalError1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="errorTitle1">ERROR!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <a id="errorBody1">Your Lan Play Version is not unupdated, please update to the most recent one from this place:</a><br><a href="http://github.com/spacemeowx2/switch-lan-play/releases/latest">http://github.com/spacemeowx2/switch-lan-play/releases/latest</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="errorButton1">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="modalError2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="errorTitle2">ERROR!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <a id="errorBody2">You need to download Lan Play and configure in settings where is place, you can download lan play here:</a><br><a href="http://github.com/spacemeowx2/switch-lan-play/releases/latest">http://github.com/spacemeowx2/switch-lan-play/releases/latest</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="errorButton2">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateAvaliable">UPDATE AVALIABLE</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-	  <div class="text-center">
-       <div id="updateAvaliableText" style="display: contents;"> You have version $VERSION_NUMBER$ of the GUI and the new version %VERSION_NUMBER% of the GUI has been released, please update.</div>
-	   <br />
-		
+		<div class="modal fade" id="editServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="translateEditServer">Edit Server</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="addServerForm" class="form-inline">
+							<label id="translateServerName3" class="sr-only" for="inlineFormInputName2">Server Name</label>
+							<div class="input-group mb-1 col-12">
+									<div class="input-group-prepend">
+										<div id="translateServerName4" class="input-group-text">Server Name</div>
+									</div>
+								<input id="editServerFormName" type="text" style="width: 200px" class="form-control" placeholder="Server 1">
+							</div>
+							<label id="translateServerURL3" class="sr-only" for="inlineFormInputGroupUsername2">Server URL</label>
+							<div class="input-group mb-1 col-12">
+								<div class="input-group-prepend">
+									<div id="translateServerURL4" class="input-group-text">Server URL</div>
+								</div>
+								<input type="text" id="editServerFormURL" style="width: 300px" class="form-control" placeholder="example.com:11451">
+							</div>
+							<br />
+							<div class="input-group mb-1 col-12">
+								<div class="input-group-prepend">
+									<div id="translateCountry2" class="input-group-text">Country</div>
+								</div>
+								<select class="form-control" id="editServerFormCountry" style="width: 200px">
+									<option id="translateNoCountry2" value="NFlag">No Country</option>
+									<option value="EU">Europe</option>
+									<option value="AF">Afghanistan</option>
+									<option value="AX">Åland Islands</option>
+									<option value="AL">Albania</option>
+									<option value="DZ">Algeria</option>
+									<option value="AS">American Samoa</option>
+									<option value="AD">Andorra</option>
+									<option value="AO">Angola</option>
+									<option value="AI">Anguilla</option>
+									<option value="AQ">Antarctica</option>
+									<option value="AG">Antigua and Barbuda</option>
+									<option value="AR">Argentina</option>
+									<option value="AM">Armenia</option>
+									<option value="AW">Aruba</option>
+									<option value="AU">Australia</option>
+									<option value="AT">Austria</option>
+									<option value="AZ">Azerbaijan</option>
+									<option value="BS">Bahamas</option>
+									<option value="BH">Bahrain</option>
+									<option value="BD">Bangladesh</option>
+									<option value="BB">Barbados</option>
+									<option value="BY">Belarus</option>
+									<option value="BE">Belgium</option>
+									<option value="BZ">Belize</option>
+									<option value="BJ">Benin</option>
+									<option value="BM">Bermuda</option>
+									<option value="BT">Bhutan</option>
+									<option value="BO">Bolivia, Plurinational State of</option>
+									<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+									<option value="BA">Bosnia and Herzegovina</option>
+									<option value="BW">Botswana</option>
+									<option value="BV">Bouvet Island</option>
+									<option value="BR">Brazil</option>
+									<option value="IO">British Indian Ocean Territory</option>
+									<option value="BN">Brunei Darussalam</option>
+									<option value="BG">Bulgaria</option>
+									<option value="BF">Burkina Faso</option>
+									<option value="BI">Burundi</option>
+									<option value="KH">Cambodia</option>
+									<option value="CM">Cameroon</option>
+									<option value="CA">Canada</option>
+									<option value="CV">Cape Verde</option>
+									<option value="KY">Cayman Islands</option>
+									<option value="CF">Central African Republic</option>
+									<option value="TD">Chad</option>
+									<option value="CL">Chile</option>
+									<option value="CN">China</option>
+									<option value="CX">Christmas Island</option>
+									<option value="CC">Cocos (Keeling) Islands</option>
+									<option value="CO">Colombia</option>
+									<option value="KM">Comoros</option>
+									<option value="CG">Congo</option>
+									<option value="CD">Congo, the Democratic Republic of the</option>
+									<option value="CK">Cook Islands</option>
+									<option value="CR">Costa Rica</option>
+									<option value="CI">Côte d'Ivoire</option>
+									<option value="HR">Croatia</option>
+									<option value="CU">Cuba</option>
+									<option value="CW">Curaçao</option>
+									<option value="CY">Cyprus</option>
+									<option value="CZ">Czech Republic</option>
+									<option value="DK">Denmark</option>
+									<option value="DJ">Djibouti</option>
+									<option value="DM">Dominica</option>
+									<option value="DO">Dominican Republic</option>
+									<option value="EC">Ecuador</option>
+									<option value="EG">Egypt</option>
+									<option value="SV">El Salvador</option>
+									<option value="GQ">Equatorial Guinea</option>
+									<option value="ER">Eritrea</option>
+									<option value="EE">Estonia</option>
+									<option value="ET">Ethiopia</option>
+									<option value="FK">Falkland Islands (Malvinas)</option>
+									<option value="FO">Faroe Islands</option>
+									<option value="FJ">Fiji</option>
+									<option value="FI">Finland</option>
+									<option value="FR">France</option>
+									<option value="GF">French Guiana</option>
+									<option value="PF">French Polynesia</option>
+									<option value="TF">French Southern Territories</option>
+									<option value="GA">Gabon</option>
+									<option value="GM">Gambia</option>
+									<option value="GE">Georgia</option>
+									<option value="DE">Germany</option>
+									<option value="GH">Ghana</option>
+									<option value="GI">Gibraltar</option>
+									<option value="GR">Greece</option>
+									<option value="GL">Greenland</option>
+									<option value="GD">Grenada</option>
+									<option value="GP">Guadeloupe</option>
+									<option value="GU">Guam</option>
+									<option value="GT">Guatemala</option>
+									<option value="GG">Guernsey</option>
+									<option value="GN">Guinea</option>
+									<option value="GW">Guinea-Bissau</option>
+									<option value="GY">Guyana</option>
+									<option value="HT">Haiti</option>
+									<option value="HM">Heard Island and McDonald Islands</option>
+									<option value="VA">Holy See (Vatican City State)</option>
+									<option value="HN">Honduras</option>
+									<option value="HK">Hong Kong</option>
+									<option value="HU">Hungary</option>
+									<option value="IS">Iceland</option>
+									<option value="IN">India</option>
+									<option value="ID">Indonesia</option>
+									<option value="IR">Iran, Islamic Republic of</option>
+									<option value="IQ">Iraq</option>
+									<option value="IE">Ireland</option>
+									<option value="IM">Isle of Man</option>
+									<option value="IL">Israel</option>
+									<option value="IT">Italy</option>
+									<option value="JM">Jamaica</option>
+									<option value="JP">Japan</option>
+									<option value="JE">Jersey</option>
+									<option value="JO">Jordan</option>
+									<option value="KZ">Kazakhstan</option>
+									<option value="KE">Kenya</option>
+									<option value="KI">Kiribati</option>
+									<option value="KP">Korea, Democratic People's Republic of</option>
+									<option value="KR">Korea, Republic of</option>
+									<option value="KW">Kuwait</option>
+									<option value="KG">Kyrgyzstan</option>
+									<option value="LA">Lao People's Democratic Republic</option>
+									<option value="LV">Latvia</option>
+									<option value="LB">Lebanon</option>
+									<option value="LS">Lesotho</option>
+									<option value="LR">Liberia</option>
+									<option value="LY">Libya</option>
+									<option value="LI">Liechtenstein</option>
+									<option value="LT">Lithuania</option>
+									<option value="LU">Luxembourg</option>
+									<option value="MO">Macao</option>
+									<option value="MK">Macedonia, the former Yugoslav Republic of</option>
+									<option value="MG">Madagascar</option>
+									<option value="MW">Malawi</option>
+									<option value="MY">Malaysia</option>
+									<option value="MV">Maldives</option>
+									<option value="ML">Mali</option>
+									<option value="MT">Malta</option>
+									<option value="MH">Marshall Islands</option>
+									<option value="MQ">Martinique</option>
+									<option value="MR">Mauritania</option>
+									<option value="MU">Mauritius</option>
+									<option value="YT">Mayotte</option>
+									<option value="MX">Mexico</option>
+									<option value="FM">Micronesia, Federated States of</option>
+									<option value="MD">Moldova, Republic of</option>
+									<option value="MC">Monaco</option>
+									<option value="MN">Mongolia</option>
+									<option value="ME">Montenegro</option>
+									<option value="MS">Montserrat</option>
+									<option value="MA">Morocco</option>
+									<option value="MZ">Mozambique</option>
+									<option value="MM">Myanmar</option>
+									<option value="NA">Namibia</option>
+									<option value="NR">Nauru</option>
+									<option value="NP">Nepal</option>
+									<option value="NL">Netherlands</option>
+									<option value="NC">New Caledonia</option>
+									<option value="NZ">New Zealand</option>
+									<option value="NI">Nicaragua</option>
+									<option value="NE">Niger</option>
+									<option value="NG">Nigeria</option>
+									<option value="NU">Niue</option>
+									<option value="NF">Norfolk Island</option>
+									<option value="MP">Northern Mariana Islands</option>
+									<option value="NO">Norway</option>
+									<option value="OM">Oman</option>
+									<option value="PK">Pakistan</option>
+									<option value="PW">Palau</option>
+									<option value="PS">Palestinian Territory, Occupied</option>
+									<option value="PA">Panama</option>
+									<option value="PG">Papua New Guinea</option>
+									<option value="PY">Paraguay</option>
+									<option value="PE">Peru</option>
+									<option value="PH">Philippines</option>
+									<option value="PN">Pitcairn</option>
+									<option value="PL">Poland</option>
+									<option value="PT">Portugal</option>
+									<option value="PR">Puerto Rico</option>
+									<option value="QA">Qatar</option>
+									<option value="RE">Réunion</option>
+									<option value="RO">Romania</option>
+									<option value="RU">Russian Federation</option>
+									<option value="RW">Rwanda</option>
+									<option value="BL">Saint Barthélemy</option>
+									<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+									<option value="KN">Saint Kitts and Nevis</option>
+									<option value="LC">Saint Lucia</option>
+									<option value="MF">Saint Martin (French part)</option>
+									<option value="PM">Saint Pierre and Miquelon</option>
+									<option value="VC">Saint Vincent and the Grenadines</option>
+									<option value="WS">Samoa</option>
+									<option value="SM">San Marino</option>
+									<option value="ST">Sao Tome and Principe</option>
+									<option value="SA">Saudi Arabia</option>
+									<option value="SN">Senegal</option>
+									<option value="RS">Serbia</option>
+									<option value="SC">Seychelles</option>
+									<option value="SL">Sierra Leone</option>
+									<option value="SG">Singapore</option>
+									<option value="SX">Sint Maarten (Dutch part)</option>
+									<option value="SK">Slovakia</option>
+									<option value="SI">Slovenia</option>
+									<option value="SB">Solomon Islands</option>
+									<option value="SO">Somalia</option>
+									<option value="ZA">South Africa</option>
+									<option value="GS">South Georgia and the South Sandwich Islands</option>
+									<option value="SS">South Sudan</option>
+									<option value="ES">Spain</option>
+									<option value="LK">Sri Lanka</option>
+									<option value="SD">Sudan</option>
+									<option value="SR">Suriname</option>
+									<option value="SJ">Svalbard and Jan Mayen</option>
+									<option value="SZ">Swaziland</option>
+									<option value="SE">Sweden</option>
+									<option value="CH">Switzerland</option>
+									<option value="SY">Syrian Arab Republic</option>
+									<option value="TW">Taiwan, Province of China</option>
+									<option value="TJ">Tajikistan</option>
+									<option value="TZ">Tanzania, United Republic of</option>
+									<option value="TH">Thailand</option>
+									<option value="TL">Timor-Leste</option>
+									<option value="TG">Togo</option>
+									<option value="TK">Tokelau</option>
+									<option value="TO">Tonga</option>
+									<option value="TT">Trinidad and Tobago</option>
+									<option value="TN">Tunisia</option>
+									<option value="TR">Turkey</option>
+									<option value="TM">Turkmenistan</option>
+									<option value="TC">Turks and Caicos Islands</option>
+									<option value="TV">Tuvalu</option>
+									<option value="UG">Uganda</option>
+									<option value="UA">Ukraine</option>
+									<option value="AE">United Arab Emirates</option>
+									<option value="GB">United Kingdom</option>
+									<option value="US">United States</option>
+									<option value="UM">United States Minor Outlying Islands</option>
+									<option value="UY">Uruguay</option>
+									<option value="UZ">Uzbekistan</option>
+									<option value="VU">Vanuatu</option>
+									<option value="VE">Venezuela, Bolivarian Republic of</option>
+									<option value="VN">Viet Nam</option>
+									<option value="VG">Virgin Islands, British</option>
+									<option value="VI">Virgin Islands, U.S.</option>
+									<option value="WF">Wallis and Futuna</option>
+									<option value="EH">Western Sahara</option>
+									<option value="YE">Yemen</option>
+									<option value="ZM">Zambia</option>
+									<option value="ZW">Zimbabwe</option>
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button id="translateClose2" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button id="translateSave" type="button" onClick="saveEditServer()" data-dismiss="modal" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
 		</div>
-      </div>
-      <div class="modal-footer">
-	  <div class="container">
-  <div class="row">
-    <div class="col text-center">
-	  <button type="button" onClick="updateGui()" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-download"></i> <div id="downloadUpdate" style="display: contents;">Download Update</div></button>
-	  </div></div></div>
-	   <button type="button" onClick="skipVersion()" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-step-forward"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="changelog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Changelog</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        New features in v1.0.0:<br />
-		-Settings menu.<br />
-		-Now you can preselect your interface in settings so you dont have to select it each time.<br />
-		-Now you can change the PMTU.<br />
-		-Fake Internet moved to settings.<br />
-		-Broadcast option added.<br />
-		-Now you can export Server Lists.<br />
-		-Now you can import Server Lists.<br />
-		-Now you can import from internet the official Server List.<br />
-		-Now you can place lan play anywere and select from setting where it is.<br />
-		-You need lan play 0.0.7 or higher <br />
-		-Bug with double fetch fixed<br />
-		-Bug of pinging and fetching when change order fixed<br />
-		-Bug of server dupe fixed
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="modal fade" id="modalError1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="errorTitle1">ERROR!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<a id="errorBody1">Your Lan Play Version is not unupdated, please update to the most recent one from this place:</a><br><a href="http://github.com/spacemeowx2/switch-lan-play/releases/latest">http://github.com/spacemeowx2/switch-lan-play/releases/latest</a>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="errorButton1">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<div class="modal fade" id="stopServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Lan Play Started</h5>
-    
-      </div>
-      <div class="modal-body">
-     <button type="button" onClick="killServer()" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-power-off">Stop Lan Play</i></button>
-      </div>
-      <div class="modal-footer">
-        
-      </div>
-    </div>
-  </div>
-</div>
-<div id="loadingBarModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="progress">
-    <div id="loadingBar" class="progress-bar progress-bar-striped bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-      0%
-    </div>
-  </div>
-    </div>
-  </div>
-</div>
+		<div class="modal fade" id="modalError2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="errorTitle2">ERROR!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<a id="errorBody2">You need to download Lan Play and configure in settings where is place, you can download lan play here:</a><br><a href="http://github.com/spacemeowx2/switch-lan-play/releases/latest">http://github.com/spacemeowx2/switch-lan-play/releases/latest</a>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="errorButton2">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-  </body>
+		<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="updateAvaliable">UPDATE AVALIABLE</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body text-center">
+						<div id="updateAvaliableText" style="display: contents;"> You have version $VERSION_NUMBER$ of the GUI and the new version %VERSION_NUMBER% of the GUI has been released, please update.</div>
+					</div>
+					<div class="modal-footer">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<button type="button" onClick="updateGui()" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-download"></i> <div id="downloadUpdate" style="display: contents;">Download Update</div></button>
+								</div>
+							</div>
+						</div>
+						<button type="button" onClick="skipVersion()" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-step-forward"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="changelog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Changelog</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						New features in v1.0.0:<br />
+						-Settings menu.<br />
+						-Now you can preselect your interface in settings so you dont have to select it each time.<br />
+						-Now you can change the PMTU.<br />
+						-Fake Internet moved to settings.<br />
+						-Broadcast option added.<br />
+						-Now you can export Server Lists.<br />
+						-Now you can import Server Lists.<br />
+						-Now you can import from internet the official Server List.<br />
+						-Now you can place lan play anywere and select from setting where it is.<br />
+						-You need lan play 0.0.7 or higher <br />
+						-Bug with double fetch fixed<br />
+						-Bug of pinging and fetching when change order fixed<br />
+						-Bug of server dupe fixed
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="stopServer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Lan Play Started</h5>
+					</div>
+					<div class="modal-body">
+						<button type="button" onClick="killServer()" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-power-off">Stop Lan Play</i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="loadingBarModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-xl">
+				<div class="modal-content">
+					<div class="progress">
+						<div id="loadingBar" class="progress-bar progress-bar-striped bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+							0%
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

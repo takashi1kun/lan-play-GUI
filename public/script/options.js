@@ -118,7 +118,7 @@ var translate = function(){
 	$('#browse3').text(i18n.__("Browse"))
 	$('#fakeInternet3').text(i18n.__("Fake Internet"))
 	$('#Broadcast3').text(i18n.__("Broadcast"))
-	$('#loadInterfacesText3').text(i18n.__("Network Adapter Text"))
+	$('#loadInterfacesText3').html(i18n.__("Network Adapter Text"))
 	$('#loadInterfaces3').text(i18n.__("Load Interfaces"))
 	$('#loadInterfacesHelp3').text(i18n.__("Load Interfaces First"))
 	$('#serverListText3').text(i18n.__("Server List Text"))
