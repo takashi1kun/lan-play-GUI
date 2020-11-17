@@ -15,20 +15,12 @@ body{
 	 overflow-y:hidden;
 }
 .bar{
-			 -webkit-user-select: none;
+  -webkit-user-select: none;
 	-webkit-app-region: drag;
-	position: -webkit-sticky;
-  position: sticky;
   top:23px;
-    margin-top: 0;
-    position: fixed;
-    z-index: 3;
-	width: 100%;
-}
-
-.header{
-	 display: flex;
-	 flex-direction:column;
+  z-index: 3;
+  width: 100%;
+  padding: 5px;
 }
 
 .textHeader{
@@ -40,19 +32,23 @@ body{
 	-webkit-app-region: drag;
 }
 
+.header {
+  display: flex;
+  flex-direction:column;
+}
+
 header {
-	    background-color: #343a40!important;
+  background-color: #343a40!important;
 	display: flex;
 	flex-direction:row-reverse;
 	justify-content: flex-start;
 	align-self: stretch;
-		 -webkit-user-select: none;
+  -webkit-user-select: none;
 	-webkit-app-region: drag;
-	
 }
 
 .xButton, ._Button{
-		    color: #fff!important;
+  color: #fff!important;
   float: right;
   padding: 0px 16px !important;
 	font-size: large!important;
@@ -66,17 +62,15 @@ header {
 ._Button:hover{
 	background: #585858;
 }
-.app{
-	top: 80px;
-	width: 100%;
-	position:fixed;
-	overflow-y: scroll;
-	/*height:464px*/
-	height:100%
-}
 
 .nodrag{
 	-webkit-app-region: no-drag;
+}
+
+#app{
+	width: 100%;
+	overflow-y: scroll;
+	height: -webkit-fill-available;
 }
 
 #app>div:last-child {margin-bottom: 81px;}
