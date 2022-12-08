@@ -58,7 +58,7 @@
     "bootstrap": "^4.3.1",
     "child_process": "^1.0.2",
     "electron-json-config": "^1.5.3",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "ip": "^1.1.5",
     "jquery": "^3.5.0",
     "network-interfaces": "^1.1.0",
